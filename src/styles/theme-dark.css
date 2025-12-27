@@ -1,0 +1,113 @@
+/* MODO OSCURO - MÚLTIPLES SELECTORES PARA ESPECIFICIDAD */
+
+/* Fondo modo oscuro */
+body.dark,
+body[data-theme="dark"],
+body.simpsons-theme.dark {
+  background: linear-gradient(135deg, #0C0C2E 0%, #1A1A4E 100%) !important;
+  background-image: url('/simpsons_nubes_noche.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  color: #E0E0FF !important;
+  padding-top: 60px !important;
+}
+
+/* Barra superior modo oscuro */
+body.dark .top-bar,
+body.dark .simpsons-top-bar,
+body[data-theme="dark"] .top-bar,
+body[data-theme="dark"] .simpsons-top-bar,
+body.simpsons-theme.dark .top-bar,
+body.simpsons-theme.dark .simpsons-top-bar {
+  background-color: #2D1B69 !important;
+  color: #E0E0FF !important;
+  border-bottom: 2px solid rgba(74, 79, 193, 0.3) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Icono modo oscuro */
+body.dark .top-bar-icon,
+body[data-theme="dark"] .top-bar-icon,
+body.simpsons-theme.dark .top-bar-icon {
+  color: #FFD90F !important;
+}
+
+/* Botón modo oscuro */
+body.dark .theme-toggle-btn,
+body[data-theme="dark"] .theme-toggle-btn,
+body.simpsons-theme.dark .theme-toggle-btn {
+  background: linear-gradient(135deg, #4A4FC1, #2E3192) !important;
+  color: #E0E0FF !important;
+  border: 2px solid #4A4FC1 !important;
+}
+
+body.dark .theme-toggle-btn:hover,
+body[data-theme="dark"] .theme-toggle-btn:hover,
+body.simpsons-theme.dark .theme-toggle-btn:hover {
+  background: linear-gradient(135deg, #2E3192, #4A4FC1) !important;
+}
+
+/* Estrellas para modo oscuro - Solo efecto visual */
+body.dark::before,
+body[data-theme="dark"]::before,
+body.simpsons-theme.dark::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+    radial-gradient(3px 3px at 60px 90px, #ddd, transparent),
+    radial-gradient(2px 2px at 80px 120px, #fff, transparent);
+  background-repeat: repeat;
+  animation: twinkle 4s infinite;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* Estrellas individuales (si usas componente React) */
+body.dark .star,
+body[data-theme="dark"] .star,
+body.simpsons-theme.dark .star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+  z-index: 1;
+  display: block !important;
+}
+
+/* MODO OSCURO - HEADER ESPECÍFICO */
+body.dark .app-header,
+body[data-theme="dark"] .app-header,
+body.simpsons-theme.dark .app-header {
+  background-color: #360868 !important; /* MORADO AZULADO */
+  border-bottom: 3px solid #22026b !important; /* BORDE MORADO */
+  color: #E0E0FF !important;
+  box-shadow: 0 2px 15px rgba(138, 43, 226, 0.3) !important;
+}
+
+/* Icono en modo oscuro - amarillo Simpsons */
+body.dark .header-icon,
+body[data-theme="dark"] .header-icon,
+body.simpsons-theme.dark .header-icon {
+  color: #FFD90F !important; /* AMARILLO SIMPSONS */
+}
+
+/* Variables CSS para modo oscuro */
+body.dark {
+  --header-bg: #2D1B69;
+  --header-border: 3px solid #8A2BE2;
+  --header-text: #E0E0FF;
+  --header-icon: #FFD90F;
+}

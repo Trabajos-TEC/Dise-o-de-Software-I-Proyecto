@@ -1,0 +1,115 @@
+/* src/styles/components/layout.css */
+.app-main {
+  padding-top: 100px;
+  padding-bottom: 80px;
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.hero-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.app-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.app-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.current-status {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 25px;
+  margin-top: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-item:last-child {
+  border-bottom: none;
+}
+
+.status-label {
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.status-value {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 25px 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.footer-text {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.footer-subtext {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .app-main {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+  
+  .app-title {
+    font-size: 2.2rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .current-status {
+    padding: 20px;
+  }
+  
+  .status-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}

@@ -1,0 +1,343 @@
+/* src/index.css */
+/* ESTILOS BASE CON VARIABLES CSS */
+:root {
+  /* Variables para la barra superior */
+  --top-bar-height: 60px;
+  --top-bar-z-index: 9999;
+  
+  /* Colores base */
+  --color-white: #FFFFFF;
+  --color-dark-purple: #2D1B69;
+  --color-dark-blue: #2C3E50;
+  --color-light-blue: #E0E0FF;
+  
+  /* Transiciones */
+  --transition-fast: 0.3s ease;
+  --transition-normal: 0.5s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  transition: background-color var(--transition-normal), 
+              color var(--transition-normal);
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.simpsons-app {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* BARRA SUPERIOR - ESTILOS BASE CRÍTICOS */
+.top-bar,
+.simpsons-top-bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: var(--top-bar-height) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  z-index: var(--top-bar-z-index) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: all var(--transition-normal) !important;
+}
+
+/* Elementos de la barra */
+.top-bar-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-left: 20px !important;
+  visibility: visible !important;
+}
+
+.top-bar-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  margin-right: 20px !important;
+  visibility: visible !important;
+}
+
+.top-bar-icon {
+  font-size: 1.5rem !important;
+  visibility: visible !important;
+}
+
+.top-bar-title {
+  font-weight: bold !important;
+  font-size: 1.1rem !important;
+  visibility: visible !important;
+}
+
+.top-bar-mode {
+  font-size: 0.9rem !important;
+  opacity: 0.8 !important;
+  visibility: visible !important;
+}
+
+/* BOTÓN BASE */
+.theme-toggle-btn {
+  padding: 8px 16px !important;
+  border-radius: 50px !important;
+  font-weight: bold !important;
+  font-size: 0.9rem !important;
+  cursor: pointer !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  transition: all var(--transition-fast) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.05) !important;
+}
+
+/* CLASES DE RESPALDO PARA TRADUCCIONES */
+.notranslate {
+  -webkit-translate: none !important;
+  -moz-translate: none !important;
+  -ms-translate: none !important;
+  -o-translate: none !important;
+  translate: none !important;
+}
+
+/* Asegurar que elementos hijos también sean visibles */
+.top-bar * {
+  visibility: inherit !important;
+  opacity: inherit !important;
+}
+
+/* ESTILOS PARA INTERNACIONALIZACIÓN */
+.language-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.language-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.language-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.language-dropdown {
+  position: relative;
+}
+
+.language-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--top-bar-bg);
+  min-width: 140px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  z-index: 10001;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.language-dropdown:hover .language-dropdown-content {
+  display: block;
+}
+
+.language-option {
+  width: 100%;
+  padding: 10px 15px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+}
+
+.language-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.language-option.active {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: bold;
+}
+
+.language-flag {
+  font-size: 1.2rem;
+}
+
+.language-name {
+  flex: 1;
+}
+
+.language-check {
+  color: #4CAF50;
+}
+
+/* Barra superior mejorada */
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.language-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.current-language-text {
+  font-size: 0.9rem;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+/* Contenido principal */
+.app-content {
+  padding: 80px 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.welcome-message {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  opacity: 0.8;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.current-theme,
+.current-language-display {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.controls-section {
+  margin-top: 40px;
+}
+
+.large-btn {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 30px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 60px;
+}
+
+.footer-sub {
+  opacity: 0.7;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.footer-langs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.lang-badge,
+.theme-badge {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 0.9rem;
+}

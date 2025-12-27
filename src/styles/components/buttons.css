@@ -1,0 +1,52 @@
+/* src/styles/components/buttons.css */
+.language-btn,
+.theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  min-width: 100px;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.btn-text {
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+/* Hover effects */
+.language-btn:hover,
+.theme-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.language-btn:active,
+.theme-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive buttons */
+@media (max-width: 768px) {
+  .language-btn,
+  .theme-btn {
+    padding: 8px 16px;
+    min-width: 85px;
+    font-size: 0.85rem;
+  }
+  
+  .btn-text {
+    font-size: 0.8rem;
+  }
+}
