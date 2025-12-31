@@ -1,5 +1,6 @@
-/* CONTROLA LA BARRA DE ARRIBA QUE CONTIENE LOS BOTONES*/
+/* src/styles/components/header.css */
 
+/* ===== HEADER PRINCIPAL RESPONSIVO ===== */
 .app-header {
   position: fixed;
   top: 0;
@@ -11,74 +12,488 @@
   align-items: center;
   padding: 0 30px;
   z-index: 1000;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Soporte Safari */
+  
+  /* Variables de tema (definidas en theme-light.css y theme-dark.css) */
+  background-color: var(--header-bg, #FFFFFF);
+  border-bottom: var(--header-border, 2px solid rgba(255, 217, 15, 0.3));
+  color: var(--header-text, #2C3E50);
+  box-shadow: var(--header-shadow, 0 2px 10px rgba(0, 0, 0, 0.1));
 }
 
+/* HEADER CONTENEDORES */
 .header-left {
   display: flex;
   align-items: center;
   gap: 15px;
-}
-
-.header-icon {
-  font-size: 2rem;
-  transition: transform 0.3s ease;
-}
-
-.header-title {
-  font-size: 1.4rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
 
 .header-right {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* ELEMENTOS DEL HEADER */
+.header-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+  color: inherit;
 }
 
 .separator {
   opacity: 0.3;
   font-size: 1.2rem;
+  font-weight: 300;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* ===== LOGO COMO BOTÓN ===== */
+.logo-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+  outline: none; /* Eliminar outline por defecto */
+}
+
+.logo-button:hover {
+  transform: scale(1.05);
+}
+
+.logo-button:active {
+  transform: scale(0.98);
+}
+
+/* Logo con tamaño 32px como base */
+.header-logo {
+  /* Tamaño perfecto - 32px */
+  height: 32px;
+  width: auto;
+  
+  /* Sin bordes ni límites */
+  max-width: none;
+  min-width: auto;
+  
+  /* Ajustes visuales - SIN BORDES */
+  object-fit: contain;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Efecto visual sutil */
+.logo-button:hover .header-logo {
+  filter: brightness(1.05);
+}
+
+/* Eliminar focus outline */
+.logo-button:focus {
+  outline: none;
+}
+
+.logo-button:focus-visible {
+  outline: none;
+}
+
+/* ===== MEDIA QUERIES RESPONSIVAS ===== */
+
+/* TABLET (768px o menos) */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 20px;
+    height: 60px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+  .header-title {
+    font-size: 1.2rem;
+    max-width: 200px;
+  }
+  
+  .header-right {
+    gap: 12px;
+  }
+  
+  .separator {
+    font-size: 1rem;
+  }
+  
+  /* Logo ligeramente más pequeño en tablet */
+  .header-logo {
+    height: 30px;
+  }
+  
+  /* Reducir efectos hover en móvil */
+  .logo-button:hover {
+    transform: none;
+  }
+  
+  .logo-button:hover .header-logo {
+    filter: none;
+  }
+}
+
+/* MÓVIL (480px o menos) */
+@media (max-width: 480px) {
+  .app-header {
+    padding: 0 15px;
+    height: auto;
+    min-height: 55px;
+    flex-wrap: wrap;
+    gap: 10px;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  
+  .header-left {
+    width: 100%;
+    justify-content: center;
+    order: 1;
+    gap: 10px;
+    padding: 5px 0;
+  }
+  
+  .header-right {
+    width: 100%;
+    justify-content: center;
+    order: 2;
+    gap: 10px;
+    padding: 5px 0 10px;
+  }
+  
+  .header-title {
+    font-size: 1.1rem;
+    max-width: 180px;
+    text-align: center;
+  }
+  
+  .separator {
+    display: none;
+  }
+  
+  /* Logo más pequeño en móvil */
+  .header-logo {
+    height: 28px;
+  }
+  
+  /* Botones táctiles en móvil */
+  .header-right .language-btn,
+  .header-right .theme-btn,
+  .header-right .language-toggle,
+  .header-right .theme-toggle {
+    min-height: 40px;
+    min-width: 120px;
+  }
+}
+
+/* MÓVIL PEQUEÑO (360px o menos) */
+@media (max-width: 360px) {
+  .app-header {
+    padding: 0 10px;
+    min-height: 50px;
+  }
+  
+  .header-left {
+    gap: 8px;
+  }
+  
+  .header-right {
+    gap: 8px;
+  }
+  
+  .header-title {
+    font-size: 1rem;
+    max-width: 150px;
+    letter-spacing: 0.3px;
+  }
+  
+  /* Logo un poco más pequeño en móvil pequeño */
+  .header-logo {
+    height: 26px;
+  }
+  
+  /* Botones más compactos */
+  .header-right .language-btn,
+  .header-right .theme-btn,
+  .header-right .language-toggle,
+  .header-right .theme-toggle {
+    min-width: 100px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  /* Ocultar texto de botones, mostrar solo icono */
+  @media (max-width: 320px) {
+    .header-title {
+      font-size: 0.9rem;
+      max-width: 120px;
+    }
+    
+    .header-logo {
+      height: 24px; /* Pequeño pero legible */
+    }
+    
+    .header-right .btn-text {
+      display: none;
+    }
+    
+    .header-right .language-btn,
+    .header-right .theme-btn,
+    .header-right .language-toggle,
+    .header-right .theme-toggle {
+      min-width: 45px;
+      width: 45px;
+      justify-content: center;
+      padding: 8px;
+    }
+  }
+}
+
+/* ORIENTACIÓN HORIZONTAL EN MÓVIL */
+@media (max-height: 500px) and (orientation: landscape) {
+  .app-header {
+    height: 50px;
+    padding: 0 15px;
+  }
+  
+  .header-title {
+    font-size: 1rem;
+    max-width: 200px;
+  }
+  
+  .header-right {
+    gap: 8px;
+  }
+  
+  /* Logo pequeño en horizontal */
+  .header-logo {
+    height: 26px;
+  }
+  
+  .header-right .language-btn,
+  .header-right .theme-btn,
+  .header-right .language-toggle,
+  .header-right .theme-toggle {
+    min-height: 35px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* PANTALLAS GRANDES (1200px o más) */
+@media (min-width: 1200px) {
+  .app-header {
+    padding: 0 40px;
+    height: 80px;
+  }
+  
+  .header-title {
+    font-size: 1.5rem;
+    max-width: 400px;
+  }
+  
+  .header-right {
+    gap: 25px;
+  }
+  
+  /* Logo mantiene el tamaño perfecto en pantallas grandes */
+  .header-logo {
+    height: 32px; /* Se mantiene en 32px */
+  }
+}
+
+/* PANTALLAS MUY GRANDES (1600px o más) */
+@media (min-width: 1600px) {
+  .app-header {
+    padding: 0 60px;
+  }
+  
+  .header-title {
+    max-width: 500px;
+  }
+  
+  /* Logo mantiene tamaño perfecto */
+  .header-logo {
+    height: 32px; /* Se mantiene constante en 32px */
+  }
+}
+
+/* ===== EFECTOS ESPECIALES ===== */
+
+/* Header con scroll */
+.app-header.scrolled {
+  height: 60px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== SOPORTE PARA ACCESIBILIDAD ===== */
+
+/* Reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .app-header {
+    transition: none;
+  }
+  
+  .logo-button {
+    transition: none;
+  }
+}
+
+/* ===== ESTADOS ESPECIALES ===== */
+
+/* Header cuando el menú está abierto (si aplica) */
+.app-header.menu-open {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Header en modo impresión */
+@media print {
+  .app-header {
+    position: static;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .logo-button:hover {
+    transform: none;
+  }
+}
+
+/* ===== BARRA DE BÚSQUEDA ===== */
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.search-form {
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-container {
+  display: flex;
+  width: 100%;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-fast);
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 20px;
+  border: none;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: white;
+  color: #333;
+}
+
+body.dark .search-input,
+body[data-theme="dark"] .search-input,
+body.simpsons-theme.dark .search-input {
+  background-color: #2D1B69;
+  color: #E0E0FF;
+}
+
+body.dark .search-input::placeholder,
+body[data-theme="dark"] .search-input::placeholder,
+body.simpsons-theme.dark .search-input::placeholder {
+  color: rgba(224, 224, 255, 0.6);
+}
+
+.search-button {
+  padding: 0 20px;
+  border: none;
+  background-color: #FFD90F;
+  color: #2C3E50;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color var(--transition-fast);
+}
+
+.search-button:hover {
+  background-color: #FFB347;
+}
+
+body.dark .search-button,
+body[data-theme="dark"] .search-button,
+body.simpsons-theme.dark .search-button {
+  background-color: #4A4FC5;
+  color: #E0E0FF;
+}
+
+body.dark .search-button:hover,
+body[data-theme="dark"] .search-button:hover,
+body.simpsons-theme.dark .search-button:hover {
+  background-color: #2E3192;
+}
+
+.search-icon {
+  font-size: 1.1rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .app-header {
-    padding: 0 20px;
-    height: 60px;
+    flex-wrap: wrap;
+    padding: 10px;
+    height: auto;
   }
   
-  .header-icon {
-    font-size: 1.7rem;
+  .header-center {
+    order: 3;
+    width: 100%;
+    margin: 10px 0 0 0;
   }
   
-  .header-title {
-    font-size: 1.2rem;
+  .search-form {
+    max-width: 100%;
+  }
+  
+  .header-left,
+  .header-right {
+    width: auto;
+    flex: 1;
   }
   
   .header-right {
-    gap: 15px;
+    justify-content: flex-end;
   }
 }
 
-/* Variables para el header que cambiarán con el tema */
-.app-header {
-  /* Estas variables deben definirse en theme-light.css y theme-dark.css */
-  background-color: var(--header-bg);
-  border-bottom: var(--header-border);
-  color: var(--header-text);
-}
-
-/* Icono hereda color del tema */
-.header-icon {
-  color: var(--header-icon);
-}
-
-/* Separador con transparencia */
-.separator {
-  opacity: 0.3;
-  font-size: 1.2rem;
-  color: var(--header-text);
+@media (max-width: 480px) {
+  .search-input {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .search-button {
+    padding: 0 15px;
+  }
 }

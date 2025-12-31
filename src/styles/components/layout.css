@@ -1,115 +1,457 @@
-/* src/styles/components/layout.css */
+/* layout.css - VERSIÓN COMPLETA CON LETRAS MÁS PEQUEÑAS Y STATUS-CARD MÁS GRANDE */
+
+/* ===== ESTRUCTURA PRINCIPAL DE LA APLICACIÓN ===== */
+
+.simpsons-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--body-bg, #f5f5f5);
+}
+
+/* ===== HEADER/NAVEGACIÓN ===== */
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--top-bar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  padding: 0 var(--container-padding);
+  transition: all var(--transition-normal);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* Logo en header */
+.header-logo {
+  height: 30px; /* Más pequeño */
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-fast);
+}
+
+.logo-button:hover .header-logo {
+  transform: scale(1.05);
+}
+
+.separator {
+  opacity: 0.3;
+  font-size: 1.1rem; /* Más pequeño */
+  font-weight: 300;
+}
+
+/* ===== ESTRUCTURA MAIN CONTENT ===== */
+
 .app-main {
-  padding-top: 100px;
-  padding-bottom: 80px;
+  padding-top: calc(var(--top-bar-height) + 15px); /* Reducido */
+  padding-bottom: 130px; /* Reducido */
   min-height: calc(100vh - 160px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.hero-section {
-  max-width: 800px;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-width-desktop, 1600px);
   margin: 0 auto;
 }
 
-.app-title {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  font-weight: bold;
-  line-height: 1.2;
-}
+/* ===== HERO SECTION (CUADRO PRINCIPAL) ===== */
 
-.app-subtitle {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 40px;
-  opacity: 0.9;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.current-status {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 25px;
-  margin-top: 40px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+.hero-section {
+  width: 90%;
+  max-width: 100%;
+  margin: 35px auto; /* Reducido */
+  padding: 50px 40px; /* Reducido */
+  border-radius: 20px;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Logo grande en hero section */
+.logo-container {
+  margin-bottom: 40px; /* Reducido */
+}
+
+.main-logo {
+  height: 120px; /* Reducido */
+  width: auto;
+  max-width: 900px; /* Reducido */
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Mensaje de bienvenida */
+.welcome-message {
+  margin-bottom: 40px; /* Reducido */
+}
+
+.welcome-text {
+  font-size: 1.3rem; /* Reducido */
+  line-height: 1.6; /* Reducido */
+  max-width: 1100px; /* Reducido */
+  margin: 0 auto;
+}
+
+/* ===== STATUS SECTION ===== */
+
+.status-container {
+  margin-top: 35px; /* Reducido */
+  margin-bottom: 40px; /* Reducido */
+}
+
+/* STATUS-CARD MÁS GRANDE Y LARGO */
+.status-card {
+  display: inline-block;
+  padding: 30px 80px; /* AUMENTADO: Más padding horizontal (50px → 80px) */
+  border-radius: 20px; /* Restaurado de 18px */
+  min-width: 800px; /* AUMENTADO: Más ancho (550px → 700px) */
+  border-width: 2px;
+  border-style: solid;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Aumentada sombra */
 }
 
 .status-item {
+  margin: 20px 0; /* Restaurado de 16px */
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.status-item:last-child {
-  border-bottom: none;
+  justify-content: space-between;
+  gap: 50px; /* AUMENTADO: Más espacio (35px → 50px) */
+  font-size: 1.3rem; /* Restaurado de 1.2rem */
+  min-width: 600px; /* AUMENTADO: Más ancho (450px → 600px) */
 }
 
 .status-label {
   font-weight: 600;
-  opacity: 0.8;
+  min-width: 180px; /* AUMENTADO: Más ancho (140px → 180px) */
+  text-align: left;
+  font-size: 1.2rem; /* Restaurado de 1.1rem */
 }
 
 .status-value {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.4rem; /* Restaurado de 1.2rem */
+  min-width: 220px; /* AUMENTADO: Más ancho (180px → 220px) */
+  text-align: right;
 }
+
+/* ===== COMING SOON SECTION ===== */
+
+.coming-soon-section {
+  margin-top: 50px; /* Reducido */
+}
+
+.coming-soon-content {
+  width: 100%;
+}
+
+.coming-soon-title {
+  font-size: 2.4rem; /* Reducido */
+  margin-bottom: 25px; /* Reducido */
+}
+
+.coming-soon-text {
+  font-size: 1.3rem; /* Reducido */
+  line-height: 1.6; /* Reducido */
+  max-width: 900px; /* Reducido */
+  margin: 0 auto;
+}
+
+/* ===== FOOTER ===== */
 
 .app-footer {
   text-align: center;
-  padding: 25px 20px;
+  padding: 18px var(--container-padding); /* Reducido */
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 100;
+  border-top-width: 2px; /* Reducido */
+  border-top-style: solid;
 }
 
 .footer-text {
-  font-size: 0.95rem;
-  margin-bottom: 8px;
+  font-size: 0.9rem; /* Reducido */
+  margin-bottom: 6px; /* Reducido */
   opacity: 0.9;
 }
 
 .footer-subtext {
-  font-size: 0.85rem;
+  font-size: 0.8rem; /* Reducido */
   opacity: 0.6;
 }
 
-/* Responsive layout */
+/* ===== MEDIA QUERIES ESPECÍFICAS DE LAYOUT ===== */
+
+/* Tablet (768px o menos) */
 @media (max-width: 768px) {
   .app-main {
-    padding-top: 80px;
-    padding-bottom: 60px;
+    max-width: var(--max-width-tablet, 95%);
+    padding-top: calc(var(--top-bar-height-mobile) + 12px); /* Reducido */
+    padding-bottom: 110px; /* Reducido */
   }
   
-  .app-title {
-    font-size: 2.2rem;
+  .hero-section {
+    width: 95%;
+    padding: 40px 30px; /* Reducido */
+    margin: 25px auto; /* Reducido */
   }
   
-  .app-subtitle {
-    font-size: 1.1rem;
+  .main-logo {
+    height: 90px; /* Reducido */
+    max-width: 650px; /* Reducido */
   }
   
-  .current-status {
-    padding: 20px;
+  .welcome-text,
+  .coming-soon-text {
+    font-size: 1.1rem; /* Reducido */
+    line-height: 1.5; /* Reducido */
+    max-width: 95%;
+  }
+  
+  /* STATUS-CARD MÁS GRANDE EN TABLET TAMBIÉN */
+  .status-card {
+    min-width: 500px; /* AUMENTADO: (380px → 500px) */
+    padding: 25px 60px; /* AUMENTADO: (20px 35px → 25px 60px) */
+    border-radius: 18px;
   }
   
   .status-item {
+    min-width: 400px; /* AUMENTADO: (280px → 400px) */
+    gap: 40px; /* AUMENTADO: (25px → 40px) */
+    font-size: 1.2rem; /* Restaurado de 1.1rem */
+  }
+  
+  .status-label {
+    font-size: 1.1rem; /* Restaurado de 1rem */
+    min-width: 160px; /* AUMENTADO: (130px → 160px) */
+  }
+  
+  .status-value {
+    font-size: 1.3rem; /* AUMENTADO: (1.1rem → 1.3rem) */
+    min-width: 180px; /* AUMENTADO: (150px → 180px) */
+  }
+  
+  .coming-soon-title {
+    font-size: 1.9rem; /* Reducido */
+    margin-bottom: 20px; /* Reducido */
+  }
+  
+  .separator {
+    display: none;
+  }
+  
+  .app-footer {
+    padding: 14px var(--container-padding-mobile); /* Reducido */
+  }
+  
+  .footer-text {
+    font-size: 0.85rem; /* Reducido */
+  }
+  
+  .footer-subtext {
+    font-size: 0.75rem; /* Reducido */
+  }
+}
+
+/* Mobile (480px o menos) */
+@media (max-width: 480px) {
+  .app-main {
+    max-width: var(--max-width-mobile, 100%);
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 100px; /* Reducido */
+  }
+  
+  .app-header {
+    height: auto;
+    min-height: var(--top-bar-height-mobile);
+    padding: 8px 10px; /* Reducido */
     flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+    gap: 8px; /* Reducido */
+  }
+  
+  .header-left,
+  .header-right {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .header-logo {
+    height: 24px; /* Reducido */
+  }
+  
+  .hero-section {
+    width: 100%;
+    padding: 35px 20px; /* Reducido */
+    margin: 18px auto; /* Reducido */
+    border-radius: 16px; /* Reducido */
+  }
+  
+  .main-logo {
+    height: 70px; /* Reducido */
+    max-width: 450px; /* Reducido */
+  }
+  
+  .welcome-text,
+  .coming-soon-text {
+    font-size: 1rem; /* Reducido */
+    line-height: 1.5;
+  }
+  
+  /* STATUS-CARD MÁS GRANDE EN MÓVIL TAMBIÉN */
+  .status-card {
+    min-width: auto;
+    width: 100%;
+    padding: 20px 30px; /* AUMENTADO: (18px → 20px 30px) */
+    border-radius: 14px;
+  }
+  
+  .status-item {
+    min-width: auto;
+    width: 100%;
+    flex-direction: column;
+    gap: 12px; /* AUMENTADO: (8px → 12px) */
+    font-size: 1.1rem; /* Aumentado de 1rem */
+    text-align: center;
+    margin: 16px 0; /* Aumentado de 14px */
+  }
+  
+  .status-label,
+  .status-value {
+    min-width: auto;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem; /* Aumentado de 1rem */
+  }
+  
+  .coming-soon-title {
+    font-size: 1.6rem; /* Reducido */
+    margin-bottom: 18px; /* Reducido */
+  }
+  
+  .app-footer {
+    padding: 12px 10px;
+  }
+}
+
+/* Pantallas grandes (1200px+) */
+@media (min-width: 1200px) {
+  .app-main {
+    padding-left: 35px; /* Reducido */
+    padding-right: 35px; /* Reducido */
+  }
+  
+  .main-logo {
+    height: 130px; /* Reducido */
+    max-width: 1000px; /* Reducido */
+  }
+  
+  .welcome-text {
+    font-size: 1.4rem; /* Reducido */
+    max-width: 1200px;
+    line-height: 1.6;
+  }
+  
+  .coming-soon-title {
+    font-size: 2.6rem; /* Reducido */
+  }
+  
+  .coming-soon-text {
+    font-size: 1.4rem; /* Reducido */
+    max-width: 1000px;
+    line-height: 1.6;
+  }
+  
+  /* STATUS-CARD AÚN MÁS GRANDE EN PANTALLAS GRANDES */
+  .status-card {
+    padding: 35px 90px; /* AUMENTADO: (30px 60px → 35px 90px) */
+    min-width: 1050px; /* AUMENTADO: (650px → 800px) */
+  }
+  
+  .status-item {
+    min-width: 700px; /* AUMENTADO: (500px → 700px) */
+    gap: 60px; /* AUMENTADO: (45px → 60px) */
+    font-size: 1.4rem; /* Aumentado de 1.3rem */
+  }
+  
+  .status-label {
+    min-width: 200px; /* Aumentado de 180px */
+  }
+  
+  .status-value {
+    font-size: 1.5rem; /* Aumentado de 1.4rem */
+    min-width: 250px; /* Aumentado de 220px */
+  }
+}
+
+/* Pantallas muy grandes (1600px+) */
+@media (min-width: 1600px) {
+  .app-main {
+    max-width: 1700px; /* Reducido */
+  }
+  
+  .main-logo {
+    height: 140px; /* Reducido */
+    max-width: 1100px; /* Reducido */
+  }
+  
+  .welcome-text {
+    font-size: 1.5rem; /* Reducido */
+    max-width: 1300px; /* Reducido */
+  }
+  
+  /* STATUS-CARD MÁXIMO EN PANTALLAS MUY GRANDES */
+  .status-card {
+    padding: 40px 100px; /* AUMENTADO: (30px 60px → 40px 100px) */
+    min-width: 900px; /* AUMENTADO: (650px → 900px) */
+  }
+  
+  .status-item {
+    min-width: 800px; /* AUMENTADO: (500px → 800px) */
+    gap: 80px; /* AUMENTADO: (45px → 80px) */
+    font-size: 1.5rem; /* Aumentado de 1.3rem */
+  }
+  
+  .status-label {
+    min-width: 220px; /* Aumentado de 180px */
+    font-size: 1.4rem; /* Aumentado de 1.2rem */
+  }
+  
+  .status-value {
+    font-size: 1.6rem; /* Aumentado de 1.4rem */
+    min-width: 280px; /* Aumentado de 220px */
+  }
+  
+  .coming-soon-title {
+    font-size: 2.8rem; /* Reducido */
+  }
+  
+  .coming-soon-text {
+    font-size: 1.5rem; /* Reducido */
+    max-width: 1100px; /* Reducido */
   }
 }

@@ -1,113 +1,289 @@
-/* MODO OSCURO - MÚLTIPLES SELECTORES PARA ESPECIFICIDAD */
+/* theme-dark.css - SOLO COLORES, NO TAMAÑOS */
 
-/* Fondo modo oscuro */
+/* Variables de colores para modo oscuro */
+:root[data-theme="dark"],
+body.dark {
+  /* Colores modo oscuro */
+  --color-white: #FFFFFF;
+  --color-dark-purple: #2D1B69;
+  --color-dark-blue: #1A1A4E;
+  --color-light-blue: #E0E0FF;
+  --color-yellow: #FFD90F;
+  --color-orange: #FFB347;
+  --color-blue: #4A4FC5;
+  --color-blue-dark: #2E3192;
+  --color-purple: #8A2BE2;
+  
+  /* Colores para componentes */
+  --header-bg: #2D1B69;
+  --header-text: #E0E0FF;
+  --header-border: 2px solid rgba(138, 43, 226, 0.3);
+  --header-icon: #FFD90F;
+  --header-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  
+  /* Colores para contenido */
+  --body-bg: linear-gradient(135deg, #0C0C2E 0%, #1A1A4E 100%);
+  --body-color: #E0E0FF;
+  --body-bg-image: url('/simpsons_nubes_noche.png');
+  
+  /* Colores para tarjetas/secciones */
+  --card-bg: rgba(45, 27, 105, 0.8);
+  --card-border: rgba(138, 43, 226, 0.3);
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  
+  /* Colores para status */
+  --status-bg: rgba(45, 27, 105, 0.6);
+  --status-border: rgba(138, 43, 226, 0.3);
+  --status-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  
+  /* Colores para texto */
+  --text-primary: #E0E0FF;
+  --text-secondary: #B8B8FF;
+  --text-accent: #FFD90F;
+  
+  /* Colores para botones */
+  --btn-primary-bg: linear-gradient(135deg, #4A4FC5, #2E3192);
+  --btn-primary-color: #E0E0FF;
+  --btn-primary-border: #4A4FC5;
+  --btn-primary-hover: linear-gradient(135deg, #2E3192, #4A4FC5);
+  
+  --btn-secondary-bg: linear-gradient(135deg, #FFD90F, #FFB347);
+  --btn-secondary-color: #2C3E50;
+  --btn-secondary-border: #FFB347;
+  --btn-secondary-hover: linear-gradient(135deg, #FFB347, #FFD90F);
+  
+  /* Colores para footer */
+  --footer-bg: #1A1A4E;
+  --footer-text: #B8B8FF;
+  --footer-border: #8A2BE2;
+}
+
+/* APLICACIÓN DE COLORES - SIN TAMAÑOS */
+
+/* Fondo del body */
 body.dark,
 body[data-theme="dark"],
 body.simpsons-theme.dark {
-  background: linear-gradient(135deg, #0C0C2E 0%, #1A1A4E 100%) !important;
-  background-image: url('/simpsons_nubes_noche.png') !important;
+  background: var(--body-bg) !important;
+  background-image: var(--body-bg-image) !important;
   background-size: cover !important;
   background-position: center !important;
   background-attachment: fixed !important;
   background-repeat: no-repeat !important;
-  color: #E0E0FF !important;
-  padding-top: 60px !important;
+  color: var(--body-color) !important;
 }
 
-/* Barra superior modo oscuro */
+/* Header */
 body.dark .top-bar,
 body.dark .simpsons-top-bar,
 body[data-theme="dark"] .top-bar,
 body[data-theme="dark"] .simpsons-top-bar,
 body.simpsons-theme.dark .top-bar,
-body.simpsons-theme.dark .simpsons-top-bar {
-  background-color: #2D1B69 !important;
-  color: #E0E0FF !important;
-  border-bottom: 2px solid rgba(74, 79, 193, 0.3) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+body.simpsons-theme.dark .simpsons-top-bar,
+body.dark .app-header,
+body[data-theme="dark"] .app-header,
+body.simpsons-theme.dark .app-header {
+  background-color: var(--header-bg) !important;
+  color: var(--header-text) !important;
+  border-bottom: var(--header-border) !important;
+  box-shadow: var(--header-shadow) !important;
 }
 
-/* Icono modo oscuro */
+/* Iconos */
 body.dark .top-bar-icon,
 body[data-theme="dark"] .top-bar-icon,
-body.simpsons-theme.dark .top-bar-icon {
-  color: #FFD90F !important;
+body.simpsons-theme.dark .top-bar-icon,
+body.dark .header-icon,
+body[data-theme="dark"] .header-icon,
+body.simpsons-theme.dark .header-icon {
+  color: var(--header-icon) !important;
 }
 
-/* Botón modo oscuro */
+/* Botón de tema */
 body.dark .theme-toggle-btn,
 body[data-theme="dark"] .theme-toggle-btn,
-body.simpsons-theme.dark .theme-toggle-btn {
-  background: linear-gradient(135deg, #4A4FC1, #2E3192) !important;
-  color: #E0E0FF !important;
-  border: 2px solid #4A4FC1 !important;
+body.simpsons-theme.dark .theme-toggle-btn,
+body.dark .theme-toggle,
+body[data-theme="dark"] .theme-toggle,
+body.simpsons-theme.dark .theme-toggle {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-color) !important;
+  border: 2px solid var(--btn-primary-border) !important;
 }
 
 body.dark .theme-toggle-btn:hover,
 body[data-theme="dark"] .theme-toggle-btn:hover,
-body.simpsons-theme.dark .theme-toggle-btn:hover {
-  background: linear-gradient(135deg, #2E3192, #4A4FC1) !important;
+body.simpsons-theme.dark .theme-toggle-btn:hover,
+body.dark .theme-toggle:hover,
+body[data-theme="dark"] .theme-toggle:hover,
+body.simpsons-theme.dark .theme-toggle:hover {
+  background: var(--btn-primary-hover) !important;
 }
 
-/* Estrellas para modo oscuro - Solo efecto visual */
-body.dark::before,
-body[data-theme="dark"]::before,
-body.simpsons-theme.dark::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
-    radial-gradient(3px 3px at 60px 90px, #ddd, transparent),
-    radial-gradient(2px 2px at 80px 120px, #fff, transparent);
-  background-repeat: repeat;
-  animation: twinkle 4s infinite;
-  z-index: 0;
+/* Botón de idioma */
+body.dark .language-toggle,
+body[data-theme="dark"] .language-toggle,
+body.simpsons-theme.dark .language-toggle {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border: 2px solid var(--btn-secondary-border) !important;
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+body.dark .language-toggle:hover,
+body[data-theme="dark"] .language-toggle:hover,
+body.simpsons-theme.dark .language-toggle:hover {
+  background: var(--btn-secondary-hover) !important;
 }
 
-/* Estrellas individuales (si usas componente React) */
-body.dark .star,
-body[data-theme="dark"] .star,
-body.simpsons-theme.dark .star {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 3s infinite;
-  z-index: 1;
-  display: block !important;
+/* Separador */
+body.dark .separator,
+body[data-theme="dark"] .separator,
+body.simpsons-theme.dark .separator {
+  color: rgba(224, 224, 255, 0.5);
 }
 
-/* MODO OSCURO - HEADER ESPECÍFICO */
-body.dark .app-header,
-body[data-theme="dark"] .app-header,
-body.simpsons-theme.dark .app-header {
-  background-color: #360868 !important; /* MORADO AZULADO */
-  border-bottom: 3px solid #22026b !important; /* BORDE MORADO */
+/* Hero section */
+body.dark .hero-section,
+body[data-theme="dark"] .hero-section,
+body.simpsons-theme.dark .hero-section {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+/* Títulos */
+body.dark .app-title,
+body[data-theme="dark"] .app-title,
+body.simpsons-theme.dark .app-title {
+  color: var(--text-accent) !important;
+}
+
+body.dark .app-subtitle,
+body[data-theme="dark"] .app-subtitle,
+body.simpsons-theme.dark .app-subtitle {
+  color: var(--text-primary) !important;
+}
+
+/* Current status */
+body.dark .current-status,
+body[data-theme="dark"] .current-status,
+body.simpsons-theme.dark .current-status {
+  background: var(--status-bg) !important;
+  border: 1px solid var(--status-border) !important;
+  box-shadow: var(--status-shadow) !important;
+}
+
+/* Status items */
+body.dark .status-item,
+body[data-theme="dark"] .status-item,
+body.simpsons-theme.dark .status-item {
+  border-bottom: 1px solid rgba(138, 43, 226, 0.2) !important;
+}
+
+body.dark .status-label,
+body[data-theme="dark"] .status-label,
+body.simpsons-theme.dark .status-label {
+  color: var(--text-secondary) !important;
+}
+
+body.dark .status-value,
+body[data-theme="dark"] .status-value,
+body.simpsons-theme.dark .status-value {
+  color: var(--text-accent) !important;
+}
+
+/* Footer */
+body.dark .app-footer,
+body[data-theme="dark"] .app-footer,
+body.simpsons-theme.dark .app-footer {
+  background: var(--footer-bg) !important;
+  color: var(--footer-text) !important;
+  border-top: 3px solid var(--footer-border) !important;
+}
+
+/* PRIMER HERO-SECTION TRANSPARENTE (solo el primero) */
+body.dark .first-hero,
+body[data-theme="dark"] .first-hero,
+body.simpsons-theme.dark .first-hero {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important; /* Esto quita el borroso */
+  -webkit-backdrop-filter: none !important; /* Para Safari */
+}
+
+/* STATUS-CONTAINER CON COLOR COMO EL SEGUNDO HERO-SECTION - MODO OSCURO */
+body.dark .status-card,
+body[data-theme="dark"] .status-card,
+body.simpsons-theme.dark .status-card{
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+  border-radius: 20px; /* Ajusta según tu diseño */
+  padding: 20px; /* Ajusta según necesites */
+  backdrop-filter: blur(10px); /* Opcional, si quieres efecto borroso */
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* SEGUNDO HERO-SECTION CON ESTILOS NORMALES (solo para asegurar) */
+body.dark .coming-soon-section,
+body[data-theme="dark"] .coming-soon-section,
+body.simpsons-theme.dark .coming-soon-section {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+/* COLOR DEL BUSCADOR - MODO OSCURO */
+body.dark .search-input,
+body[data-theme="dark"] .search-input,
+body.simpsons-theme.dark .search-input {
+  background-color: rgba(28, 16, 68, 0.8) !important;
   color: #E0E0FF !important;
-  box-shadow: 0 2px 15px rgba(138, 43, 226, 0.3) !important;
 }
 
-/* Icono en modo oscuro - amarillo Simpsons */
-body.dark .header-icon,
-body[data-theme="dark"] .header-icon,
-body.simpsons-theme.dark .header-icon {
-  color: #FFD90F !important; /* AMARILLO SIMPSONS */
+body.dark .search-input::placeholder,
+body[data-theme="dark"] .search-input::placeholder,
+body.simpsons-theme.dark .search-input::placeholder {
+  color: rgba(224, 224, 255, 0.7) !important;
 }
 
-/* Variables CSS para modo oscuro */
-body.dark {
-  --header-bg: #2D1B69;
-  --header-border: 3px solid #8A2BE2;
-  --header-text: #E0E0FF;
-  --header-icon: #FFD90F;
+body.dark .search-button,
+body[data-theme="dark"] .search-button,
+body.simpsons-theme.dark .search-button {
+  background-color: #4A4FC5 !important;
+  color: #E0E0FF !important;
+}
+
+/* BOTONES DE IDIOMA Y TEMA - MODO OSCURO */
+body.dark .language-btn,
+body[data-theme="dark"] .language-btn,
+body.simpsons-theme.dark .language-btn,
+body.dark .theme-btn,
+body[data-theme="dark"] .theme-btn,
+body.simpsons-theme.dark .theme-btn {
+  background-color: rgba(28, 16, 68, 0.8) !important; /* Igual que search-input */
+  color: #E0E0FF !important;
+  border: 1px solid #4A4FC5 !important; /* Igual que search-button */
+}
+
+body.dark .language-btn:hover,
+body[data-theme="dark"] .language-btn:hover,
+body.simpsons-theme.dark .language-btn:hover,
+body.dark .theme-btn:hover,
+body[data-theme="dark"] .theme-btn:hover,
+body.simpsons-theme.dark .theme-btn:hover {
+  background-color: rgba(45, 27, 105, 0.9) !important; /* Hover igual que antes */
+  border-color: #2E3192 !important; /* Hover del borde */
+}
+
+body.dark .language-btn:focus,
+body[data-theme="dark"] .language-btn:focus,
+body.simpsons-theme.dark .language-btn:focus,
+body.dark .theme-btn:focus,
+body[data-theme="dark"] .theme-btn:focus,
+body.simpsons-theme.dark .theme-btn:focus {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: 0 0 0 2px rgba(74, 79, 197, 0.3) !important; /* Opcional: un glow suave */
 }
