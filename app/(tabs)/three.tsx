@@ -5,16 +5,16 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { router } from 'expo-router'
 
 
-const two_main = () => {
+const three_main = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-        <Text style={styles.title}>Esta es la segunda pestaña</Text>
+        <Text style={styles.title}>Esta es la tercera pestaña</Text>
     </SafeAreaView>
   )
 }
 
-export default two_main
+export default three_main
 
 const styles = StyleSheet.create({
   container: {
@@ -24,21 +24,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA', 
   },
   title: {
-    fontSize: 28,
+    fontSize: 28, 
     fontWeight: '800', 
     marginBottom: 40, 
-    color: '#1A237E',
+    color: '#1A237E', 
   },
   textInput: {
     height: 50, 
     width: '90%', 
     backgroundColor: '#FFFFFF', 
-    borderColor: '#E8EAF6', 
+    borderColor: '#E8EAF6',
     borderWidth: 2,
-    borderRadius: 15, 
+    borderRadius: 15,
     marginVertical: 15,
     paddingHorizontal: 25, 
-    fontSize: 16,
+    fontSize: 16, 
     color: '#3C4858', 
     shadowColor: '#9E9E9E', 
     shadowOffset: { width: 0, height: 4 },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     backgroundColor: '#5C6BC0', 
     padding: 20,
-    borderRadius: 15,
+    borderRadius: 15, 
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#5C6BC0', 
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#FFFFFF', 
-    fontSize: 18,
+    fontSize: 18, 
     fontWeight: '600', 
   }
 });
