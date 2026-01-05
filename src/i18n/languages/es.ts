@@ -32,4 +32,17 @@ export const es: TranslationKeys = {
 
   searchPlaceholder: "Buscar cartas, paquetes...",
   searchingFor: "Buscando",
+
+  characters: 'Personajes',
+  locations: 'Ubicaciones',
+  episodes: 'Episodios',
+
+  clearSearch: 'Borrar búsqueda',
+  loading: 'Cargando',
+  noResultsFound: 'No se encontraron resultados',
+  noDataAvailable: 'No hay datos disponibles',
+  cardsLoaded: 'Cartas cargadas',
+
+  cardClickForImage: 'Click para ver imagen',
+  cardClickForInfo: 'Click para ver información',
 };

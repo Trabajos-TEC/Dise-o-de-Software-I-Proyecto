@@ -287,3 +287,54 @@ body.simpsons-theme.dark .theme-btn:focus {
   outline-offset: 0 !important;
   box-shadow: 0 0 0 2px rgba(74, 79, 197, 0.3) !important; /* Opcional: un glow suave */
 }
+
+/* ===== COLORES PARA CARRUSELES - MODO OSCURO ===== */
+
+/* Cards-section (cuadros principales) - ESTILO STATUS-CARD */
+body.dark .character-section,
+body[data-theme="dark"] .character-section,
+body.simpsons-theme.dark .character-section,
+body.dark .location-section,
+body[data-theme="dark"] .location-section,
+body.simpsons-theme.dark .location-section,
+body.dark .episode-section,
+body[data-theme="dark"] .episode-section,
+body.simpsons-theme.dark .episode-section {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+/* Título de sección */
+body.dark .section-title,
+body[data-theme="dark"] .section-title,
+body.simpsons-theme.dark .section-title {
+  background: rgba(45, 27, 105, 0.9) !important;
+  color: #E0E0FF !important;
+  border-color: #FFD90F !important;
+}
+
+body.dark .card-count,
+body[data-theme="dark"] .card-count,
+body.simpsons-theme.dark .card-count {
+  background: linear-gradient(45deg, #FF6B00, #FFD90F) !important;
+  color: #2C3E50 !important;
+}
+
+/* Botones del carrusel */
+body.dark .carousel-button,
+body[data-theme="dark"] .carousel-button,
+body.simpsons-theme.dark .carousel-button {
+  background: rgba(45, 27, 105, 0.8) !important;
+  color: #E0E0FF !important;
+  border-color: #FFD90F !important;
+}
+
+body.dark .carousel-button:hover,
+body[data-theme="dark"] .carousel-button:hover,
+body.simpsons-theme.dark .carousel-button:hover {
+  background: #FFD90F !important;
+  color: #2C3E50 !important;
+}
+
+/* NADA para cards-carousel - será transparente por defecto */

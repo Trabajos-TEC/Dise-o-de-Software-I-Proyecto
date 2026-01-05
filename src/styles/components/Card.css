@@ -1,0 +1,318 @@
+/* src/components/Card.css - SIN SOMBRAS */
+
+/* Contenedor principal */
+.card-container {
+  perspective: 1000px;
+  cursor: pointer;
+  flex: 0 0 auto; /* NO se expande */
+  transition: transform 0.3s ease;
+}
+
+.card-container:hover {
+  transform: translateY(-5px);
+}
+
+/* Tamaños FIJOS */
+.card-small {
+  width: 200px !important;
+  height: 280px !important;
+  flex: 0 0 200px !important;
+}
+
+.card-medium {
+  width: 280px !important;
+  height: 380px !important;
+  flex: 0 0 280px !important;
+}
+
+.card-large {
+  width: 350px !important;
+  height: 470px !important;
+  flex: 0 0 350px !important;
+}
+
+/* Contenedor interno para efecto flip */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.card-flipped {
+  transform: rotateY(180deg);
+}
+
+/* Lados de la carta */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* Borde amarillo SIN SOMBRA */
+.card-border {
+  width: 100%;
+  height: 100%;
+  border: 5px solid #FFD700;
+  border-radius: 16px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* QUITADO: box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); */
+}
+
+/* Número de la carta SIN SOMBRA */
+.card-number {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #FFD700;
+  color: #333;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  z-index: 2;
+  /* QUITADO: box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+}
+
+/* FRENTE de la carta */
+.card-image-wrapper {
+  flex: 1;
+  padding: 40px 20px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  /* QUITADO: box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
+}
+
+.card-title-front {
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+  background: linear-gradient(to bottom, #FFF9C4, #FFEB3B);
+  border-top: 3px solid #FFD700;
+}
+
+/* REVERSO de la carta */
+.card-header {
+  padding: 40px 20px 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #FFD700;
+  background: linear-gradient(to right, #FFF9C4, #FFEB3B);
+}
+
+.card-title-back {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #333;
+  flex: 1;
+}
+
+.card-type-badge {
+  font-size: 1.5rem;
+  margin-left: 10px;
+}
+
+.card-info {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #FFD700;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.info-value {
+  color: #333;
+  font-weight: bold;
+  text-align: right;
+  max-width: 60%;
+  font-size: 0.95rem;
+}
+
+.card-footer {
+  padding: 15px;
+  text-align: center;
+  background: #FFF9C4;
+  border-top: 2px solid #FFD700;
+}
+
+.flip-hint {
+  font-size: 0.8rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Estilos específicos por tipo */
+.card-type-character .card-border {
+  border-color: #4CAF50; /* Verde para personajes */
+}
+
+.card-type-episode .card-border {
+  border-color: #2196F3; /* Azul para episodios */
+}
+
+.card-type-location .card-border {
+  border-color: #FF9800; /* Naranja para locaciones */
+}
+
+/* Efectos hover SIN SOMBRAS */
+.card-container:hover .card-border {
+  /* QUITADO: box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); */
+  border-width: 6px; /* Aumenta el borde en hover */
+}
+
+.card-container:hover .card-image {
+  transform: scale(1.03);
+  transition: transform 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-medium {
+    width: 250px !important;
+    height: 340px !important;
+    flex: 0 0 250px !important;
+  }
+  
+  .card-large {
+    width: 300px !important;
+    height: 400px !important;
+    flex: 0 0 300px !important;
+  }
+  
+  .card-title-back {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-medium {
+    width: 220px !important;
+    height: 300px !important;
+    flex: 0 0 220px !important;
+  }
+  
+  .card-title-back {
+    font-size: 1rem;
+  }
+}
+
+/* src/styles/components/Card.css - Añadir al final */
+
+/* Estilos para mostrar detalles en el frente */
+.card-container.show-details .card-front {
+  padding-bottom: 10px;
+}
+
+.card-front-details {
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 10px 15px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-color);
+}
+
+.card-type-indicator {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.front-info-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin: 4px 0;
+}
+
+.front-info-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.front-info-value {
+  color: var(--text-primary);
+  text-align: right;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Estilos para información extra en la parte trasera */
+.extra-info {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.info-row.extra {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-front-details {
+    margin: 8px 10px;
+    padding: 8px 10px;
+  }
+  
+  .front-info-item {
+    font-size: 0.8rem;
+  }
+}
+
+/* Dark mode adjustments */
+.dark-mode .card-front-details {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.light-mode .card-front-details {
+  background: rgba(0, 0, 0, 0.05);
+}

@@ -287,3 +287,52 @@ body.simpsons-theme.light .theme-btn:focus {
   outline-offset: 0 !important;
   box-shadow: 0 0 0 2px rgba(255, 217, 15, 0.3) !important; /* Opcional: un glow suave */
 }
+
+/* ===== COLORES PARA CARRUSELES - MODO CLARO ===== */
+
+/* Cards-section (cuadros principales) - ESTILO STATUS-CARD */
+body.light .character-section,
+body[data-theme="light"] .character-section,
+body.simpsons-theme.light .character-section,
+body.light .location-section,
+body[data-theme="light"] .location-section,
+body.simpsons-theme.light .location-section,
+body.light .episode-section,
+body[data-theme="light"] .episode-section,
+body.simpsons-theme.light .episode-section {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+/* Título de sección */
+body.light .section-title,
+body[data-theme="light"] .section-title,
+body.simpsons-theme.light .section-title {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #2C3E50 !important;
+  border-color: #FFD90F !important;
+}
+
+body.light .card-count,
+body[data-theme="light"] .card-count,
+body.simpsons-theme.light .card-count {
+  background: linear-gradient(45deg, #FF6B00, #FFD90F) !important;
+  color: #2C3E50 !important;
+}
+
+/* Botones del carrusel */
+body.light .carousel-button,
+body[data-theme="light"] .carousel-button,
+body.simpsons-theme.light .carousel-button {
+  background: white !important;
+  color: #2C3E50 !important;
+  border-color: #FFD90F !important;
+}
+
+body.light .carousel-button:hover,
+body[data-theme="light"] .carousel-button:hover,
+body.simpsons-theme.light .carousel-button:hover {
+  background: #FFD90F !important;
+  color: #2C3E50 !important;
+}

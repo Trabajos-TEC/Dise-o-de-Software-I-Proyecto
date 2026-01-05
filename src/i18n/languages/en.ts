@@ -32,4 +32,17 @@ export const en: TranslationKeys = {
 
   searchPlaceholder: "Search cards, packs...",
   searchingFor: "Searching for",
+
+  characters: 'Characters',
+  locations: 'Locations',
+  episodes: 'Episodes',
+
+  clearSearch: 'Clear search',
+  loading: 'Loading',
+  noResultsFound: 'No results found',
+  noDataAvailable: 'No data available',
+  cardsLoaded: 'Cards loaded',
+
+  cardClickForImage: 'Click to view image',
+  cardClickForInfo: 'Click to view info',
 };

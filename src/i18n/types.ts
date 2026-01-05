@@ -26,10 +26,22 @@ export interface TranslationKeys {
   currentLanguage: string;
   currentTheme: string;
   
-  // Añade estas nuevas propiedades
   comingSoon: string;
   comingSoonDescription: string;
 
   searchPlaceholder: string;
   searchingFor: string;
+
+  characters: string;
+  locations: string;
+  episodes: string; 
+
+  clearSearch: string;
+  loading: string;
+  noResultsFound: string;
+  noDataAvailable: string;
+  cardsLoaded: string;
+
+  cardClickForImage: string;
+  cardClickForInfo: string;
 }
