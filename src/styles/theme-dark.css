@@ -135,6 +135,21 @@ body.simpsons-theme.dark .language-toggle:hover {
   background: var(--btn-secondary-hover) !important;
 }
 
+/* Botón de sign-in */
+body.dark .sign-in-toggle,
+body[data-theme="dark"] .sign-in-toggle,
+body.simpsons-theme.dark .sign-in-toggle {
+  background: var(--btn-signin-bg) !important;
+  color: var(--btn-signin-color) !important;
+  border: 2px solid var(--btn-signin-border) !important;
+}
+
+body.dark .sign-in-toggle:hover,
+body[data-theme="dark"] .sign-in-toggle:hover,
+body.simpsons-theme.dark .sign-in-toggle:hover {
+  background: var(--btn-signin-hover) !important;
+}
+
 /* Separador */
 body.dark .separator,
 body[data-theme="dark"] .separator,
@@ -261,7 +276,10 @@ body[data-theme="dark"] .language-btn,
 body.simpsons-theme.dark .language-btn,
 body.dark .theme-btn,
 body[data-theme="dark"] .theme-btn,
-body.simpsons-theme.dark .theme-btn {
+body.simpsons-theme.dark .theme-btn,
+body.dark .sign-in-btn,
+body[data-theme="dark"] .sign-in-btn,
+body.simpsons-theme.dark .sign-in-btn {
   background-color: rgba(28, 16, 68, 0.8) !important; /* Igual que search-input */
   color: #E0E0FF !important;
   border: 1px solid #4A4FC5 !important; /* Igual que search-button */
@@ -272,7 +290,10 @@ body[data-theme="dark"] .language-btn:hover,
 body.simpsons-theme.dark .language-btn:hover,
 body.dark .theme-btn:hover,
 body[data-theme="dark"] .theme-btn:hover,
-body.simpsons-theme.dark .theme-btn:hover {
+body.simpsons-theme.dark .theme-btn:hover,
+body.dark .sign-in-btn:hover,
+body[data-theme="dark"] .sign-in-btn:hover,
+body.simpsons-theme.dark .sign-in-btn:hover {
   background-color: rgba(45, 27, 105, 0.9) !important; /* Hover igual que antes */
   border-color: #2E3192 !important; /* Hover del borde */
 }
@@ -282,7 +303,10 @@ body[data-theme="dark"] .language-btn:focus,
 body.simpsons-theme.dark .language-btn:focus,
 body.dark .theme-btn:focus,
 body[data-theme="dark"] .theme-btn:focus,
-body.simpsons-theme.dark .theme-btn:focus {
+body.simpsons-theme.dark .theme-btn:focus,
+body.dark .sign-in-btn:focus,
+body[data-theme="dark"] .sign-in-btn:focus,
+body.simpsons-theme.dark .sign-in-btn:focus {
   outline: none !important;
   outline-offset: 0 !important;
   box-shadow: 0 0 0 2px rgba(74, 79, 197, 0.3) !important; /* Opcional: un glow suave */

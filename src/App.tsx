@@ -6,6 +6,7 @@ import { useLanguage } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
 import LanguageButton from './components/LanguageButton';
 import ThemeButton from './components/ThemeButton';
+import SignIn from './components/SignInButton';
 import Card from './components/Card';
 import type { CardData } from './components/Card';
 import SearchResults from './SearchResults';
@@ -266,7 +267,7 @@ function App() {
       <header className="app-header">
         <div className="header-left">
           <button className="logo-button" onClick={handleLogoClick}>
-            <img src="/logo.png" alt="The Simpsons Logo" className="header-logo" />
+            <img src="/8fd978ef204d80914f6a493c8377415a.png" alt="The Simpsons Logo" className="header-logo" />
           </button>
         </div>
         
@@ -296,13 +297,8 @@ function App() {
           <LanguageButton />
           <span className="separator">|</span>
           <ThemeButton />
-          <button
-            className="sign-in-button"
-            onClick={() => navigate("/login")}
-          >
-            Sign In
-          </button>
-
+          <span className="separator">|</span>
+          <SignIn />
         </div>
       </header>
 
@@ -322,7 +318,7 @@ function App() {
           <>
             <div className="hero-section first-hero">
               <div className="logo-container">
-                <img src="/logo.png" alt="The Simpsons Logo" className="main-logo" />
+                <img src="/8fd978ef204d80914f6a493c8377415a.png" alt="The Simpsons Logo" className="main-logo" />
               </div>
               
               <div className="welcome-message">
