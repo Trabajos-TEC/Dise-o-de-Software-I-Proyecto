@@ -1,4 +1,5 @@
 // App.tsx - Versión simplificada
+import Login from "./login";
 import { useState, useRef, useEffect } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 import { useLanguage } from './context/LanguageContext';
@@ -8,6 +9,7 @@ import ThemeButton from './components/ThemeButton';
 import Card from './components/Card';
 import type { CardData } from './components/Card';
 import SearchResults from './SearchResults';
+import { useNavigate } from "react-router-dom";
 import { 
   getInitialCardReferences,
   loadCardData,
@@ -25,6 +27,8 @@ import "./styles/components/layout.css";
 import "./styles/components/Card.css";
 
 function App() {
+  const navigate = useNavigate();
+
   const { language, t } = useLanguage();
   const { isDarkMode } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
@@ -292,6 +296,13 @@ function App() {
           <LanguageButton />
           <span className="separator">|</span>
           <ThemeButton />
+          <button
+            className="sign-in-button"
+            onClick={() => navigate("/login")}
+          >
+            Sign In
+          </button>
+
         </div>
       </header>
 
