@@ -21,31 +21,54 @@ interface CardProps {
   data: CardData;
   size?: 'small' | 'medium' | 'large';
   flipOnHover?: boolean;
-  showDetails?: boolean; // Este parámetro ya no afecta el frente, solo si es para búsqueda
+  showFavoriteButton?: boolean;
+  isFavorite?: boolean;
+  onFavoriteToggle?: () => void;
+  onClick?: () => void;
+  variant?: 'preview' | 'detail'; // 'preview' para página principal, 'detail' para página de detalles
 }
 
 const Card: React.FC<CardProps> = ({ 
   data, 
   size = 'medium',
   flipOnHover = false,
-
+  showFavoriteButton = false,
+  isFavorite = false,
+  onFavoriteToggle,
+  onClick,
+  variant = 'preview'
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const { t } = useLanguage();
 
-  const handleClick = () => {
-    setIsFlipped(!isFlipped);
+  const handleCardClick = (e: React.MouseEvent) => {
+    // En modo preview, el click en toda la carta ejecuta onClick
+    // En modo detail, solo el efecto flip
+    if (variant === 'preview' && onClick) {
+      e.stopPropagation();
+      onClick();
+    } else {
+      // En modo detail, solo hace flip
+      setIsFlipped(!isFlipped);
+    }
   };
 
   const handleMouseEnter = () => {
-    if (flipOnHover) {
+    if (flipOnHover && variant === 'detail') {
       setIsFlipped(true);
     }
   };
 
   const handleMouseLeave = () => {
-    if (flipOnHover) {
+    if (flipOnHover && variant === 'detail') {
       setIsFlipped(false);
+    }
+  };
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onFavoriteToggle) {
+      onFavoriteToggle();
     }
   };
 
@@ -121,15 +144,35 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div 
-      className={`card-container ${sizeClass} ${typeClass}`}
-      onClick={handleClick}
+      className={`card-container ${sizeClass} ${typeClass} card-${variant}`}
+      onClick={handleCardClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      role={variant === 'preview' ? 'button' : undefined}
+      tabIndex={variant === 'preview' ? 0 : undefined}
+      onKeyDown={variant === 'preview' ? (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (onClick) onClick();
+        }
+      } : undefined}
     >
       <div className={`card-inner ${isFlipped ? 'card-flipped' : ''}`}>
         
         <div className="card-front">
           <div className="card-border">
+            {/* Botón de favoritos (solo en preview) */}
+            {variant === 'preview' && showFavoriteButton && (
+              <button 
+                className={`favorite-button ${isFavorite ? 'favorited' : ''}`}
+                onClick={handleFavoriteClick}
+                aria-label={isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+                title={isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+              >
+                {isFavorite ? '★' : '☆'}
+              </button>
+            )}
+            
             <div className="card-number">#{data.id}</div>
             <div className="card-image-wrapper">
               <img 
@@ -140,7 +183,13 @@ const Card: React.FC<CardProps> = ({
               />
             </div>
             <div className="card-title-front">{data.name}</div>
-            {/* SIN detalles adicionales en el frente */}
+            
+            {/* Indicador de click (solo en preview) */}
+            {variant === 'preview' && !isFlipped && (
+              <div className="card-click-hint">
+                {t('cardClickForDetails') || 'Click para ver detalles'}
+              </div>
+            )}
           </div>
         </div>
 
@@ -149,7 +198,6 @@ const Card: React.FC<CardProps> = ({
             <div className="card-number">#{data.id}</div>
             <div className="card-header">
               <h3 className="card-title-back">{data.name}</h3>
-              {/* Sin badge de tipo */}
             </div>
             
             <div className="card-info">
@@ -168,7 +216,10 @@ const Card: React.FC<CardProps> = ({
             
             <div className="card-footer">
               <span className="flip-hint">
-                {isFlipped ? t('cardClickForImage') : t('cardClickForInfo')}
+                {variant === 'detail' 
+                  ? (isFlipped ? 'Pasa el cursor para ver la imagen' : 'Pasa el cursor para ver los detalles') 
+                  : (isFlipped ? t('cardClickForImage') || 'Click para ver imagen' : t('cardClickForInfo') || 'Click para ver información')
+                }
               </span>
             </div>
           </div>

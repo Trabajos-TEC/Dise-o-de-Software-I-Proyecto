@@ -1,3 +1,4 @@
+// src/loginEmail.tsx
 import { useState } from "react";
 import {
   signInWithEmailAndPassword,
@@ -6,10 +7,10 @@ import {
 import { auth } from "./firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
-
+import MainLayout from "./components/MainLayout";
 import "./Login.css";
 
-export default function Login() {
+export default function LoginEmail() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -41,32 +42,46 @@ export default function Login() {
   };
 
   return (
-    <div className="container">
-      <h1 className="title">Login</h1>
+    <MainLayout 
+      headerProps={{
+        showSearch: false, // Oculta la barra de búsqueda
+      }}
+    >
+      <div className="container">
+        <h1 className="title">Login con Email</h1>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="input"
-      />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="input"
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="input"
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="input"
+        />
 
-      <button className="button" onClick={signIn}>
-        Login
-      </button>
+        <button className="button" onClick={signIn}>
+          Login
+        </button>
 
-      <button className="button secondary" onClick={signUp}>
-        Create Account
-      </button>
-    </div>
+        <button className="button secondary" onClick={signUp}>
+          Create Account
+        </button>
+        
+        <button
+          className="button secondary"
+          onClick={() => navigate("/login")}
+          style={{ marginTop: '10px' }}
+        >
+          ← Volver
+        </button>
+      </div>
+    </MainLayout>
   );
 }

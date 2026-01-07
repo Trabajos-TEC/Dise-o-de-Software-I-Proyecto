@@ -1,22 +1,15 @@
-// App.tsx - Versión simplificada
-import Login from "./login";
+// App.tsx - SOLO PÁGINA PRINCIPAL
 import { useState, useRef, useEffect } from 'react';
-import type { FormEvent, ChangeEvent } from 'react';
 import { useLanguage } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
-import LanguageButton from './components/LanguageButton';
-import ThemeButton from './components/ThemeButton';
-import SignIn from './components/SignInButton';
+import MainLayout from './components/MainLayout';
 import Card from './components/Card';
 import type { CardData } from './components/Card';
-import SearchResults from './SearchResults';
 import { useNavigate } from "react-router-dom";
 import { 
   getInitialCardReferences,
   loadCardData,
-  groupCardsByType,
-  searchCards,
-  type SearchResult
+  groupCardsByType
 } from './components/cardUtils';
 
 import "./index.css";
@@ -29,27 +22,26 @@ import "./styles/components/Card.css";
 
 function App() {
   const navigate = useNavigate();
-
+  
   const { language, t } = useLanguage();
   const { isDarkMode } = useTheme();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchResults, setSearchResults] = useState<SearchResult | null>(null);
+  
+  // Estados de la página principal
   const [initialCards, setInitialCards] = useState<CardData[]>([]);
   const [loadingInitial, setLoadingInitial] = useState(true);
-  const [showSearchPage, setShowSearchPage] = useState(false); // Para mostrar página de resultados
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
   
   const charactersRef = useRef<HTMLDivElement>(null);
   const episodesRef = useRef<HTMLDivElement>(null);
   const locationsRef = useRef<HTMLDivElement>(null);
 
-  // Estado para controlar el desplazamiento circular
   const [scrollPositions, setScrollPositions] = useState({
     characters: 0,
     episodes: 0,
     locations: 0
   });
 
+  // Cargar tarjetas iniciales
   useEffect(() => {
     const loadInitialCards = async () => {
       setLoadingInitial(true);
@@ -71,52 +63,7 @@ function App() {
 
   const groupedInitialCards = groupCardsByType(initialCards);
 
-  const handleLogoClick = () => {
-    setSearchQuery('');
-    setSearchResults(null);
-    setShowSearchPage(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const trimmedQuery = searchQuery.trim();
-    if (!trimmedQuery) return;
-    
-    setIsSearching(true);
-    try {
-      const results = await searchCards(trimmedQuery);
-      setSearchResults(results);
-      setShowSearchPage(true); // Ir a la página de resultados
-    } catch (error) {
-      console.error('Error searching:', error);
-      alert(`${t('searchingFor')}: "${searchQuery}" - Error.`);
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchQuery(value);
-    if (!value.trim()) {
-      setSearchResults(null);
-    }
-  };
-
-  const handleClearSearch = () => {
-    setSearchQuery('');
-    setSearchResults(null);
-    setShowSearchPage(false);
-  };
-
-  const handleNewSearch = () => {
-    setSearchQuery('');
-    setSearchResults(null);
-    setShowSearchPage(false);
-  };
-
-  // Función para desplazar a la izquierda (circular)
+  // Funciones de desplazamiento circular
   const scrollLeft = (ref: React.RefObject<HTMLDivElement | null>, section: keyof typeof scrollPositions) => {
     if (!ref.current) return;
     
@@ -142,7 +89,6 @@ function App() {
     }));
   };
 
-  // Función para desplazar a la derecha (circular)
   const scrollRight = (ref: React.RefObject<HTMLDivElement | null>, section: keyof typeof scrollPositions) => {
     if (!ref.current) return;
     
@@ -168,7 +114,7 @@ function App() {
     }));
   };
 
-  // Actualizar posición del scroll cuando cambia el tamaño de la ventana
+  // Resetear scroll
   useEffect(() => {
     const handleResize = () => {
       setScrollPositions({
@@ -188,12 +134,27 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const hasSearchResults = searchResults && searchQuery.trim().length > 0;
-  
-  const charactersToShow = hasSearchResults ? searchResults!.characters : groupedInitialCards.character;
-  const episodesToShow = hasSearchResults ? searchResults!.episodes : groupedInitialCards.episode;
-  const locationsToShow = hasSearchResults ? searchResults!.locations : groupedInitialCards.location;
+  const handleCardClick = (card: CardData) => {
+    navigate(`/card/${card.id}`, { 
+      state: { 
+        cardData: card 
+      } 
+    });
+  };
 
+  const handleFavoriteToggle = (cardId: string) => {
+    setFavorites(prev => {
+      const newFavorites = new Set(prev);
+      if (newFavorites.has(cardId)) {
+        newFavorites.delete(cardId);
+      } else {
+        newFavorites.add(cardId);
+      }
+      return newFavorites;
+    });
+  };
+
+  // Renderizar sección de tarjetas
   const renderCardSection = (
     sectionType: 'character' | 'episode' | 'location',
     cards: CardData[],
@@ -201,7 +162,7 @@ function App() {
     sectionTitle: string
   ) => {
     const hasCards = cards.length > 0;
-    const isLoading = loadingInitial && !hasSearchResults;
+    const isLoading = loadingInitial;
     const sectionKey = sectionType === 'character' ? 'characters' : 
                        sectionType === 'episode' ? 'episodes' : 'locations';
     
@@ -211,11 +172,6 @@ function App() {
           <h2 className="section-title">
             {sectionTitle}
           </h2>
-          {hasSearchResults && (
-            <div className="search-match-badge">
-              {cards.length === 0 ? '0 resultados' : `${cards.length} encontrados`}
-            </div>
-          )}
         </div>
         
         {isLoading ? (
@@ -238,7 +194,12 @@ function App() {
                   key={`${sectionType}-${card.id}-${card.name}`} 
                   data={card} 
                   size="medium" 
-                  flipOnHover={true} 
+                  flipOnHover={false}
+                  variant="preview"
+                  showFavoriteButton={true}
+                  isFavorite={favorites.has(card.id.toString())}
+                  onFavoriteToggle={() => handleFavoriteToggle(card.id.toString())}
+                  onClick={() => handleCardClick(card)}
                 />
               ))}
             </div>
@@ -252,9 +213,7 @@ function App() {
           </div>
         ) : (
           <div className="no-data-message">
-            {hasSearchResults 
-              ? `No se encontraron ${sectionTitle.toLowerCase()} para esta búsqueda` 
-              : `No hay ${sectionTitle.toLowerCase()} disponibles`}
+            No hay {sectionTitle.toLowerCase()} disponibles
           </div>
         )}
       </div>
@@ -262,117 +221,37 @@ function App() {
   };
 
   return (
-    <div className={`simpsons-app ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
-      {/* HEADER - Siempre visible */}
-      <header className="app-header">
-        <div className="header-left">
-          <button className="logo-button" onClick={handleLogoClick}>
-            <img src="/8fd978ef204d80914f6a493c8377415a.png" alt="The Simpsons Logo" className="header-logo" />
-          </button>
+    <MainLayout>
+      {/* SOLO PÁGINA PRINCIPAL - SIN RESULTADOS DE BÚSQUEDA */}
+      <div className="hero-section first-hero">
+        <div className="logo-container">
+          <img src="/8fd978ef204d80914f6a493c8377415a.png" alt="The Simpsons Logo" className="main-logo" />
         </div>
         
-        <div className="header-center">
-          <form className="search-form" onSubmit={handleSearch}>
-            <div className="search-container">
-              <input
-                type="text"
-                className="search-input"
-                placeholder={t('searchPlaceholder')}
-                value={searchQuery}
-                onChange={handleSearchChange}
-                disabled={isSearching}
-              />
-              <button 
-                type="submit" 
-                className="search-button" 
-                disabled={isSearching || !searchQuery.trim()}
-              >
-                {isSearching ? <span className="search-loading">...</span> : <span className="search-icon">⌕</span>}
-              </button>
-            </div>
-          </form>
+        <div className="welcome-message">
+          <h1 className="welcome-title">{t('appTitle')}</h1>
+          <p className="welcome-text">{t('welcomeMessage')}</p>
         </div>
         
-        <div className="header-right">
-          <LanguageButton />
-          <span className="separator">|</span>
-          <ThemeButton />
-          <span className="separator">|</span>
-          <SignIn />
-        </div>
-      </header>
-
-      {/* CONTENIDO PRINCIPAL */}
-      <main className="app-main">
-        {showSearchPage && searchResults ? (
-          // Página de resultados de búsqueda
-          <SearchResults
-            searchQuery={searchQuery}
-            searchResults={searchResults}
-            onClearSearch={handleClearSearch}
-            onNewSearch={handleNewSearch}
-            isLoading={isSearching}
-          />
-        ) : (
-          // Página principal normal
-          <>
-            <div className="hero-section first-hero">
-              <div className="logo-container">
-                <img src="/8fd978ef204d80914f6a493c8377415a.png" alt="The Simpsons Logo" className="main-logo" />
-              </div>
-              
-              <div className="welcome-message">
-                <h1 className="welcome-title">{t('appTitle')}</h1>
-                <p className="welcome-text">{t('welcomeMessage')}</p>
-              </div>
-              
-              <div className="status-container">
-                <div className="status-card">
-                  <div className="status-item">
-                    <span className="status-label">{t('currentLanguage')}:</span>
-                    <span className="status-value">{language === 'en' ? 'English' : 'Español'}</span>
-                  </div>
-                  
-                  <div className="status-item">
-                    <span className="status-label">{t('currentTheme')}:</span>
-                    <span className="status-value">{isDarkMode ? t('darkMode') : t('lightMode')}</span>
-                  </div>
-                </div>
-              </div>
-              
-              {hasSearchResults && (
-                <div className="search-results-info">
-                  <p className="search-info-text">
-                    {t('searchingFor')}: <strong>"{searchQuery}"</strong>
-                    <button 
-                      className="clear-search-button" 
-                      onClick={handleClearSearch}
-                    >
-                      ✕ Limpiar
-                    </button>
-                  </p>
-                  <div className="search-summary">
-                    <span className="search-summary-item">{charactersToShow.length} {t('characters')}</span>
-                    <span className="search-summary-item">{episodesToShow.length} {t('episodes')}</span>
-                    <span className="search-summary-item">{locationsToShow.length} {t('locations')}</span>
-                  </div>
-                </div>
-              )}
+        <div className="status-container">
+          <div className="status-card">
+            <div className="status-item">
+              <span className="status-label">{t('currentLanguage')}:</span>
+              <span className="status-value">{language === 'en' ? 'English' : 'Español'}</span>
             </div>
+            
+            <div className="status-item">
+              <span className="status-label">{t('currentTheme')}:</span>
+              <span className="status-value">{isDarkMode ? t('darkMode') : t('lightMode')}</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            {renderCardSection('character', charactersToShow, charactersRef, t('characters'))}
-            {renderCardSection('location', locationsToShow, locationsRef, t('locations'))}
-            {renderCardSection('episode', episodesToShow, episodesRef, t('episodes'))}
-          </>
-        )}
-      </main>
-
-      {/* FOOTER - Siempre visible */}
-      <footer className="app-footer">
-        <p className="footer-text">{t('footerNote')}</p>
-        <p className="footer-subtext">{t('projectFor')}</p>
-      </footer>
-    </div>
+      {renderCardSection('character', groupedInitialCards.character, charactersRef, t('characters'))}
+      {renderCardSection('location', groupedInitialCards.location, locationsRef, t('locations'))}
+      {renderCardSection('episode', groupedInitialCards.episode, episodesRef, t('episodes'))}
+    </MainLayout>
   );
 }
 

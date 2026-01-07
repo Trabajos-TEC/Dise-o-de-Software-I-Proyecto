@@ -1,7 +1,10 @@
+// src/context/LanguageContext.tsx
 import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
-import type { Language } from '../i18n/types';
 import { getTranslation } from '../i18n';
+
+// Define Language directamente aquí
+export type Language = 'en' | 'es';
 
 interface LanguageContextType {
   language: Language;
@@ -35,7 +38,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const t = (key: string): string => {
     try {
-      return getTranslation(language, key as any);
+      return getTranslation(language, key);
     } catch (error) {
       console.error('Translation error:', error);
       return key;
