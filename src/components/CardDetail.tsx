@@ -6,18 +6,50 @@ import MainLayout from './MainLayout';
 import type { CardData } from './Card';
 import Card from './Card';
 import '../styles/components/CardDetail.css';
+import { auth } from "../firebaseConfig";
+import { db } from "../firebaseConfig";
+import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 
 const CardDetail: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const cardData = location.state?.cardData as CardData;
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite] = useState(false);
   
   const { t } = useLanguage();
 
-  const handleFavoriteToggle = () => {
-    setIsFavorite(!isFavorite);
-    console.log('Favorito cambiado:', !isFavorite);
+  const handleFavoriteToggle  = async () => {
+  const user = auth.currentUser;
+  if (!user || !cardData) {
+    console.warn("No hay usuario o carta");
+    return;
+  }
+
+  // ID ÚNICO → evita sobreescritura
+  const favoriteId = `${cardData.type}-${cardData.id}`;
+
+  const favRef = doc(db, "users", user.uid, "favorites", favoriteId);
+
+  try {
+    const snapshot = await getDoc(favRef);
+
+    if (snapshot.exists()) {
+      // Ya está en favoritos → lo quitamos
+      await deleteDoc(favRef);
+      alert("Se elimino de favoritos")
+      console.log("Eliminado de favoritos");
+    } else {
+      // No está → lo agregamos
+      await setDoc(favRef, {
+        ...cardData,
+        createdAt: new Date()
+      });
+      alert("Se agrego a favoritos")
+      console.log("Agregado a favoritos");
+    }
+  } catch (error) {
+    console.error("Error manejando favoritos:", error);
+  }
   };
 
   // Función específica para la carta en modo detalle
@@ -92,7 +124,10 @@ const CardDetail: React.FC = () => {
               <button className="action-button share-button">
                 Compartir
               </button>
-              <button className="action-button collect-button">
+              <button
+                className="action-button collect-button"
+                onClick={handleFavoriteToggle}
+              >
                 Agregar a colección
               </button>
             </div>

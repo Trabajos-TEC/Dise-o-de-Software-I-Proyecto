@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
 import Card from './components/Card';
-import type { CardData } from './components/Card';
 import type { SearchResult } from './components/cardUtils';
 import './styles/SearchResults.css';
 

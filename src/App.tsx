@@ -165,7 +165,7 @@ function App() {
   const user = auth.currentUser;
   if (!user) return;
 
-  const id = card.id.toString();
+  const id = `${card.type}-${card.id}`;
 
   setFavorites(prev => {
     const copy = new Set(prev);
