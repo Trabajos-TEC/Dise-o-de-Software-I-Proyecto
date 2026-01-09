@@ -6,6 +6,8 @@ import LoginGoogle from "./loginGoogle";
 import App from "./App";
 import CardDetail from "./components/CardDetail";
 import SearchResults from "./SearchResults";
+import Perfil from "./perfil"
+import Favoritos from "./favoritos"
 
 export default function AppRoutes() {
   return (
@@ -16,6 +18,8 @@ export default function AppRoutes() {
       <Route path="/" element={<App />} />
       <Route path="/card/:id" element={<CardDetail />} />
       <Route path="/search" element={<SearchResults />} />
+      <Route path="/perfil" element={<Perfil/>} />
+      <Route path="/favoritos" element={<Favoritos/>} />
     </Routes>
   );
 }

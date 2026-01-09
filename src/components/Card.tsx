@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import '../styles/components/Card.css';
 import { useLanguage } from '../context/LanguageContext';
-
 // Export types
 export type CardType = 'character' | 'episode' | 'location';
 
@@ -64,13 +63,20 @@ const Card: React.FC<CardProps> = ({
       setIsFlipped(false);
     }
   };
-
+  
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (onFavoriteToggle) {
-      onFavoriteToggle();
+
+    if (!onFavoriteToggle) return;
+
+    if (isFavorite) {
+      alert("No está en favoritos");
+    } else {
+      alert("Está en favoritos");
     }
-  };
+
+    onFavoriteToggle();
+};
 
   const sizeClass = `card-${size}`;
   const typeClass = `card-type-${data.type}`;

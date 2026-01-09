@@ -7,7 +7,7 @@ import LanguageButton from './LanguageButton';
 import ThemeButton from './ThemeButton';
 import SignIn from './SignInButton';
 import '../styles/components/header.css';
-
+import Perfil from "./perfilButton"
 interface HeaderProps {
   showSearch?: boolean;
   disableSearch?: boolean;
@@ -111,6 +111,7 @@ const Header: React.FC<HeaderProps> = ({
         <ThemeButton />
         <span className="separator">|</span>
         <SignIn />
+        <Perfil />
       </div>
     </header>
   );

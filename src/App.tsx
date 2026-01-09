@@ -11,6 +11,10 @@ import {
   loadCardData,
   groupCardsByType
 } from './components/cardUtils';
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { auth } from "./firebaseConfig";
+import { db } from "./firebaseConfig";
+import { collection, onSnapshot } from "firebase/firestore";
 
 import "./index.css";
 import "./styles/theme-light.css";
@@ -40,6 +44,21 @@ function App() {
     episodes: 0,
     locations: 0
   });
+
+  useEffect(() => {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  const favRef = collection(db, "users", user.uid, "favorites");
+
+  const unsubscribe = onSnapshot(favRef, snapshot => {
+    const ids = new Set<string>();
+    snapshot.forEach(doc => ids.add(doc.id));
+    setFavorites(ids);
+  });
+
+  return () => unsubscribe();
+}, []);
 
   // Cargar tarjetas iniciales
   useEffect(() => {
@@ -142,17 +161,32 @@ function App() {
     });
   };
 
-  const handleFavoriteToggle = (cardId: string) => {
-    setFavorites(prev => {
-      const newFavorites = new Set(prev);
-      if (newFavorites.has(cardId)) {
-        newFavorites.delete(cardId);
-      } else {
-        newFavorites.add(cardId);
-      }
-      return newFavorites;
-    });
-  };
+   const handleFavoriteToggle = async (card: CardData) => {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  const id = card.id.toString();
+
+  setFavorites(prev => {
+    const copy = new Set(prev);
+    copy.has(id) ? copy.delete(id) : copy.add(id);
+    return copy;
+  });
+
+
+  const favRef = doc(db, "users", user.uid, "favorites", id);
+
+  try {
+    if (favorites.has(id)) {
+      await deleteDoc(favRef);
+    } else {
+      await setDoc(favRef, card);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 
   // Renderizar sección de tarjetas
   const renderCardSection = (
@@ -198,7 +232,7 @@ function App() {
                   variant="preview"
                   showFavoriteButton={true}
                   isFavorite={favorites.has(card.id.toString())}
-                  onFavoriteToggle={() => handleFavoriteToggle(card.id.toString())}
+                  onFavoriteToggle={() => handleFavoriteToggle(card)}
                   onClick={() => handleCardClick(card)}
                 />
               ))}

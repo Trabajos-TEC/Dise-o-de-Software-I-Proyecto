@@ -16,14 +16,14 @@ function SearchResults() {
 
   // Cargar resultados del estado de navegación
   useEffect(() => {
-    console.log('📍 location.state en SearchResults:', location.state);
+    console.log(' location.state en SearchResults:', location.state);
     
     if (location.state?.searchQuery && location.state?.searchResults) {
-      console.log('✅ Datos recibidos correctamente');
+      console.log(' Datos recibidos correctamente');
       setSearchQuery(location.state.searchQuery);
       setSearchResults(location.state.searchResults);
     } else {
-      console.log('❌ No hay datos, redirigiendo...');
+      console.log(' No hay datos, redirigiendo...');
       navigate('/');
     }
   }, [location.state, navigate]);
