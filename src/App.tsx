@@ -154,14 +154,14 @@ function App() {
   }, []);
 
   const handleCardClick = (card: CardData) => {
-    navigate(`/card/${card.id}`, { 
+    navigate(`/card/${card.type}-${card.id}`, { 
       state: { 
         cardData: card 
       } 
     });
   };
 
-   const handleFavoriteToggle = async (card: CardData) => {
+  const handleFavoriteToggle = async (card: CardData) => {
   const user = auth.currentUser;
   if (!user) return;
 
