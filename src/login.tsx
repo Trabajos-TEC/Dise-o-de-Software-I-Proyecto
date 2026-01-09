@@ -1,7 +1,7 @@
 // src/login.tsx (el archivo principal de selección de método)
 import { useNavigate } from "react-router-dom";
 //import MainLayout from "./components/MainLayout";
-import "./Login.css";
+import "./login.css";
 
 export default function Login() {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "./firebaseConfig";
 import { FirebaseError } from "firebase/app";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./login.css";
 
 export default function LoginGoogle() {
   const navigate = useNavigate();

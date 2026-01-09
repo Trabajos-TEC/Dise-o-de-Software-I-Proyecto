@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
 import { auth } from "./firebaseConfig";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import "./login.css";
 import { signOut } from "firebase/auth";
 import Favoritos from "./components/favoritosButton"
 export default function Perfil() {
