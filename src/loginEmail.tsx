@@ -8,7 +8,7 @@ import { auth } from "./firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import MainLayout from "./components/MainLayout";
-import "./Login.css";
+import "./login.css";
 
 export default function LoginEmail() {
   const [email, setEmail] = useState("");
