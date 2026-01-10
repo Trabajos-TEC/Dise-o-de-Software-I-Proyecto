@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from "../context/LanguageContext";
 import { getAvailableLanguages } from '../i18n';
-import { FaGlobeAmericas } from 'react-icons/fa6';
+import { FaGlobe } from 'react-icons/fa6';
 
 const LanguageSwitcher: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -25,7 +25,7 @@ const LanguageSwitcher: React.FC = () => {
           title={t('toggleLanguage')}
           aria-label={t('toggleLanguage')}
         >
-          <FaGlobeAmericas />
+          <FaGlobe />
           <span className="language-code">
             {language.toUpperCase()}
           </span>

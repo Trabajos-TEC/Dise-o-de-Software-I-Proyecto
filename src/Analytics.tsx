@@ -6,12 +6,10 @@ import Card from './components/Card';
 import type { CardData } from './components/Card';
 import { 
   getAllCharacters, 
-  getAllEpisodes, 
-  getAllLocations,
+  getAllEpisodes,
   type CharacterApiData,
   type EpisodeApiData 
 } from './services/simpsonsApi';
-import { useLanguage } from './context/LanguageContext';
 import './styles/Analytics.css';
 
 interface TopCharacter extends CardData {
@@ -26,7 +24,6 @@ interface SeasonStats {
 
 function Analytics() {
   const navigate = useNavigate();
-  const { t } = useLanguage();
   
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'top10' | 'seasons' | 'comparator'>('top10');

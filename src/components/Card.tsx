@@ -14,6 +14,8 @@ export interface CardData {
   info2?: string;
   info3?: string;
   extraInfo?: Record<string, any>;
+  gender?: string;
+  season?: number;
 }
 
 interface CardProps {
