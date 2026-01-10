@@ -3,6 +3,7 @@
 /* ===== BOTONES BASE ===== */
 .language-btn,
 .theme-btn,
+.analytics-btn,
 .language-toggle,
 .theme-toggle,
 .theme-toggle-btn,
@@ -32,6 +33,7 @@
 /* Efecto de overlay para hover */
 .language-btn::after,
 .theme-btn::after,
+.analytics-btn::after,
 .language-toggle::after,
 .theme-toggle::after,
 .sign-in-btn::after,
@@ -52,6 +54,7 @@
 .btn-icon,
 .language-btn svg,
 .theme-btn svg,
+.analytics-btn svg,
 .language-toggle svg,
 .theme-toggle svg,
 .sign-in-btn svg,
@@ -73,6 +76,7 @@
 /* ===== EFECTOS HOVER/ACTIVE ===== */
 .language-btn:hover,
 .theme-btn:hover,
+.analytics-btn:hover,
 .language-toggle:hover,
 .theme-toggle:hover,
 .theme-toggle-btn:hover,
@@ -84,6 +88,7 @@
 
 .language-btn:hover::after,
 .theme-btn:hover::after,
+.analytics-btn:hover::after,
 .language-toggle:hover::after,
 .theme-toggle:hover::after,
 .sign-in-btn:hover::after,
@@ -93,6 +98,7 @@
 
 .language-btn:active,
 .theme-btn:active,
+.analytics-btn:active,
 .language-toggle:active,
 .theme-toggle:active,
 .theme-toggle-btn:active,
@@ -106,6 +112,7 @@
 /* ===== ESTADOS FOCUS PARA ACCESIBILIDAD ===== */
 .language-btn:focus,
 .theme-btn:focus,
+.analytics-btn:focus,
 .language-toggle:focus,
 .theme-toggle:focus,
 .sign-in-btn:focus,
@@ -120,6 +127,7 @@
 @media (max-width: 768px) {
   .language-btn,
   .theme-btn,
+  .analytics-btn,
   .language-toggle,
   .theme-toggle,
   .theme-toggle-btn,
@@ -139,6 +147,7 @@
   .btn-icon,
   .language-btn svg,
   .theme-btn svg,
+  .analytics-btn svg,
   .language-toggle svg,
   .theme-toggle svg,
   .sign-in-btn svg,
@@ -151,6 +160,7 @@
   /* Reducir efectos en tablet */
   .language-btn:hover,
   .theme-btn:hover,
+  .analytics-btn:hover,
   .language-toggle:hover,
   .theme-toggle:hover,
   .sign-in-btn:hover,
@@ -164,6 +174,7 @@
 @media (max-width: 480px) {
   .language-btn,
   .theme-btn,
+  .analytics-btn,
   .language-toggle,
   .theme-toggle,
   .theme-toggle-btn,
@@ -184,6 +195,7 @@
   .btn-icon,
   .language-btn svg,
   .theme-btn svg,
+  .analytics-btn svg,
   .language-toggle svg,
   .theme-toggle svg,
   .sign-in-btn svg,
@@ -196,6 +208,7 @@
   /* En móvil, los botones ocupan más espacio */
   .language-btn,
   .theme-btn,
+  .analytics-btn,
   .sign-in-btn,
   .sign-in-toggle {
     width: 100%;

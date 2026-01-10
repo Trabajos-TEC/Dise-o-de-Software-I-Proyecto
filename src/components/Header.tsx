@@ -6,8 +6,9 @@ import { searchCards } from './cardUtils';
 import LanguageButton from './LanguageButton';
 import ThemeButton from './ThemeButton';
 import SignIn from './SignInButton';
-import '../styles/components/header.css';
 import Perfil from "./perfilButton"
+import AnalyticsButton from './AnalyticsButton';
+import '../styles/components/header.css';
 interface HeaderProps {
   showSearch?: boolean;
   disableSearch?: boolean;
@@ -106,6 +107,8 @@ const Header: React.FC<HeaderProps> = ({
       )}
       
       <div className="header-right">
+        <AnalyticsButton />
+        <span className="separator">|</span>
         <LanguageButton />
         <span className="separator">|</span>
         <ThemeButton />

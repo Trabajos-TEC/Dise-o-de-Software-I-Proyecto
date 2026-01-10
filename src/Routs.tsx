@@ -8,6 +8,7 @@ import CardDetail from "./components/CardDetail";
 import SearchResults from "./SearchResults";
 import Perfil from "./perfil"
 import Favoritos from "./favoritos"
+import Analytics from "./Analytics"
 
 export default function AppRoutes() {
   return (
@@ -20,6 +21,7 @@ export default function AppRoutes() {
       <Route path="/search" element={<SearchResults />} />
       <Route path="/perfil" element={<Perfil/>} />
       <Route path="/favoritos" element={<Favoritos/>} />
+      <Route path="/analytics" element={<Analytics/>} />
     </Routes>
   );
 }

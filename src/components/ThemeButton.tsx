@@ -1,6 +1,6 @@
 // src/components/ThemeButton.tsx
 import React from 'react';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { FaSun, FaMoon } from 'react-icons/fa6';
 import { useTheme } from '../context/ThemeContext';
 
 const ThemeButton: React.FC = () => {

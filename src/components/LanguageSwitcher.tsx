@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from "../context/LanguageContext";
 import { getAvailableLanguages } from '../i18n';
-import { FaGlobeAmericas } from 'react-icons/fa';
+import { FaGlobeAmericas } from 'react-icons/fa6';
 
 const LanguageSwitcher: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
