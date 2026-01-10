@@ -133,7 +133,7 @@ function SearchResults() {
 
         {/* Panel de Filtros */}
         <div className="filters-panel">
-          <h3>🔍 Filtros</h3>
+          <h3>Filtros</h3>
           
           <div className="filters-grid">
             {/* Filtro por Categoría */}
@@ -204,7 +204,7 @@ function SearchResults() {
                 className="reset-filters-btn"
                 disabled={selectedGender === 'all' && selectedSeason === 'all' && selectedCategory === 'all'}
               >
-                🔄 Resetear Filtros
+                Resetear Filtros
               </button>
             </div>
           </div>

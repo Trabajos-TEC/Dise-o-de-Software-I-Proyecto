@@ -206,19 +206,19 @@ function Analytics() {
             className={`tab-btn ${activeTab === 'top10' ? 'active' : ''}`}
             onClick={() => setActiveTab('top10')}
           >
-            🏆 Top 10 Personajes
+            Top 10 Personajes
           </button>
           <button 
             className={`tab-btn ${activeTab === 'seasons' ? 'active' : ''}`}
             onClick={() => setActiveTab('seasons')}
           >
-            📺 Estadísticas por Temporada
+            Estadísticas por Temporada
           </button>
           <button 
             className={`tab-btn ${activeTab === 'comparator' ? 'active' : ''}`}
             onClick={() => setActiveTab('comparator')}
           >
-            ⚔️ Comparador de Personajes
+            Comparador de Personajes
           </button>
         </div>
 
@@ -228,7 +228,7 @@ function Analytics() {
           {/* TAB 1: Top 10 Personajes */}
           {activeTab === 'top10' && (
             <div className="top10-section">
-              <h2>🏆 Top 10 Personajes Más Buscados</h2>
+              <h2>Top 10 Personajes Más Buscados</h2>
               <p className="section-description">
                 Los personajes más populares según las búsquedas de usuarios
               </p>
@@ -255,7 +255,7 @@ function Analytics() {
           {/* TAB 2: Estadísticas por Temporada */}
           {activeTab === 'seasons' && (
             <div className="seasons-section">
-              <h2> Estadísticas por Temporada</h2>
+              <h2>Estadísticas por Temporada</h2>
               <p className="section-description">
                 Análisis detallado de episodios por cada temporada
               </p>
@@ -321,7 +321,7 @@ function Analytics() {
           {/* TAB 3: Comparador de Personajes */}
           {activeTab === 'comparator' && (
             <div className="comparator-section">
-              <h2>⚔️ Comparador de Personajes</h2>
+              <h2>Comparador de Personajes</h2>
               <p className="section-description">
                 Compara dos personajes lado a lado
               </p>
@@ -332,7 +332,7 @@ function Analytics() {
                   <select 
                     value={character1?.id || ''}
                     onChange={(e) => {
-                      const char = allCharacters.find(c => c.id === e.target.value);
+                      const char = allCharacters.find(c => c.id === parseInt(e.target.value));
                       setCharacter1(char || null);
                     }}
                     className="character-select"
@@ -351,7 +351,7 @@ function Analytics() {
                   <select 
                     value={character2?.id || ''}
                     onChange={(e) => {
-                      const char = allCharacters.find(c => c.id === e.target.value);
+                      const char = allCharacters.find(c => c.id === parseInt(e.target.value));
                       setCharacter2(char || null);
                     }}
                     className="character-select"

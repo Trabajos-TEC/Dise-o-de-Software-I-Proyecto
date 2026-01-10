@@ -235,19 +235,28 @@ export const searchCards = async (query: string): Promise<SearchResult> => {
     
     const searchResponse = await searchAll(query, 1, 20);
     
+    // Normalizar el query para búsqueda case-insensitive
+    const normalizedQuery = query.toLowerCase().trim();
+    
+    // Filtrar los resultados para asegurar que coincidan con la búsqueda
+    const filterResults = (items: any[], type: CardType): CardData[] => {
+      const transformed = transformApiResponseToCards(items || [], type);
+      
+      // Filtrar solo los que realmente coinciden con la búsqueda
+      return transformed.filter(card => {
+        const nameMatch = card.name.toLowerCase().includes(normalizedQuery);
+        const info1Match = card.info1?.toLowerCase().includes(normalizedQuery);
+        const info2Match = card.info2?.toLowerCase().includes(normalizedQuery);
+        const info3Match = card.info3?.toLowerCase().includes(normalizedQuery);
+        
+        return nameMatch || info1Match || info2Match || info3Match;
+      });
+    };
+    
     return {
-      characters: transformApiResponseToCards(
-        searchResponse.characters?.results || [], 
-        'character'
-      ),
-      episodes: transformApiResponseToCards(
-        searchResponse.episodes?.results || [], 
-        'episode'
-      ),
-      locations: transformApiResponseToCards(
-        searchResponse.locations?.results || [], 
-        'location'
-      )
+      characters: filterResults(searchResponse.characters?.results || [], 'character'),
+      episodes: filterResults(searchResponse.episodes?.results || [], 'episode'),
+      locations: filterResults(searchResponse.locations?.results || [], 'location')
     };
   } catch (error) {
     console.error('Error buscando cartas:', error);
