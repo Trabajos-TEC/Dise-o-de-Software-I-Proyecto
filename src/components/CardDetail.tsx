@@ -103,9 +103,9 @@ const CardDetail: React.FC = () => {
                 <p><strong>Tipo:</strong> {cardData.type}</p>
                 <p><strong>Imagen:</strong> {cardData.image_path}</p>
                 
-                {cardData.info1 && <p><strong>Información 1:</strong> {cardData.info1}</p>}
-                {cardData.info2 && <p><strong>Información 2:</strong> {cardData.info2}</p>}
-                {cardData.info3 && <p><strong>Información 3:</strong> {cardData.info3}</p>}
+                {cardData.info1 && <p><strong>Status:</strong> {cardData.info1}</p>}
+                {cardData.info2 && <p><strong>Gender:</strong> {cardData.info2}</p>}
+                {cardData.info3 && <p><strong>Occupation:</strong> {cardData.info3}</p>}
                 
                 <div className="api-notice">
                   <h4>Información de la API</h4>
