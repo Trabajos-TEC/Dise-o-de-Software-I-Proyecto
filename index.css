@@ -1,0 +1,197 @@
+/* index.css - ESTILOS GLOBALES, RESET Y BASE */
+
+/* ===== RESET Y NORMALIZACIÓN ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  line-height: 1.5;
+  padding-top: var(--top-bar-height, 60px);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== VARIABLES CSS GLOBALES ===== */
+:root {
+  /* Tamaños responsivos BASE */
+  --top-bar-height: 60px;
+  --top-bar-height-mobile: 50px;
+  --container-padding: 20px;
+  --container-padding-mobile: 15px;
+  
+  /* Anchos responsivos BASE */
+  --max-width-desktop: 1600px;
+  --max-width-tablet: 95%;
+  --max-width-mobile: 100%;
+  
+  /* Transiciones globales */
+  --transition-fast: 0.3s ease;
+  --transition-normal: 0.5s ease-in-out;
+  
+  /* Breakpoints estándar */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1200px;
+  --breakpoint-large-desktop: 1600px;
+}
+
+/* ===== CLASES DE UTILIDAD GLOBALES ===== */
+
+/* Flex utilities */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Text utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-muted {
+  opacity: 0.7;
+}
+
+/* Spacing utilities */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+.p-4 { padding: 2rem; }
+
+/* ===== ESTILOS GLOBALES PARA COMPONENTES COMUNES ===== */
+
+/* Botones base (colores específicos en temas) */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Enlaces base */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Imágenes responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== MEDIA QUERIES GLOBALES ===== */
+
+/* Ocultar en móvil */
+.hide-mobile {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+/* Ocultar en desktop */
+.hide-desktop {
+  @media (min-width: 769px) {
+    display: none !important;
+  }
+}
+
+/* Touch devices optimization */
+@media (hover: none) and (pointer: coarse) {
+  button, 
+  .theme-toggle, 
+  .language-toggle,
+  .logo-button {
+    min-height: 44px; /* Tappable area mínimo */
+    min-width: 44px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  button:hover,
+  .theme-toggle:hover,
+  .language-toggle:hover {
+    transform: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
+  }
+  
+  button {
+    border: 2px solid currentColor !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
