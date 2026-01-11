@@ -41,4 +41,30 @@ export interface TranslationKeys {
   cardsLoaded: string;
   cardClickForImage: string;
   cardClickForInfo: string;
+  
+  previousCards: string;
+  nextCards: string;
+  loadingCharacters: string;
+  loadingLocations: string;
+  loadingEpisodes: string;
+  noCharactersAvailable: string;
+  noLocationsAvailable: string;
+  noEpisodesAvailable: string;
+
+  /*PAGINA DE BUSQUEDA */
+  searchResultsFor: string;
+  of: string;
+  results: string;
+  filtered: string;
+  filters: string;
+  category: string;
+  all: string;
+  gender: string;
+  season: string;
+  resetFilters: string;
+  noResultsWithFilters: string;
+  previous: string;
+  next: string;
+  page: string;
+  backToHome: string;
 }

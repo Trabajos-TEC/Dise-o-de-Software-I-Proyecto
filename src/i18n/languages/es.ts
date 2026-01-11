@@ -45,4 +45,31 @@ export const es: TranslationKeys = {
 
   cardClickForImage: 'Click para ver imagen',
   cardClickForInfo: 'Click para ver información',
+
+  previousCards: 'Cartas anteriores',
+  nextCards: 'Siguientes cartas',
+
+  loadingCharacters: 'Cargando personajes...',
+  loadingLocations: 'Cargando ubicaciones...',
+  loadingEpisodes: 'Cargando episodios...',
+  noCharactersAvailable: 'No hay personajes disponibles',
+  noLocationsAvailable: 'No hay ubicaciones disponibles',
+  noEpisodesAvailable: 'No hay episodios disponibles',
+
+  /*PAGINA DE BUSQUEDA */
+  searchResultsFor: 'Resultados para',
+  of: 'de',
+  results: 'resultados',
+  filtered: '(filtrados)',
+  filters: 'Filtros',
+  category: 'Categoría',
+  all: 'Todos',
+  gender: 'Género',
+  season: 'Temporada',
+  resetFilters: 'Resetear Filtros',
+  noResultsWithFilters: 'No se encontraron resultados con los filtros seleccionados',
+  previous: 'Anterior',
+  next: 'Siguiente',
+  page: 'Página',
+  backToHome: 'Volver al inicio',
 };

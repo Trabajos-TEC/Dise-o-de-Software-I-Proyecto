@@ -375,3 +375,153 @@ body.simpsons-theme.light .carousel-button:hover {
   background: #FFD90F !important;
   color: #2C3E50 !important;
 }
+
+/* ===== ESTILOS PARA SEARCH RESULTS - MODO CLARO ===== */
+/* ===== COLORES PARA SEARCH RESULTS - MODO CLARO ===== */
+
+/* Header y filtros juntos en un cuadro */
+body.light .search-header-filters-container,
+body[data-theme="light"] .search-header-filters-container,
+body.simpsons-theme.light .search-header-filters-container {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+body.light .search-header h1,
+body[data-theme="light"] .search-header h1,
+body.simpsons-theme.light .search-header h1 {
+  color: var(--text-primary) !important;
+}
+
+body.light .results-count,
+body[data-theme="light"] .results-count,
+body.simpsons-theme.light .results-count {
+  color: var(--text-secondary) !important;
+}
+
+body.light .filters-panel h3,
+body[data-theme="light"] .filters-panel h3,
+body.simpsons-theme.light .filters-panel h3 {
+  color: var(--text-primary) !important;
+}
+
+/* Labels y selects */
+body.light .filter-group label,
+body[data-theme="light"] .filter-group label,
+body.simpsons-theme.light .filter-group label {
+  color: var(--text-primary) !important;
+}
+
+body.light .filter-select,
+body[data-theme="light"] .filter-select,
+body.simpsons-theme.light .filter-select {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--card-border) !important;
+}
+
+body.light .filter-select:hover,
+body[data-theme="light"] .filter-select:hover,
+body.simpsons-theme.light .filter-select:hover {
+  border-color: var(--text-accent) !important;
+}
+
+/* Botón reset filters */
+body.light .reset-filters-btn,
+body[data-theme="light"] .reset-filters-btn,
+body.simpsons-theme.light .reset-filters-btn {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-color) !important;
+  border: 2px solid var(--btn-primary-border) !important;
+}
+
+body.light .reset-filters-btn:hover:not(:disabled),
+body[data-theme="light"] .reset-filters-btn:hover:not(:disabled),
+body.simpsons-theme.light .reset-filters-btn:hover:not(:disabled) {
+  background: var(--btn-primary-hover) !important;
+}
+
+/* Sin resultados */
+body.light .no-results,
+body[data-theme="light"] .no-results,
+body.simpsons-theme.light .no-results {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+body.light .no-results p,
+body[data-theme="light"] .no-results p,
+body.simpsons-theme.light .no-results p {
+  color: var(--text-secondary) !important;
+}
+
+body.light .no-results .button,
+body[data-theme="light"] .no-results .button,
+body.simpsons-theme.light .no-results .button {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border: 2px solid var(--btn-secondary-border) !important;
+}
+
+/* Paginación */
+body.light .pagination,
+body[data-theme="light"] .pagination,
+body.simpsons-theme.light .pagination {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+body.light .pagination-btn,
+body[data-theme="light"] .pagination-btn,
+body.simpsons-theme.light .pagination-btn {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border-color: var(--btn-secondary-border) !important;
+}
+
+body.light .pagination-btn:hover:not(:disabled),
+body[data-theme="light"] .pagination-btn:hover:not(:disabled),
+body.simpsons-theme.light .pagination-btn:hover:not(:disabled) {
+  background: var(--btn-secondary-hover) !important;
+}
+
+/* Números de página */
+body.light .page-number,
+body[data-theme="light"] .page-number,
+body.simpsons-theme.light .page-number {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--card-border) !important;
+}
+
+body.light .page-number:hover,
+body[data-theme="light"] .page-number:hover,
+body.simpsons-theme.light .page-number:hover {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-color) !important;
+  border-color: var(--btn-primary-border) !important;
+}
+
+body.light .page-number.active,
+body[data-theme="light"] .page-number.active,
+body.simpsons-theme.light .page-number.active {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-color) !important;
+  border-color: var(--btn-primary-border) !important;
+}
+
+/* Botón volver */
+body.light .back-btn,
+body[data-theme="light"] .back-btn,
+body.simpsons-theme.light .back-btn {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border-color: var(--btn-secondary-border) !important;
+}
+
+body.light .back-btn:hover,
+body[data-theme="light"] .back-btn:hover,
+body.simpsons-theme.light .back-btn:hover {
+  background: var(--btn-secondary-hover) !important;
+}

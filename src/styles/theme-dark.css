@@ -370,4 +370,152 @@ body.simpsons-theme.dark .carousel-button:hover {
   color: #2C3E50 !important;
 }
 
-/* NADA para cards-carousel - será transparente por defecto */
+/* ===== ESTILOS PARA SEARCH RESULTS - MODO OSCURO ===== */
+/* ===== COLORES PARA SEARCH RESULTS - MODO OSCURO ===== */
+
+/* Header y filtros juntos en un cuadro */
+body.dark .search-header-filters-container,
+body[data-theme="dark"] .search-header-filters-container,
+body.simpsons-theme.dark .search-header-filters-container {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+body.dark .search-header h1,
+body[data-theme="dark"] .search-header h1,
+body.simpsons-theme.dark .search-header h1 {
+  color: var(--text-primary) !important;
+}
+
+body.dark .results-count,
+body[data-theme="dark"] .results-count,
+body.simpsons-theme.dark .results-count {
+  color: var(--text-secondary) !important;
+}
+
+body.dark .filters-panel h3,
+body[data-theme="dark"] .filters-panel h3,
+body.simpsons-theme.dark .filters-panel h3 {
+  color: var(--text-primary) !important;
+}
+
+/* Labels y selects */
+body.dark .filter-group label,
+body[data-theme="dark"] .filter-group label,
+body.simpsons-theme.dark .filter-group label {
+  color: var(--text-primary) !important;
+}
+
+body.dark .filter-select,
+body[data-theme="dark"] .filter-select,
+body.simpsons-theme.dark .filter-select {
+  background-color: rgba(28, 16, 68, 0.8) !important;
+  color: var(--text-primary) !important;
+  border-color: #4A4FC5 !important;
+}
+
+body.dark .filter-select:hover,
+body[data-theme="dark"] .filter-select:hover,
+body.simpsons-theme.dark .filter-select:hover {
+  border-color: #2E3192 !important;
+}
+
+/* Botón reset filters */
+body.dark .reset-filters-btn,
+body[data-theme="dark"] .reset-filters-btn,
+body.simpsons-theme.dark .reset-filters-btn {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-color) !important;
+  border: 2px solid var(--btn-primary-border) !important;
+}
+
+body.dark .reset-filters-btn:hover:not(:disabled),
+body[data-theme="dark"] .reset-filters-btn:hover:not(:disabled),
+body.simpsons-theme.dark .reset-filters-btn:hover:not(:disabled) {
+  background: var(--btn-primary-hover) !important;
+}
+
+/* Sin resultados */
+body.dark .no-results,
+body[data-theme="dark"] .no-results,
+body.simpsons-theme.dark .no-results {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+body.dark .no-results p,
+body[data-theme="dark"] .no-results p,
+body.simpsons-theme.dark .no-results p {
+  color: var(--text-secondary) !important;
+}
+
+body.dark .no-results .button,
+body[data-theme="dark"] .no-results .button,
+body.simpsons-theme.dark .no-results .button {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border: 2px solid var(--btn-secondary-border) !important;
+}
+
+/* Paginación */
+body.dark .pagination,
+body[data-theme="dark"] .pagination,
+body.simpsons-theme.dark .pagination {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+body.dark .pagination-btn,
+body[data-theme="dark"] .pagination-btn,
+body.simpsons-theme.dark .pagination-btn {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border-color: var(--btn-secondary-border) !important;
+}
+
+body.dark .pagination-btn:hover:not(:disabled),
+body[data-theme="dark"] .pagination-btn:hover:not(:disabled),
+body.simpsons-theme.dark .pagination-btn:hover:not(:disabled) {
+  background: var(--btn-secondary-hover) !important;
+}
+
+/* Números de página */
+body.dark .page-number,
+body[data-theme="dark"] .page-number,
+body.simpsons-theme.dark .page-number {
+  background-color: rgba(28, 16, 68, 0.8) !important;
+  color: var(--text-primary) !important;
+  border-color: #4A4FC5 !important;
+}
+
+body.dark .page-number:hover,
+body[data-theme="dark"] .page-number:hover,
+body.simpsons-theme.dark .page-number:hover {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-color) !important;
+  border-color: var(--btn-primary-border) !important;
+}
+
+body.dark .page-number.active,
+body[data-theme="dark"] .page-number.active,
+body.simpsons-theme.dark .page-number.active {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-color) !important;
+  border-color: var(--btn-primary-border) !important;
+}
+
+/* Botón volver */
+body.dark .back-btn,
+body[data-theme="dark"] .back-btn,
+body.simpsons-theme.dark .back-btn {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border-color: var(--btn-secondary-border) !important;
+}
+
+body.dark .back-btn:hover,
+body[data-theme="dark"] .back-btn:hover,
+body.simpsons-theme.dark .back-btn:hover {
+  background: var(--btn-secondary-hover) !important;
+}

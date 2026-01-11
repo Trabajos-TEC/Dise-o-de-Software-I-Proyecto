@@ -1,18 +1,27 @@
 // src/SearchResults.tsx - VERSIÓN CON FILTROS AVANZADOS Y PAGINACIÓN
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useLanguage } from './context/LanguageContext';
 import MainLayout from './components/MainLayout';
 import Card from './components/Card';
 import type { SearchResult } from './components/cardUtils';
 import type { CardData } from './components/Card';
 import './styles/SearchResults.css';
 
+// Importar Firebase para favoritos
+import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { auth } from "./firebaseConfig";
+import { db } from "./firebaseConfig";
+import { collection, onSnapshot } from "firebase/firestore";
+
 function SearchResults() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult | null>(null);
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
   
   // Estados para filtros
   const [selectedGender, setSelectedGender] = useState<string>('all');
@@ -22,6 +31,22 @@ function SearchResults() {
   // Estados para paginación
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+
+  // Cargar favoritos del usuario
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const favRef = collection(db, "users", user.uid, "favorites");
+
+    const unsubscribe = onSnapshot(favRef, snapshot => {
+      const ids = new Set<string>();
+      snapshot.forEach(doc => ids.add(doc.id));
+      setFavorites(ids);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   // Cargar resultados del estado de navegación
   useEffect(() => {
@@ -37,6 +62,53 @@ function SearchResults() {
       navigate('/');
     }
   }, [location.state, navigate]);
+
+  // ============ FUNCIONES PARA LAS CARTAS ============
+
+  // Función para redirigir al hacer click en una carta
+  const handleCardClick = (card: CardData) => {
+    navigate(`/card/${card.type}-${card.id}`, { 
+      state: { 
+        cardData: card 
+      } 
+    });
+  };
+
+  // Función para manejar favoritos
+  const handleFavoriteToggle = async (card: CardData) => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const id = `${card.type}-${card.id}`;
+
+    // Actualizar estado local inmediatamente
+    setFavorites(prev => {
+      const copy = new Set(prev);
+      copy.has(id) ? copy.delete(id) : copy.add(id);
+      return copy;
+    });
+
+    // Actualizar Firebase
+    const favRef = doc(db, "users", user.uid, "favorites", id);
+
+    try {
+      if (favorites.has(id)) {
+        await deleteDoc(favRef);
+      } else {
+        await setDoc(favRef, card);
+      }
+    } catch (err) {
+      console.error(err);
+      // Revertir cambio local si hay error
+      setFavorites(prev => {
+        const copy = new Set(prev);
+        copy.has(id) ? copy.delete(id) : copy.add(id);
+        return copy;
+      });
+    }
+  };
+
+  // ============ FILTROS Y PAGINACIÓN ============
 
   // Aplicar filtros a los resultados
   const getFilteredResults = (): CardData[] => {
@@ -109,7 +181,7 @@ function SearchResults() {
     return (
       <MainLayout>
         <div style={{ padding: '20px', textAlign: 'center' }}>
-          <h2>Cargando resultados...</h2>
+          <h2>{t('loading')}</h2>
         </div>
       </MainLayout>
     );
@@ -122,90 +194,93 @@ function SearchResults() {
   return (
     <MainLayout>
       <div className="search-results-container">
-        {/* Header con título y estadísticas */}
-        <div className="search-header">
-          <h1>Resultados para: "{searchQuery}"</h1>
-          <p className="results-count">
-            {filteredResults.length} de {totalResults} resultados
-            {filteredResults.length !== totalResults && ' (filtrados)'}
-          </p>
-        </div>
+        {/* Header y Filtros juntos en un cuadro */}
+        <div className="search-header-filters-container">
+          {/* Header con título y estadísticas */}
+          <div className="search-header">
+            <h1>{t('searchResultsFor')}: "{searchQuery}"</h1>
+            <p className="results-count">
+              {filteredResults.length} {t('of')} {totalResults} {t('results')}
+              {filteredResults.length !== totalResults && ` ${t('filtered')}`}
+            </p>
+          </div>
 
-        {/* Panel de Filtros */}
-        <div className="filters-panel">
-          <h3>Filtros</h3>
-          
-          <div className="filters-grid">
-            {/* Filtro por Categoría */}
-            <div className="filter-group">
-              <label htmlFor="category-filter">Categoría:</label>
-              <select 
-                id="category-filter"
-                value={selectedCategory} 
-                onChange={(e) => {
-                  setSelectedCategory(e.target.value);
-                  setCurrentPage(1);
-                }}
-                className="filter-select"
-              >
-                <option value="all">Todas</option>
-                <option value="characters">Personajes ({searchResults.characters.length})</option>
-                <option value="episodes">Episodios ({searchResults.episodes.length})</option>
-                <option value="locations">Ubicaciones ({searchResults.locations.length})</option>
-              </select>
-            </div>
-
-            {/* Filtro por Género (solo para personajes) */}
-            {(selectedCategory === 'all' || selectedCategory === 'characters') && uniqueGenders.length > 0 && (
+          {/* Panel de Filtros */}
+          <div className="filters-panel">
+            <h3>{t('filters')}</h3>
+            
+            <div className="filters-grid">
+              {/* Filtro por Categoría */}
               <div className="filter-group">
-                <label htmlFor="gender-filter">Género:</label>
+                <label htmlFor="category-filter">{t('category')}:</label>
                 <select 
-                  id="gender-filter"
-                  value={selectedGender} 
+                  id="category-filter"
+                  value={selectedCategory} 
                   onChange={(e) => {
-                    setSelectedGender(e.target.value);
+                    setSelectedCategory(e.target.value);
                     setCurrentPage(1);
                   }}
                   className="filter-select"
                 >
-                  <option value="all">Todos</option>
-                  {uniqueGenders.map(gender => (
-                    <option key={gender} value={gender}>{gender}</option>
-                  ))}
+                  <option value="all">{t('all')}</option>
+                  <option value="characters">{t('characters')} ({searchResults.characters.length})</option>
+                  <option value="episodes">{t('episodes')} ({searchResults.episodes.length})</option>
+                  <option value="locations">{t('locations')} ({searchResults.locations.length})</option>
                 </select>
               </div>
-            )}
 
-            {/* Filtro por Temporada (solo para episodios) */}
-            {(selectedCategory === 'all' || selectedCategory === 'episodes') && uniqueSeasons.length > 0 && (
+              {/* Filtro por Género (solo para personajes) */}
+              {(selectedCategory === 'all' || selectedCategory === 'characters') && uniqueGenders.length > 0 && (
+                <div className="filter-group">
+                  <label htmlFor="gender-filter">{t('gender')}:</label>
+                  <select 
+                    id="gender-filter"
+                    value={selectedGender} 
+                    onChange={(e) => {
+                      setSelectedGender(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="filter-select"
+                  >
+                    <option value="all">{t('all')}</option>
+                    {uniqueGenders.map(gender => (
+                      <option key={gender} value={gender}>{gender}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {/* Filtro por Temporada (solo para episodios) */}
+              {(selectedCategory === 'all' || selectedCategory === 'episodes') && uniqueSeasons.length > 0 && (
+                <div className="filter-group">
+                  <label htmlFor="season-filter">{t('season')}:</label>
+                  <select 
+                    id="season-filter"
+                    value={selectedSeason} 
+                    onChange={(e) => {
+                      setSelectedSeason(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="filter-select"
+                  >
+                    <option value="all">{t('all')}</option>
+                    {uniqueSeasons.map(season => (
+                      <option key={season} value={season.toString()}>{t('season')} {season}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {/* Botón para resetear filtros */}
               <div className="filter-group">
-                <label htmlFor="season-filter">Temporada:</label>
-                <select 
-                  id="season-filter"
-                  value={selectedSeason} 
-                  onChange={(e) => {
-                    setSelectedSeason(e.target.value);
-                    setCurrentPage(1);
-                  }}
-                  className="filter-select"
+                <button 
+                  onClick={resetFilters}
+                  className="reset-filters-btn"
+                  disabled={selectedGender === 'all' && selectedSeason === 'all' && selectedCategory === 'all'}
                 >
-                  <option value="all">Todas</option>
-                  {uniqueSeasons.map(season => (
-                    <option key={season} value={season.toString()}>Temporada {season}</option>
-                  ))}
-                </select>
+                  {t('resetFilters')}
+                </button>
               </div>
-            )}
-
-            {/* Botón para resetear filtros */}
-            <div className="filter-group">
-              <button 
-                onClick={resetFilters}
-                className="reset-filters-btn"
-                disabled={selectedGender === 'all' && selectedSeason === 'all' && selectedCategory === 'all'}
-              >
-                Resetear Filtros
-              </button>
             </div>
           </div>
         </div>
@@ -213,9 +288,9 @@ function SearchResults() {
         {/* Resultados */}
         {currentResults.length === 0 ? (
           <div className="no-results">
-            <p>No se encontraron resultados con los filtros seleccionados.</p>
+            <p>{t('noResultsWithFilters')}</p>
             <button onClick={resetFilters} className="button">
-              Resetear Filtros
+              {t('resetFilters')}
             </button>
           </div>
         ) : (
@@ -228,6 +303,9 @@ function SearchResults() {
                     size="medium"
                     variant="preview"
                     showFavoriteButton={true}
+                    isFavorite={favorites.has(`${item.type}-${item.id}`)}
+                    onFavoriteToggle={() => handleFavoriteToggle(item)}
+                    onClick={() => handleCardClick(item)}
                   />
                 </div>
               ))}
@@ -241,11 +319,11 @@ function SearchResults() {
                   disabled={currentPage === 1}
                   className="pagination-btn"
                 >
-                  ← Anterior
+                  ← {t('previous')}
                 </button>
                 
                 <div className="pagination-info">
-                  <span>Página {currentPage} de {totalPages}</span>
+                  <span>{t('page')} {currentPage} {t('of')} {totalPages}</span>
                   
                   {/* Números de página */}
                   <div className="page-numbers">
@@ -286,19 +364,12 @@ function SearchResults() {
                   disabled={currentPage === totalPages}
                   className="pagination-btn"
                 >
-                  Siguiente →
+                  {t('next')} →
                 </button>
               </div>
             )}
           </>
         )}
-        
-        <button 
-          onClick={() => navigate('/')}
-          className="back-btn"
-        >
-          ← Volver al inicio
-        </button>
       </div>
     </MainLayout>
   );

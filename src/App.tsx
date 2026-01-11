@@ -1,7 +1,6 @@
 // App.tsx - SOLO PÁGINA PRINCIPAL
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from './context/LanguageContext';
-import { useTheme } from './context/ThemeContext';
 import MainLayout from './components/MainLayout';
 import Card from './components/Card';
 import type { CardData } from './components/Card';
@@ -27,8 +26,7 @@ import "./styles/components/Card.css";
 function App() {
   const navigate = useNavigate();
   
-  const { language, t } = useLanguage();
-  const { isDarkMode } = useTheme();
+  const { t } = useLanguage();
   
   // Estados de la página principal
   const [initialCards, setInitialCards] = useState<CardData[]>([]);
@@ -46,19 +44,19 @@ function App() {
   });
 
   useEffect(() => {
-  const user = auth.currentUser;
-  if (!user) return;
+    const user = auth.currentUser;
+    if (!user) return;
 
-  const favRef = collection(db, "users", user.uid, "favorites");
+    const favRef = collection(db, "users", user.uid, "favorites");
 
-  const unsubscribe = onSnapshot(favRef, snapshot => {
-    const ids = new Set<string>();
-    snapshot.forEach(doc => ids.add(doc.id));
-    setFavorites(ids);
-  });
+    const unsubscribe = onSnapshot(favRef, snapshot => {
+      const ids = new Set<string>();
+      snapshot.forEach(doc => ids.add(doc.id));
+      setFavorites(ids);
+    });
 
-  return () => unsubscribe();
-}, []);
+    return () => unsubscribe();
+  }, []);
 
   // Cargar tarjetas iniciales
   useEffect(() => {
@@ -162,31 +160,29 @@ function App() {
   };
 
   const handleFavoriteToggle = async (card: CardData) => {
-  const user = auth.currentUser;
-  if (!user) return;
+    const user = auth.currentUser;
+    if (!user) return;
 
-  const id = `${card.type}-${card.id}`;
+    const id = `${card.type}-${card.id}`;
 
-  setFavorites(prev => {
-    const copy = new Set(prev);
-    copy.has(id) ? copy.delete(id) : copy.add(id);
-    return copy;
-  });
+    setFavorites(prev => {
+      const copy = new Set(prev);
+      copy.has(id) ? copy.delete(id) : copy.add(id);
+      return copy;
+    });
 
+    const favRef = doc(db, "users", user.uid, "favorites", id);
 
-  const favRef = doc(db, "users", user.uid, "favorites", id);
-
-  try {
-    if (favorites.has(id)) {
-      await deleteDoc(favRef);
-    } else {
-      await setDoc(favRef, card);
+    try {
+      if (favorites.has(id)) {
+        await deleteDoc(favRef);
+      } else {
+        await setDoc(favRef, card);
+      }
+    } catch (err) {
+      console.error(err);
     }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
+  };
 
   // Renderizar sección de tarjetas
   const renderCardSection = (
@@ -200,6 +196,20 @@ function App() {
     const sectionKey = sectionType === 'character' ? 'characters' : 
                        sectionType === 'episode' ? 'episodes' : 'locations';
     
+    // Determinar qué traducción usar para loading
+    const getLoadingText = () => {
+      if (sectionType === 'character') return t('loadingCharacters');
+      if (sectionType === 'location') return t('loadingLocations');
+      return t('loadingEpisodes');
+    };
+    
+    // Determinar qué traducción usar para no data
+    const getNoDataText = () => {
+      if (sectionType === 'character') return t('noCharactersAvailable');
+      if (sectionType === 'location') return t('noLocationsAvailable');
+      return t('noEpisodesAvailable');
+    };
+    
     return (
       <div className={`cards-section ${sectionType}-section`}>
         <div className="section-header">
@@ -211,14 +221,14 @@ function App() {
         {isLoading ? (
           <div className="loading-message">
             <div className="loading-spinner"></div>
-            Cargando {sectionTitle.toLowerCase()}...
+            {getLoadingText()}
           </div>
         ) : hasCards ? (
           <div className="carousel-container">
             <button 
               className="carousel-button left" 
               onClick={() => scrollLeft(ref, sectionKey)}
-              aria-label="Cartas anteriores"
+              aria-label={t('previousCards')}
             >
               ◀
             </button>
@@ -240,14 +250,14 @@ function App() {
             <button 
               className="carousel-button right" 
               onClick={() => scrollRight(ref, sectionKey)}
-              aria-label="Siguientes cartas"
+              aria-label={t('nextCards')}
             >
               ▶
             </button>
           </div>
         ) : (
           <div className="no-data-message">
-            No hay {sectionTitle.toLowerCase()} disponibles
+            {getNoDataText()}
           </div>
         )}
       </div>
@@ -265,20 +275,6 @@ function App() {
         <div className="welcome-message">
           <h1 className="welcome-title">{t('appTitle')}</h1>
           <p className="welcome-text">{t('welcomeMessage')}</p>
-        </div>
-        
-        <div className="status-container">
-          <div className="status-card">
-            <div className="status-item">
-              <span className="status-label">{t('currentLanguage')}:</span>
-              <span className="status-value">{language === 'en' ? 'English' : 'Español'}</span>
-            </div>
-            
-            <div className="status-item">
-              <span className="status-label">{t('currentTheme')}:</span>
-              <span className="status-value">{isDarkMode ? t('darkMode') : t('lightMode')}</span>
-            </div>
-          </div>
         </div>
       </div>
 

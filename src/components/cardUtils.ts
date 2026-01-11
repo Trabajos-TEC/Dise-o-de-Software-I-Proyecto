@@ -4,7 +4,7 @@ import {
   getCharacterById,
   getEpisodeById,
   getLocationById,
-  searchAll,
+  searchAllUnlimited,
   type CharacterApiData,
   type EpisodeApiData,
   type LocationApiData
@@ -92,44 +92,41 @@ export const transformToCardData = (
  * Datos iniciales mínimos (solo id y tipo)
  * Personajes principales de Los Simpson
  */
+// cardUtils.ts
 export const getInitialCardReferences = (): Array<{id: number, type: CardType}> => {
-  return [
-    // ============ PERSONAJES (10 ejemplos) ============
-    { id: 1, type: 'character' as CardType },   // Homer Simpson
-    { id: 2, type: 'character' as CardType },   // Marge Simpson
-    { id: 3, type: 'character' as CardType },   // Bart Simpson
-    { id: 4, type: 'character' as CardType },   // Lisa Simpson
-    { id: 5, type: 'character' as CardType },   // Maggie Simpson
-    { id: 6, type: 'character' as CardType },   // Abraham "Abe" Simpson
-    { id: 7, type: 'character' as CardType },   // Krusty the Clown
-    { id: 8, type: 'character' as CardType },   // Milhouse Van Houten
-    { id: 9, type: 'character' as CardType },   // Ned Flanders
-    { id: 10, type: 'character' as CardType },  // Montgomery Burns
-    
-    // ============ EPISODIOS (10 ejemplos) ============
-    { id: 1, type: 'episode' as CardType },     // Simpsons Roasting on an Open Fire
-    { id: 2, type: 'episode' as CardType },     // Bart the Genius
-    { id: 3, type: 'episode' as CardType },     // Homer's Odyssey
-    { id: 4, type: 'episode' as CardType },     // There's No Disgrace Like Home
-    { id: 5, type: 'episode' as CardType },     // Bart the General
-    { id: 6, type: 'episode' as CardType },     // Moaning Lisa
-    { id: 7, type: 'episode' as CardType },     // The Call of the Simpsons
-    { id: 8, type: 'episode' as CardType },     // The Telltale Head
-    { id: 9, type: 'episode' as CardType },     // Life on the Fast Lane
-    { id: 10, type: 'episode' as CardType },    // Homer's Night Out
-    
-    // ============ UBICACIONES (10 ejemplos) ============
-    { id: 1, type: 'location' as CardType },    // 742 Evergreen Terrace
-    { id: 2, type: 'location' as CardType },    // Springfield Nuclear Power Plant
-    { id: 3, type: 'location' as CardType },    // Kwik-E-Mart
-    { id: 4, type: 'location' as CardType },    // Springfield Elementary School
-    { id: 5, type: 'location' as CardType },    // Moe's Tavern
-    { id: 6, type: 'location' as CardType },    // Krusty Burger
-    { id: 7, type: 'location' as CardType },    // The Android's Dungeon
-    { id: 8, type: 'location' as CardType },    // Springfield Retirement Castle
-    { id: 9, type: 'location' as CardType },    // Springfield Town Hall
-    { id: 10, type: 'location' as CardType },   // Springfield Police Station
-  ];
+  // Función para generar IDs aleatorios únicos dentro de un rango
+  const generateRandomIds = (count: number, maxId: number): number[] => {
+    const ids = new Set<number>();
+    while (ids.size < count) {
+      ids.add(Math.floor(Math.random() * maxId) + 1);
+    }
+    return Array.from(ids);
+  };
+
+  // Suponiendo que tienes hasta 600 personajes, 700 episodios, 200 ubicaciones
+  // (ajusta estos números según tu base de datos real)
+  const characterIds = generateRandomIds(10, 600);   // 10 personajes aleatorios
+  const episodeIds = generateRandomIds(10, 700);     // 10 episodios aleatorios
+  const locationIds = generateRandomIds(10, 200);    // 10 ubicaciones aleatorias
+
+  const cards: Array<{id: number, type: CardType}> = [];
+
+  // Agregar personajes aleatorios
+  characterIds.forEach(id => {
+    cards.push({ id, type: 'character' as CardType });
+  });
+
+  // Agregar episodios aleatorios
+  episodeIds.forEach(id => {
+    cards.push({ id, type: 'episode' as CardType });
+  });
+
+  // Agregar ubicaciones aleatorias
+  locationIds.forEach(id => {
+    cards.push({ id, type: 'location' as CardType });
+  });
+
+  return cards;
 };
 
 /**
@@ -229,16 +226,18 @@ export const groupCardsByType = (
 /**
  * Busca cartas en la API por término de búsqueda
  */
+// En cardUtils.ts - MODIFICA LA FUNCIÓN searchCards
 export const searchCards = async (query: string): Promise<SearchResult> => {
   try {
-    console.log(`Buscando: "${query}"`);
+    console.log(`Buscando sin límites: "${query}"`);
     
-    const searchResponse = await searchAll(query, 1, 20);
+    // USAR LA NUEVA FUNCIÓN SIN LÍMITES
+    const searchResponse = await searchAllUnlimited(query);
     
     // Normalizar el query para búsqueda case-insensitive
     const normalizedQuery = query.toLowerCase().trim();
     
-    // Filtrar los resultados para asegurar que coincidan con la búsqueda
+    // Transformar y filtrar
     const filterResults = (items: any[], type: CardType): CardData[] => {
       const transformed = transformApiResponseToCards(items || [], type);
       
@@ -253,11 +252,19 @@ export const searchCards = async (query: string): Promise<SearchResult> => {
       });
     };
     
-    return {
+    const result = {
       characters: filterResults(searchResponse.characters?.results || [], 'character'),
       episodes: filterResults(searchResponse.episodes?.results || [], 'episode'),
       locations: filterResults(searchResponse.locations?.results || [], 'location')
     };
+    
+    console.log('Resultados finales:', {
+      characters: result.characters.length,
+      episodes: result.episodes.length,
+      locations: result.locations.length
+    });
+    
+    return result;
   } catch (error) {
     console.error('Error buscando cartas:', error);
     return {

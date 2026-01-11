@@ -45,4 +45,32 @@ export const en: TranslationKeys = {
 
   cardClickForImage: 'Click to view image',
   cardClickForInfo: 'Click to view info',
+
+
+  previousCards: 'Previous cards',
+  nextCards: 'Next cards',
+
+  loadingCharacters: 'Loading characters...',
+  loadingLocations: 'Loading locations...',
+  loadingEpisodes: 'Loading episodes...', 
+  noCharactersAvailable: 'No characters available',
+  noLocationsAvailable: 'No locations available',
+  noEpisodesAvailable: 'No episodes available',
+
+    /*PAGINA DE BUSQUEDA */
+  searchResultsFor: 'Results for',
+  of: 'of',
+  results: 'results',
+  filtered: '(filtered)',
+  filters: 'Filters',
+  category: 'Category',
+  all: 'All',
+  gender: 'Gender',
+  season: 'Season',
+  resetFilters: 'Reset Filters',
+  noResultsWithFilters: 'No results found with the selected filters',
+  previous: 'Previous',
+  next: 'Next',
+  page: 'Page',
+  backToHome: 'Back to Home',
 };
