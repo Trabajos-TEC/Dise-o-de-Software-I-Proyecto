@@ -2,6 +2,7 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "./firebaseConfig";
 import { FirebaseError } from "firebase/app";
 import { useNavigate } from "react-router-dom";
+import MainLayout from "./components/MainLayout";
 import "./login.css";
 
 export default function LoginGoogle() {
@@ -23,19 +24,25 @@ export default function LoginGoogle() {
   };
 
   return (
-    <div className="container">
-      <h1 className="title">Login con Google</h1>
+    <MainLayout 
+      headerProps={{
+        showSearch: false // Oculta la barra de búsqueda
+      }}
+    >
+      <div className="container">
+        <h1 className="title">Login con Google</h1>
 
-      <button className="button" onClick={signInWithGoogle}>
-        Continuar con Google
-      </button>
+        <button className="button" onClick={signInWithGoogle}>
+          Continuar con Google
+        </button>
 
-      <button
-        className="button secondary"
-        onClick={() => navigate("/login")}
-      >
-        Volver
-      </button>
-    </div>
+        <button
+          className="button secondary"
+          onClick={() => navigate("/login")}
+        >
+          Volver
+        </button>
+      </div>
+    </MainLayout>
   );
 }
