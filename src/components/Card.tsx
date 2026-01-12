@@ -17,6 +17,9 @@ export interface CardData {
   extraInfo?: Record<string, any>;
   gender?: string;
   season?: number;
+  town?: string;
+  use?: string;
+  title?: string;
   // AGREGAR ESTO:
   additionalInfo?: {
     birthdate?: string;
