@@ -1,8 +1,8 @@
-// src/services/simpsonsApi.ts
+// src/services/simpsonsApi.ts - VERSIÓN OPTIMIZADA (MÁS RÁPIDA)
 
 const API_BASE_URL = 'https://thesimpsonsapi.com/api';
 
-// Tipos para las respuestas de la API
+// Tipos para las respuestas de la API (mantener igual)
 export interface ApiResponse<T> {
   count: number;
   next: string | null;
@@ -41,10 +41,47 @@ export interface LocationApiData {
   use: string;
 }
 
+// Cache simple para mejorar velocidad
+const cache = new Map<string, { data: any; timestamp: number }>();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos
+
+/**
+ * Función para fetch con cache
+ */
+const fetchWithCache = async <T>(url: string, cacheKey: string): Promise<T> => {
+  const now = Date.now();
+  const cached = cache.get(cacheKey);
+  
+  if (cached && (now - cached.timestamp) < CACHE_DURATION) {
+    console.log(`📦 Usando cache para: ${cacheKey}`);
+    return cached.data;
+  }
+  
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}`);
+    }
+    const data = await response.json();
+    
+    // Guardar en cache
+    cache.set(cacheKey, { data, timestamp: now });
+    
+    return data;
+  } catch (error) {
+    console.error(`Error fetching ${url}:`, error);
+    throw error;
+  }
+};
+
+// ================================================================
+// FUNCIONES EXISTENTES (MANTENER IGUAL)
+// ================================================================
+
 /**
  * Obtiene TODOS los personajes paginados
  */
-export const getAllCharacters = async (page: number = 1, limit: number = 20): Promise<ApiResponse<CharacterApiData>> => {
+export const getAllCharacters = async (page: number = 1, limit: number = 100): Promise<ApiResponse<CharacterApiData>> => {
   try {
     const response = await fetch(`${API_BASE_URL}/characters?page=${page}&limit=${limit}`);
     if (!response.ok) {
@@ -62,11 +99,8 @@ export const getAllCharacters = async (page: number = 1, limit: number = 20): Pr
  */
 export const getCharacterById = async (id: number): Promise<CharacterApiData> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/characters/${id}`);
-    if (!response.ok) {
-      throw new Error(`Error en la API: ${response.status}`);
-    }
-    const data = await response.json();
+    const cacheKey = `character-${id}`;
+    const data = await fetchWithCache<any>(`${API_BASE_URL}/characters/${id}`, cacheKey);
     return data.results?.[0] || data;
   } catch (error) {
     console.error(`Error fetching character ${id}:`, error);
@@ -77,7 +111,7 @@ export const getCharacterById = async (id: number): Promise<CharacterApiData> =>
 /**
  * Obtiene TODOS los episodios paginados
  */
-export const getAllEpisodes = async (page: number = 1, limit: number = 20): Promise<ApiResponse<EpisodeApiData>> => {
+export const getAllEpisodes = async (page: number = 1, limit: number = 100): Promise<ApiResponse<EpisodeApiData>> => {
   try {
     const response = await fetch(`${API_BASE_URL}/episodes?page=${page}&limit=${limit}`);
     if (!response.ok) {
@@ -95,11 +129,8 @@ export const getAllEpisodes = async (page: number = 1, limit: number = 20): Prom
  */
 export const getEpisodeById = async (id: number): Promise<EpisodeApiData> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/episodes/${id}`);
-    if (!response.ok) {
-      throw new Error(`Error en la API: ${response.status}`);
-    }
-    const data = await response.json();
+    const cacheKey = `episode-${id}`;
+    const data = await fetchWithCache<any>(`${API_BASE_URL}/episodes/${id}`, cacheKey);
     return data.results?.[0] || data;
   } catch (error) {
     console.error(`Error fetching episode ${id}:`, error);
@@ -110,7 +141,7 @@ export const getEpisodeById = async (id: number): Promise<EpisodeApiData> => {
 /**
  * Obtiene TODAS las ubicaciones paginadas
  */
-export const getAllLocations = async (page: number = 1, limit: number = 20): Promise<ApiResponse<LocationApiData>> => {
+export const getAllLocations = async (page: number = 1, limit: number = 100): Promise<ApiResponse<LocationApiData>> => {
   try {
     const response = await fetch(`${API_BASE_URL}/locations?page=${page}&limit=${limit}`);
     if (!response.ok) {
@@ -128,11 +159,8 @@ export const getAllLocations = async (page: number = 1, limit: number = 20): Pro
  */
 export const getLocationById = async (id: number): Promise<LocationApiData> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/locations/${id}`);
-    if (!response.ok) {
-      throw new Error(`Error en la API: ${response.status}`);
-    }
-    const data = await response.json();
+    const cacheKey = `location-${id}`;
+    const data = await fetchWithCache<any>(`${API_BASE_URL}/locations/${id}`, cacheKey);
     return data.results?.[0] || data;
   } catch (error) {
     console.error(`Error fetching location ${id}:`, error);
@@ -141,7 +169,7 @@ export const getLocationById = async (id: number): Promise<LocationApiData> => {
 };
 
 /**
- * Obtiene TODOS los personajes (sin límite)
+ * Obtiene TODOS los personajes (SIN LÍMITES)
  */
 export const getAllCharactersUnlimited = async (): Promise<CharacterApiData[]> => {
   try {
@@ -149,27 +177,36 @@ export const getAllCharactersUnlimited = async (): Promise<CharacterApiData[]> =
     let page = 1;
     let hasMore = true;
     
+    console.log('Iniciando descarga de TODOS los personajes...');
+    
     while (hasMore) {
-      const response: ApiResponse<CharacterApiData> = await getAllCharacters(page, 100); // 100 por página
-      allCharacters = [...allCharacters, ...response.results];
+      console.log(`Obteniendo personajes página ${page}...`);
+      const response: ApiResponse<CharacterApiData> = await getAllCharacters(page, 100);
       
-      // Verificar si hay más páginas
-      hasMore = response.next !== null && page < response.pages;
-      page++;
-      
-      // Por seguridad, limitar a 1000 resultados o 10 páginas
-      if (page > 10 || allCharacters.length > 1000) {
-        console.log('Límite de seguridad alcanzado para personajes');
+      // Si no hay resultados, salir
+      if (!response.results || response.results.length === 0) {
+        console.log('No hay más personajes');
         break;
       }
       
-      // Pequeña pausa para no sobrecargar la API
-      if (hasMore) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+      allCharacters = [...allCharacters, ...response.results];
+      
+      // Verificar si hay más páginas
+      hasMore = response.next !== null;
+      
+      // Si estamos en la última página, salir
+      if (!hasMore || page >= response.pages) {
+        console.log(`Última página alcanzada. Total páginas: ${response.pages}`);
+        break;
       }
+      
+      page++;
+      
+      // Pequeña pausa para no sobrecargar la API (reducida a 30ms)
+      await new Promise(resolve => setTimeout(resolve, 30));
     }
     
-    console.log(`Total personajes obtenidos: ${allCharacters.length}`);
+    console.log(`✅ Total personajes obtenidos: ${allCharacters.length}`);
     return allCharacters;
   } catch (error) {
     console.error('Error fetching all characters:', error);
@@ -178,7 +215,7 @@ export const getAllCharactersUnlimited = async (): Promise<CharacterApiData[]> =
 };
 
 /**
- * Obtiene TODOS los episodios (sin límite)
+ * Obtiene TODOS los episodios (SIN LÍMITES)
  */
 export const getAllEpisodesUnlimited = async (): Promise<EpisodeApiData[]> => {
   try {
@@ -186,27 +223,30 @@ export const getAllEpisodesUnlimited = async (): Promise<EpisodeApiData[]> => {
     let page = 1;
     let hasMore = true;
     
+    console.log('Iniciando descarga de TODOS los episodios...');
+    
     while (hasMore) {
-      const response: ApiResponse<EpisodeApiData> = await getAllEpisodes(page, 100); // 100 por página
-      allEpisodes = [...allEpisodes, ...response.results];
+      console.log(`Obteniendo episodios página ${page}...`);
+      const response: ApiResponse<EpisodeApiData> = await getAllEpisodes(page, 100);
       
-      // Verificar si hay más páginas
-      hasMore = response.next !== null && page < response.pages;
-      page++;
-      
-      // Por seguridad, limitar a 1000 resultados o 10 páginas
-      if (page > 10 || allEpisodes.length > 1000) {
-        console.log('Límite de seguridad alcanzado para episodios');
+      if (!response.results || response.results.length === 0) {
+        console.log('No hay más episodios');
         break;
       }
       
-      // Pequeña pausa para no sobrecargar la API
-      if (hasMore) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+      allEpisodes = [...allEpisodes, ...response.results];
+      hasMore = response.next !== null;
+      
+      if (!hasMore || page >= response.pages) {
+        console.log(`Última página alcanzada. Total páginas: ${response.pages}`);
+        break;
       }
+      
+      page++;
+      await new Promise(resolve => setTimeout(resolve, 30));
     }
     
-    console.log(`Total episodios obtenidos: ${allEpisodes.length}`);
+    console.log(`✅ Total episodios obtenidos: ${allEpisodes.length}`);
     return allEpisodes;
   } catch (error) {
     console.error('Error fetching all episodes:', error);
@@ -215,7 +255,7 @@ export const getAllEpisodesUnlimited = async (): Promise<EpisodeApiData[]> => {
 };
 
 /**
- * Obtiene TODAS las ubicaciones (sin límite)
+ * Obtiene TODAS las ubicaciones (SIN LÍMITES)
  */
 export const getAllLocationsUnlimited = async (): Promise<LocationApiData[]> => {
   try {
@@ -223,27 +263,30 @@ export const getAllLocationsUnlimited = async (): Promise<LocationApiData[]> => 
     let page = 1;
     let hasMore = true;
     
+    console.log('Iniciando descarga de TODAS las ubicaciones...');
+    
     while (hasMore) {
-      const response: ApiResponse<LocationApiData> = await getAllLocations(page, 100); // 100 por página
-      allLocations = [...allLocations, ...response.results];
+      console.log(`Obteniendo ubicaciones página ${page}...`);
+      const response: ApiResponse<LocationApiData> = await getAllLocations(page, 100);
       
-      // Verificar si hay más páginas
-      hasMore = response.next !== null && page < response.pages;
-      page++;
-      
-      // Por seguridad, limitar a 500 resultados o 5 páginas
-      if (page > 5 || allLocations.length > 500) {
-        console.log('Límite de seguridad alcanzado para ubicaciones');
+      if (!response.results || response.results.length === 0) {
+        console.log('No hay más ubicaciones');
         break;
       }
       
-      // Pequeña pausa para no sobrecargar la API
-      if (hasMore) {
-        await new Promise(resolve => setTimeout(resolve, 100));
+      allLocations = [...allLocations, ...response.results];
+      hasMore = response.next !== null;
+      
+      if (!hasMore || page >= response.pages) {
+        console.log(`Última página alcanzada. Total páginas: ${response.pages}`);
+        break;
       }
+      
+      page++;
+      await new Promise(resolve => setTimeout(resolve, 30));
     }
     
-    console.log(`Total ubicaciones obtenidas: ${allLocations.length}`);
+    console.log(`✅ Total ubicaciones obtenidas: ${allLocations.length}`);
     return allLocations;
   } catch (error) {
     console.error('Error fetching all locations:', error);
@@ -252,36 +295,101 @@ export const getAllLocationsUnlimited = async (): Promise<LocationApiData[]> => 
 };
 
 /**
- * Búsqueda general en toda la API (con límite de 100 por categoría)
+ * Búsqueda general en toda la API - VERSIÓN OPTIMIZADA (MÁS RÁPIDA)
  */
 export const searchAll = async (query: string, page: number = 1, limit: number = 100): Promise<{
   characters: ApiResponse<CharacterApiData>;
   episodes: ApiResponse<EpisodeApiData>;
   locations: ApiResponse<LocationApiData>;
 }> => {
+  const startTime = Date.now();
+  
   try {
-    const [characters, episodes, locations] = await Promise.all([
-      fetch(`${API_BASE_URL}/characters?search=${query}&page=${page}&limit=${limit}`)
-        .then(res => {
-          if (!res.ok) throw new Error(`Error en characters: ${res.status}`);
-          return res.json();
-        }),
-      fetch(`${API_BASE_URL}/episodes?search=${query}&page=${page}&limit=${limit}`)
-        .then(res => {
-          if (!res.ok) throw new Error(`Error en episodes: ${res.status}`);
-          return res.json();
-        }),
-      fetch(`${API_BASE_URL}/locations?search=${query}&page=${page}&limit=${limit}`)
-        .then(res => {
-          if (!res.ok) throw new Error(`Error en locations: ${res.status}`);
-          return res.json();
-        }),
+    // Si el query está vacío, devolver arrays vacíos
+    if (!query || query.trim() === '') {
+      return {
+        characters: { count: 0, next: null, prev: null, pages: 0, results: [] },
+        episodes: { count: 0, next: null, prev: null, pages: 0, results: [] },
+        locations: { count: 0, next: null, prev: null, pages: 0, results: [] }
+      };
+    }
+    
+    const searchLower = encodeURIComponent(query.trim().toLowerCase());
+    console.log(`🚀 Búsqueda rápida: "${query}"`);
+    
+    // Usar límites más altos para obtener hasta ~700 resultados
+    // 400 personajes + 200 episodios + 100 ubicaciones = 700 total
+    // Pero mantener la interfaz igual usando el parámetro limit
+    const actualLimit = Math.max(limit, 100); // Mínimo 100 para ser rápido
+    
+    const [characters, episodes, locations] = await Promise.allSettled([
+      // Personajes - más resultados
+      fetchWithCache<ApiResponse<CharacterApiData>>(
+        `${API_BASE_URL}/characters?search=${searchLower}&page=${page}&limit=${actualLimit * 4}`, // x4 para más personajes
+        `search-characters-${searchLower}-${page}-${actualLimit}`
+      ),
+      
+      // Episodios
+      fetchWithCache<ApiResponse<EpisodeApiData>>(
+        `${API_BASE_URL}/episodes?search=${searchLower}&page=${page}&limit=${actualLimit * 2}`, // x2 para episodios
+        `search-episodes-${searchLower}-${page}-${actualLimit}`
+      ),
+      
+      // Ubicaciones
+      fetchWithCache<ApiResponse<LocationApiData>>(
+        `${API_BASE_URL}/locations?search=${searchLower}&page=${page}&limit=${actualLimit}`,
+        `search-locations-${searchLower}-${page}-${actualLimit}`
+      )
     ]);
     
-    return { characters, episodes, locations };
+    // Procesar resultados manteniendo la misma estructura
+    const charactersResult = characters.status === 'fulfilled' 
+      ? characters.value 
+      : { count: 0, next: null, prev: null, pages: 0, results: [] };
+    
+    const episodesResult = episodes.status === 'fulfilled'
+      ? episodes.value
+      : { count: 0, next: null, prev: null, pages: 0, results: [] };
+    
+    const locationsResult = locations.status === 'fulfilled'
+      ? locations.value
+      : { count: 0, next: null, prev: null, pages: 0, results: [] };
+    
+    const endTime = Date.now();
+    console.log(`✅ Búsqueda completada en ${endTime - startTime}ms`);
+    console.log(`📊 Resultados obtenidos: P:${charactersResult.results.length}, E:${episodesResult.results.length}, L:${locationsResult.results.length}`);
+    
+    return {
+      characters: {
+        count: charactersResult.count,
+        next: charactersResult.next,
+        prev: charactersResult.prev,
+        pages: charactersResult.pages,
+        results: charactersResult.results.slice(0, limit) // Cortar al límite original
+      },
+      episodes: {
+        count: episodesResult.count,
+        next: episodesResult.next,
+        prev: episodesResult.prev,
+        pages: episodesResult.pages,
+        results: episodesResult.results.slice(0, limit) // Cortar al límite original
+      },
+      locations: {
+        count: locationsResult.count,
+        next: locationsResult.next,
+        prev: locationsResult.prev,
+        pages: locationsResult.pages,
+        results: locationsResult.results.slice(0, limit) // Cortar al límite original
+      }
+    };
+    
   } catch (error) {
-    console.error('Error searching:', error);
-    throw error;
+    console.error('Error en búsqueda:', error);
+    return {
+      characters: { count: 0, next: null, prev: null, pages: 0, results: [] },
+      episodes: { count: 0, next: null, prev: null, pages: 0, results: [] },
+      locations: { count: 0, next: null, prev: null, pages: 0, results: [] }
+    };
   }
 };
 
@@ -294,7 +402,18 @@ export const searchAllUnlimited = async (query: string): Promise<{
   locations: ApiResponse<LocationApiData>;
 }> => {
   try {
-    const searchLower = query.toLowerCase();
+    // Si el query está vacío, devolver arrays vacíos
+    if (!query || query.trim() === '') {
+      return {
+        characters: { count: 0, next: null, prev: null, pages: 1, results: [] },
+        episodes: { count: 0, next: null, prev: null, pages: 1, results: [] },
+        locations: { count: 0, next: null, prev: null, pages: 1, results: [] }
+      };
+    }
+    
+    const searchLower = query.toLowerCase().trim();
+    
+    console.log(`🔍 Buscando: "${query}" (${searchLower})`);
     
     // Obtener TODOS los datos primero
     const [allCharacters, allEpisodes, allLocations] = await Promise.all([
@@ -303,7 +422,7 @@ export const searchAllUnlimited = async (query: string): Promise<{
       getAllLocationsUnlimited()
     ]);
     
-    console.log('Total datos obtenidos para búsqueda:', {
+    console.log('📊 Total datos obtenidos para búsqueda:', {
       characters: allCharacters.length,
       episodes: allEpisodes.length,
       locations: allLocations.length
@@ -337,7 +456,7 @@ export const searchAllUnlimited = async (query: string): Promise<{
       return nameMatch || townMatch || useMatch;
     });
     
-    console.log('Resultados filtrados:', {
+    console.log('🎯 Resultados filtrados:', {
       characters: filterCharacters.length,
       episodes: filterEpisodes.length,
       locations: filterLocations.length
@@ -368,6 +487,36 @@ export const searchAllUnlimited = async (query: string): Promise<{
     };
   } catch (error) {
     console.error('Error in searchAllUnlimited:', error);
-    throw error;
+    // Devolver resultados vacíos en caso de error
+    return {
+      characters: { count: 0, next: null, prev: null, pages: 1, results: [] },
+      episodes: { count: 0, next: null, prev: null, pages: 1, results: [] },
+      locations: { count: 0, next: null, prev: null, pages: 1, results: [] }
+    };
   }
 };
+
+/**
+ * NUEVO: Búsqueda rápida usando la API con paginación (para búsquedas más eficientes)
+ */
+export const searchWithPagination = async (
+  query: string, 
+  page: number = 1, 
+  limit: number = 100
+): Promise<{
+  characters: ApiResponse<CharacterApiData>;
+  episodes: ApiResponse<EpisodeApiData>;
+  locations: ApiResponse<LocationApiData>;
+  totalResults: number;
+}> => {
+  const results = await searchAll(query, page, limit);
+  
+  return {
+    ...results,
+    totalResults: 
+      results.characters.count + 
+      results.episodes.count + 
+      results.locations.count
+  };
+};
+
