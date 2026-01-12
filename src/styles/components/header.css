@@ -14,52 +14,41 @@
   z-index: 1000;
   transition: all 0.3s ease-in-out;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Soporte Safari */
-  
-  /* Variables de tema (definidas en theme-light.css y theme-dark.css) */
+  -webkit-backdrop-filter: blur(10px);
+  gap: 15px;
   background-color: var(--header-bg, #FFFFFF);
   border-bottom: var(--header-border, 2px solid rgba(255, 217, 15, 0.3));
   color: var(--header-text, #2C3E50);
   box-shadow: var(--header-shadow, 0 2px 10px rgba(0, 0, 0, 0.1));
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 /* HEADER CONTENEDORES */
 .header-left {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   flex-shrink: 0;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0 10px;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-/* ELEMENTOS DEL HEADER */
-.header-title {
-  font-size: 1.4rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 300px;
-  color: inherit;
-}
-
-.separator {
-  opacity: 0.3;
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: inherit;
+  gap: 10px;
   flex-shrink: 0;
 }
 
-/* ===== LOGO COMO BOTÓN ===== */
+/* LOGO */
 .logo-button {
   background: none;
   border: none;
@@ -68,202 +57,293 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: transform 0.2s ease;
-  outline: none; /* Eliminar outline por defecto */
+  flex-shrink: 0;
 }
 
-.logo-button:hover {
-  transform: scale(1.05);
-}
-
-.logo-button:active {
-  transform: scale(0.98);
-}
-
-/* Logo con tamaño 32px como base */
 .header-logo {
-  /* Tamaño perfecto - 32px */
   height: 32px;
   width: auto;
-  
-  /* Sin bordes ni límites */
-  max-width: none;
-  min-width: auto;
-  
-  /* Ajustes visuales - SIN BORDES */
   object-fit: contain;
-  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* BARRA DE BÚSQUEDA */
+.search-form {
+  width: 100%;
+  max-width: 500px;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.search-container {
+  display: flex;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  min-width: 0;
+  align-items: stretch;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
   border: none;
+  font-size: 0.9rem;
   outline: none;
-  box-shadow: none;
+  min-width: 0;
+  width: 100%;
 }
 
-/* Efecto visual sutil */
-.logo-button:hover .header-logo {
-  filter: brightness(1.05);
+.search-button {
+  padding: 0 15px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 50px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-/* Eliminar focus outline */
-.logo-button:focus {
-  outline: none;
+.search-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 0;
 }
 
-.logo-button:focus-visible {
-  outline: none;
-}
+/* ===== MEDIA QUERIES ===== */
 
-/* ===== MEDIA QUERIES RESPONSIVAS ===== */
-
-/* TABLET (768px o menos) */
-@media (max-width: 768px) {
+/* PANTALLAS MEDIANAS (768px - 1024px - Tablets en vertical/pequeñas laptops) */
+@media (max-width: 1024px) {
   .app-header {
     padding: 0 20px;
-    height: 60px;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-  }
-  
-  .header-title {
-    font-size: 1.2rem;
-    max-width: 200px;
-  }
-  
-  .header-right {
+    height: 65px;
     gap: 12px;
   }
   
-  .separator {
-    font-size: 1rem;
-  }
-  
-  /* Logo ligeramente más pequeño en tablet */
-  .header-logo {
-    height: 30px;
-  }
-  
-  /* Reducir efectos hover en móvil */
-  .logo-button:hover {
-    transform: none;
-  }
-  
-  .logo-button:hover .header-logo {
-    filter: none;
-  }
-}
-
-/* MÓVIL (480px o menos) */
-@media (max-width: 480px) {
-  .app-header {
-    padding: 0 15px;
-    height: auto;
-    min-height: 55px;
-    flex-wrap: wrap;
-    gap: 10px;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  
-  .header-left {
-    width: 100%;
-    justify-content: center;
-    order: 1;
-    gap: 10px;
-    padding: 5px 0;
-  }
-  
-  .header-right {
-    width: 100%;
-    justify-content: center;
-    order: 2;
-    gap: 10px;
-    padding: 5px 0 10px;
-  }
-  
-  .header-title {
-    font-size: 1.1rem;
-    max-width: 180px;
-    text-align: center;
-  }
-  
-  .separator {
-    display: none;
-  }
-  
-  /* Logo más pequeño en móvil */
-  .header-logo {
-    height: 28px;
-  }
-  
-  /* Botones táctiles en móvil */
-  .header-right .language-btn,
-  .header-right .theme-btn,
-  .header-right .language-toggle,
-  .header-right .theme-toggle {
-    min-height: 40px;
-    min-width: 120px;
-  }
-}
-
-/* MÓVIL PEQUEÑO (360px o menos) */
-@media (max-width: 360px) {
-  .app-header {
-    padding: 0 10px;
-    min-height: 50px;
-  }
-  
-  .header-left {
-    gap: 8px;
-  }
-  
-  .header-right {
-    gap: 8px;
-  }
-  
-  .header-title {
-    font-size: 1rem;
-    max-width: 150px;
-    letter-spacing: 0.3px;
-  }
-  
-  /* Logo un poco más pequeño en móvil pequeño */
   .header-logo {
     height: 26px;
   }
   
-  /* Botones más compactos */
-  .header-right .language-btn,
-  .header-right .theme-btn,
-  .header-right .language-toggle,
-  .header-right .theme-toggle {
-    min-width: 100px;
-    padding: 6px 10px;
-    font-size: 0.8rem;
+  .search-container {
+    border-radius: 18px;
+    max-height: 42px;
+    min-height: 42px;
   }
   
-  /* Ocultar texto de botones, mostrar solo icono */
-  @media (max-width: 320px) {
-    .header-title {
-      font-size: 0.9rem;
-      max-width: 120px;
-    }
-    
-    .header-logo {
-      height: 24px; /* Pequeño pero legible */
-    }
-    
-    .header-right .btn-text {
-      display: none;
-    }
-    
-    .header-right .language-btn,
-    .header-right .theme-btn,
-    .header-right .language-toggle,
-    .header-right .theme-toggle {
-      min-width: 45px;
-      width: 45px;
-      justify-content: center;
-      padding: 8px;
-    }
+  .search-input {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+  
+  .search-button {
+    padding: 0 14px;
+    min-width: 48px;
+  }
+  
+  .search-icon {
+    font-size: 1.2rem;
+  }
+}
+
+/* TABLET (768px o menos) */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 15px;
+    height: 60px;
+    gap: 10px;
+  }
+  
+  .header-logo {
+    height: 22px;
+    min-width: 22px;
+  }
+  
+  .search-container {
+    border-radius: 16px;
+    max-height: 38px;
+    min-height: 38px;
+  }
+  
+  .search-input {
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    line-height: 1.1;
+  }
+  
+  .search-button {
+    padding: 0 12px;
+    min-width: 42px;
+  }
+  
+  .search-icon {
+    font-size: 1.1rem;
+    transform: translateY(-75%) !important;
+    line-height: 0.5;
+    top: -2px;
+  }
+}
+
+/* MÓVIL (600px o menos) */
+@media (max-width: 600px) {
+  .app-header {
+    height: 48px;
+    padding: 0 8px;
+    gap: 4px;
+  }
+  
+  .header-logo {
+    height: 10px;
+    min-width: 10px;
+  }
+  
+  .search-container {
+    border-radius: 12px;
+    max-height: 28px;
+    min-height: 28px;
+  }
+  
+  .search-input {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
+  
+  .search-button {
+    padding: 0 8px;
+    min-width: 30px;
+    height: 100%;
+  }
+  
+  .search-icon {
+    font-size: 1rem;
+    transform: translateY(-85%) !important;
+    line-height: 0.4;
+    top: -3px;
+  }
+}
+
+/* MÓVIL PEQUEÑO (480px o menos) */
+@media (max-width: 480px) {
+  .app-header {
+    height: 46px;
+    padding: 0 6px;
+    gap: 3px;
+  }
+  
+  .header-logo {
+    height: 9px;
+    min-width: 9px;
+  }
+  
+  .search-container {
+    max-height: 26px;
+    min-height: 26px;
+    border-radius: 10px;
+  }
+  
+  .search-input {
+    padding: 3px 6px;
+    font-size: 0.65rem;
+    line-height: 1.1;
+  }
+  
+  .search-button {
+    padding: 0 6px;
+    min-width: 28px;
+  }
+  
+  .search-icon {
+    font-size: 0.9rem;
+    transform: translateY(-90%) !important;
+    line-height: 0.4;
+    top: -4px;
+  }
+}
+
+/* MÓVIL MUY PEQUEÑO (360px o menos) */
+@media (max-width: 360px) {
+  .app-header {
+    height: 44px;
+    padding: 0 4px;
+    gap: 2px;
+  }
+  
+  .header-logo {
+    height: 8px;
+    min-width: 8px;
+  }
+  
+  .search-container {
+    max-height: 24px;
+    min-height: 24px;
+    border-radius: 8px;
+  }
+  
+  .search-input {
+    padding: 2px 4px;
+    font-size: 0.6rem;
+    line-height: 1.1;
+  }
+  
+  .search-button {
+    padding: 0 4px;
+    min-width: 26px;
+  }
+  
+  .search-icon {
+    font-size: 0.8rem;
+    transform: translateY(-95%) !important;
+    line-height: 0.3;
+    top: -5px;
+  }
+}
+
+/* EXTREMO: 320px o menos */
+@media (max-width: 320px) {
+  .app-header {
+    height: 42px;
+    padding: 0 3px;
+    gap: 1px;
+  }
+  
+  .header-logo {
+    height: 7px;
+    min-width: 7px;
+  }
+  
+  .search-container {
+    max-height: 22px;
+    min-height: 22px;
+    border-radius: 6px;
+  }
+  
+  .search-input {
+    padding: 1px 3px;
+    font-size: 0.55rem;
+  }
+  
+  .search-button {
+    padding: 0 3px;
+    min-width: 24px;
+  }
+  
+  .search-icon {
+    font-size: 0.7rem;
+    transform: translateY(-100%) !important;
+    line-height: 0.2;
+    top: -6px;
   }
 }
 
@@ -271,30 +351,28 @@
 @media (max-height: 500px) and (orientation: landscape) {
   .app-header {
     height: 50px;
-    padding: 0 15px;
-  }
-  
-  .header-title {
-    font-size: 1rem;
-    max-width: 200px;
-  }
-  
-  .header-right {
+    padding: 0 10px;
     gap: 8px;
   }
   
-  /* Logo pequeño en horizontal */
   .header-logo {
-    height: 26px;
+    height: 18px;
   }
   
-  .header-right .language-btn,
-  .header-right .theme-btn,
-  .header-right .language-toggle,
-  .header-right .theme-toggle {
-    min-height: 35px;
-    padding: 4px 10px;
-    font-size: 0.8rem;
+  .search-container {
+    max-height: 32px;
+    min-height: 32px;
+  }
+  
+  .search-input {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+  }
+  
+  .search-icon {
+    font-size: 1rem;
+    transform: translateY(-80%) !important;
+    top: -2px;
   }
 }
 
@@ -305,196 +383,153 @@
     height: 80px;
   }
   
-  .header-title {
-    font-size: 1.5rem;
-    max-width: 400px;
-  }
-  
-  .header-right {
-    gap: 25px;
-  }
-  
-  /* Logo mantiene el tamaño perfecto en pantallas grandes */
   .header-logo {
-    height: 32px; /* Se mantiene en 32px */
+    height: 34px;
+  }
+  
+  .search-icon {
+    font-size: 1.4rem;
+    transform: translateY(-70%) !important;
+    top: -1px;
   }
 }
 
-/* PANTALLAS MUY GRANDES (1600px o más) */
-@media (min-width: 1600px) {
-  .app-header {
-    padding: 0 60px;
-  }
-  
-  .header-title {
-    max-width: 500px;
-  }
-  
-  /* Logo mantiene tamaño perfecto */
-  .header-logo {
-    height: 32px; /* Se mantiene constante en 32px */
-  }
-}
-
-/* ===== EFECTOS ESPECIALES ===== */
-
-/* Header con scroll */
+/* ===== MODOS ESPECIALES ===== */
 .app-header.scrolled {
   height: 60px;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== SOPORTE PARA ACCESIBILIDAD ===== */
+@media (max-width: 600px) {
+  .app-header.scrolled {
+    height: 50px;
+  }
+  
+  .app-header.scrolled .header-logo {
+    height: 20px;
+  }
+}
 
-/* Reducir movimiento */
-@media (prefers-reduced-motion: reduce) {
+/* ===== TAMAÑOS ESPECÍFICOS ===== */
+
+/* 778px - 858px (Tablets en horizontal/ventanas medianas) */
+@media (min-width: 778px) and (max-width: 858px) {
   .app-header {
-    transition: none;
+    padding: 0 18px;
+    height: 62px;
+    gap: 11px;
   }
   
-  .logo-button {
-    transition: none;
-  }
-}
-
-/* ===== ESTADOS ESPECIALES ===== */
-
-/* Header cuando el menú está abierto (si aplica) */
-.app-header.menu-open {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-/* Header en modo impresión */
-@media print {
-  .app-header {
-    position: static;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-    border-bottom: 1px solid #ccc;
+  .header-logo {
+    height: 24px;
+    min-width: 24px;
   }
   
-  .logo-button:hover {
-    transform: none;
-  }
-}
-
-/* ===== BARRA DE BÚSQUEDA ===== */
-.header-center {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  margin: 0 20px;
-}
-
-.search-form {
-  width: 100%;
-  max-width: 500px;
-}
-
-.search-container {
-  display: flex;
-  width: 100%;
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all var(--transition-fast);
-}
-
-.search-input {
-  flex: 1;
-  padding: 10px 20px;
-  border: none;
-  font-size: 0.95rem;
-  outline: none;
-  background-color: white;
-  color: #333;
-}
-
-body.dark .search-input,
-body[data-theme="dark"] .search-input,
-body.simpsons-theme.dark .search-input {
-  background-color: #2D1B69;
-  color: #E0E0FF;
-}
-
-body.dark .search-input::placeholder,
-body[data-theme="dark"] .search-input::placeholder,
-body.simpsons-theme.dark .search-input::placeholder {
-  color: rgba(224, 224, 255, 0.6);
-}
-
-.search-button {
-  padding: 0 20px;
-  border: none;
-  background-color: #FFD90F;
-  color: #2C3E50;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color var(--transition-fast);
-}
-
-.search-button:hover {
-  background-color: #FFB347;
-}
-
-body.dark .search-button,
-body[data-theme="dark"] .search-button,
-body.simpsons-theme.dark .search-button {
-  background-color: #4A4FC5;
-  color: #E0E0FF;
-}
-
-body.dark .search-button:hover,
-body[data-theme="dark"] .search-button:hover,
-body.simpsons-theme.dark .search-button:hover {
-  background-color: #2E3192;
-}
-
-.search-icon {
-  font-size: 1.1rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .app-header {
-    flex-wrap: wrap;
-    padding: 10px;
-    height: auto;
+  .search-container {
+    border-radius: 17px;
+    max-height: 40px;
+    min-height: 40px;
   }
   
-  .header-center {
-    order: 3;
-    width: 100%;
-    margin: 10px 0 0 0;
-  }
-  
-  .search-form {
-    max-width: 100%;
-  }
-  
-  .header-left,
-  .header-right {
-    width: auto;
-    flex: 1;
-  }
-  
-  .header-right {
-    justify-content: flex-end;
-  }
-}
-
-@media (max-width: 480px) {
   .search-input {
-    padding: 8px 15px;
-    font-size: 0.9rem;
+    padding: 9px 13px;
+    font-size: 0.83rem;
+    line-height: 1.1;
   }
   
   .search-button {
-    padding: 0 15px;
+    padding: 0 13px;
+    min-width: 44px;
+  }
+  
+  .search-icon {
+    font-size: 1.15rem;
+    transform: translateY(-78%) !important;
+    line-height: 0.55;
+    top: -1.5px;
   }
 }
 
+/* 606px - 777px (Tablets pequeñas/pantallas verticales) */
+@media (min-width: 606px) and (max-width: 777px) {
+  .app-header {
+    padding: 0 12px;
+    height: 56px;
+    gap: 8px;
+  }
+  
+  .header-logo {
+    height: 18px;
+    min-width: 18px;
+  }
+  
+  .search-container {
+    border-radius: 15px;
+    max-height: 36px;
+    min-height: 36px;
+  }
+  
+  .search-input {
+    padding: 7px 11px;
+    font-size: 0.78rem;
+    line-height: 1.1;
+  }
+  
+  .search-button {
+    padding: 0 11px;
+    min-width: 40px;
+  }
+  
+  .search-icon {
+    font-size: 1.05rem;
+    transform: translateY(-80%) !important;
+    line-height: 0.6;
+    top: -2px;
+  }
+}
+
+/* 480px - 605px (Móviles grandes/tablets muy pequeñas) */
+@media (min-width: 480px) and (max-width: 605px) {
+  .app-header {
+    padding: 0 10px;
+    height: 50px;
+    gap: 6px;
+  }
+  
+  .header-logo {
+    height: 14px;
+    min-width: 14px;
+  }
+  
+  .search-container {
+    border-radius: 13px;
+    max-height: 32px;
+    min-height: 32px;
+  }
+  
+  .search-input {
+    padding: 6px 10px;
+    font-size: 0.73rem;
+    line-height: 1.1;
+  }
+  
+  .search-button {
+    padding: 0 10px;
+    min-width: 36px;
+  }
+  
+  .search-icon {
+    font-size: 0.95rem;
+    transform: translateY(-83%) !important;
+    line-height: 0.45;
+    top: -2.5px;
+  }
+}
+
+/* ===== MODOS ESPECIALES ===== */
+.app-header.scrolled {
+  height: 60px;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}

@@ -7,55 +7,6 @@
   position: relative;
 }
 
-/* ===== HEADER/NAVEGACIÓN ===== */
-
-.app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1000;
-  padding: 0 20px;
-  transition: all 0.3s ease;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-shrink: 0;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-/* Logo en header */
-.header-logo {
-  height: 30px;
-  width: auto;
-  object-fit: contain;
-  transition: transform 0.2s ease;
-}
-
-.logo-button:hover .header-logo {
-  transform: scale(1.05);
-}
-
-.separator {
-  opacity: 0.3;
-  font-size: 1.1rem;
-  font-weight: 300;
-}
-
 /* ===== ESTRUCTURA MAIN CONTENT ===== */
 
 .app-main {
@@ -75,7 +26,7 @@
   margin: 0 auto;
 }
 
-/* ===== HERO SECTION (CUADRO PRINCIPAL) ===== */
+/* ===== HERO SECTION ===== */
 
 .hero-section {
   width: 90%;
@@ -86,7 +37,6 @@
   backdrop-filter: blur(10px);
 }
 
-/* Logo grande en hero section */
 .logo-container {
   margin-bottom: 40px;
 }
@@ -99,7 +49,6 @@
   margin: 0 auto;
 }
 
-/* Mensaje de bienvenida */
 .welcome-message {
   margin-bottom: 40px;
 }
@@ -123,7 +72,6 @@
   margin-bottom: 40px;
 }
 
-/* STATUS-CARD MÁS GRANDE Y LARGO */
 .status-card {
   display: inline-block;
   padding: 30px 80px;
@@ -206,7 +154,7 @@
   opacity: 0.6;
 }
 
-/* ===== ESTILOS PARA CARRUSEL DE CARTAS ===== */
+/* ===== CARRUSEL DE CARTAS ===== */
 
 .cards-section {
   padding: 50px 20px;
@@ -223,7 +171,6 @@
   max-width: 100%;
 }
 
-/* Asegurar que los bordes superior/inferior sean más gruesos */
 .character-section,
 .location-section,
 .episode-section {
@@ -233,7 +180,6 @@
   border-bottom-style: solid;
 }
 
-/* Títulos de sección */
 .section-header {
   text-align: center;
   margin-bottom: 40px;
@@ -271,7 +217,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Contenedor del carrusel */
 .carousel-container {
   display: flex;
   align-items: center;
@@ -282,7 +227,6 @@
   padding: 0 20px;
 }
 
-/* Carrusel de cartas */
 .cards-carousel {
   display: flex;
   gap: 30px;
@@ -301,64 +245,10 @@
   display: none;
 }
 
-/* Botones del carrusel */
-.carousel-button {
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 1.8rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  flex-shrink: 0;
-  margin: 0 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-  border-width: 4px;
-  border-style: solid;
-}
-
-.carousel-button.left {
-  order: 1;
-}
-
-.carousel-button.right {
-  order: 3;
-}
-
-.cards-carousel {
-  order: 2;
-  flex: 1;
-}
-
-/* Agrega esto al final de layout.css */
-
-/* Mejoras para el carrusel circular */
-.cards-carousel {
-  display: flex;
-  gap: 30px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 30px 20px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  flex: 1;
-  min-height: 420px;
-  align-items: center;
-  position: relative;
-  /* Evitar que las cartas se encojan */
-  flex-wrap: nowrap;
-}
-
-/* Asegurar que las cartas no se encojan */
 .cards-carousel > .card-container {
-  flex-shrink: 0; /* No se encoge */
+  flex-shrink: 0;
 }
 
-/* Botones mejorados */
 .carousel-button {
   border-radius: 50%;
   width: 60px;
@@ -379,6 +269,19 @@
   transition: all 0.3s ease;
 }
 
+.carousel-button.left {
+  order: 1;
+}
+
+.carousel-button.right {
+  order: 3;
+}
+
+.cards-carousel {
+  order: 2;
+  flex: 1;
+}
+
 .carousel-button:hover {
   transform: scale(1.1);
 }
@@ -387,7 +290,7 @@
   transform: scale(0.95);
 }
 
-/* ===== ESTILOS DE BÚSQUEDA Y RESULTADOS (SIN COLORES) ===== */
+/* ===== ESTILOS DE BÚSQUEDA ===== */
 
 .search-results-info {
   border-radius: 10px;
@@ -405,19 +308,6 @@
   align-items: center;
   margin: 0 0 10px 0;
   font-size: 16px;
-}
-
-.clear-search-button {
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: opacity 0.3s;
-}
-
-.clear-search-button:hover {
-  opacity: 0.9;
 }
 
 .search-summary {
@@ -481,152 +371,121 @@
   50% { opacity: 0.5; }
 }
 
-/* ===== MEDIA QUERIES ESPECÍFICAS DE LAYOUT ===== */
+/* ===== MEDIA QUERIES ACORDES AL HEADER ===== */
 
-/* Tablet (768px o menos) */
-@media (max-width: 768px) {
+/* 778px - 858px */
+@media (min-width: 778px) and (max-width: 858px) {
   .app-main {
-    max-width: 95%;
     padding-top: 77px;
-    padding-bottom: 110px;
+    padding-bottom: 115px;
   }
   
   .hero-section {
-    width: 95%;
     padding: 40px 30px;
     margin: 25px auto;
   }
   
   .main-logo {
-    height: 90px;
-    max-width: 650px;
+    height: 100px;
+    max-width: 700px;
   }
   
   .welcome-title {
-    font-size: 2rem;
+    font-size: 2.1rem;
   }
   
   .welcome-text,
   .coming-soon-text {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    max-width: 95%;
+    font-size: 1.2rem;
   }
   
-  /* STATUS-CARD MÁS GRANDE EN TABLET TAMBIÉN */
   .status-card {
-    min-width: 500px;
+    min-width: 600px;
     padding: 25px 60px;
-    border-radius: 18px;
   }
   
   .status-item {
-    min-width: 400px;
+    min-width: 500px;
     gap: 40px;
     font-size: 1.2rem;
   }
   
-  .status-label {
-    font-size: 1.1rem;
-    min-width: 160px;
-  }
-  
-  .status-value {
-    font-size: 1.3rem;
-    min-width: 180px;
-  }
-  
-  .coming-soon-title {
-    font-size: 1.9rem;
-    margin-bottom: 20px;
-  }
-  
-  .separator {
-    display: none;
-  }
-  
-  .app-footer {
-    padding: 14px 15px;
-  }
-  
-  .footer-text {
-    font-size: 0.85rem;
-  }
-  
-  .footer-subtext {
-    font-size: 0.75rem;
-  }
-  
-  /* Carrusel en tablet */
-  .carousel-container {
-    max-width: 1000px;
-  }
-  
-  .cards-carousel {
-    gap: 25px;
+  .cards-section {
+    padding: 40px 15px;
+    min-height: 450px;
   }
   
   .carousel-button {
-    width: 55px;
-    height: 55px;
-    font-size: 1.6rem;
-    margin: 0 15px;
-  }
-  
-  .section-title {
-    font-size: 2.2rem;
-  }
-  
-  .search-summary {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-  }
-  
-  .search-info-text {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-  
-  .search-match-badge {
-    margin-left: 0;
-    margin-top: 5px;
-    display: inline-block;
+    width: 52px;
+    height: 52px;
+    font-size: 1.7rem;
   }
 }
 
-/* Mobile (480px o menos) */
-@media (max-width: 480px) {
+/* 606px - 777px */
+@media (min-width: 606px) and (max-width: 777px) {
   .app-main {
-    max-width: 100%;
+    padding-top: 71px;
+    padding-bottom: 105px;
     padding-left: 15px;
     padding-right: 15px;
-    padding-bottom: 100px;
-  }
-  
-  .app-header {
-    height: auto;
-    min-height: 70px;
-    padding: 8px 10px;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .header-left,
-  .header-right {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .header-logo {
-    height: 24px;
   }
   
   .hero-section {
-    width: 100%;
-    padding: 35px 20px;
-    margin: 18px auto;
+    padding: 35px 25px;
+    margin: 20px auto;
+  }
+  
+  .main-logo {
+    height: 85px;
+    max-width: 550px;
+  }
+  
+  .welcome-title {
+    font-size: 1.9rem;
+  }
+  
+  .welcome-text,
+  .coming-soon-text {
+    font-size: 1.15rem;
+  }
+  
+  .status-card {
+    min-width: 450px;
+    padding: 20px 40px;
+    border-radius: 18px;
+  }
+  
+  .status-item {
+    min-width: 350px;
+    gap: 30px;
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    padding: 18px 30px;
+  }
+  
+  .carousel-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
+  }
+}
+
+/* 480px - 605px */
+@media (min-width: 480px) and (max-width: 605px) {
+  .app-main {
+    padding-top: 65px;
+    padding-bottom: 95px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .hero-section {
+    padding: 30px 20px;
+    margin: 15px auto;
     border-radius: 16px;
   }
   
@@ -636,31 +495,28 @@
   }
   
   .welcome-title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
+    margin-bottom: 15px;
   }
   
   .welcome-text,
   .coming-soon-text {
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.5;
   }
   
-  /* STATUS-CARD MÁS GRANDE EN MÓVIL TAMBIÉN */
   .status-card {
-    min-width: auto;
-    width: 100%;
-    padding: 20px 30px;
+    min-width: 320px;
+    padding: 18px 25px;
     border-radius: 14px;
   }
   
   .status-item {
-    min-width: auto;
-    width: 100%;
+    min-width: 280px;
+    gap: 20px;
+    font-size: 1rem;
     flex-direction: column;
-    gap: 12px;
-    font-size: 1.1rem;
     text-align: center;
-    margin: 16px 0;
   }
   
   .status-label,
@@ -668,141 +524,407 @@
     min-width: auto;
     width: 100%;
     text-align: center;
-    font-size: 1.1rem;
-  }
-  
-  .coming-soon-title {
-    font-size: 1.6rem;
-    margin-bottom: 18px;
-  }
-  
-  .app-footer {
-    padding: 12px 10px;
-  }
-  
-  /* Carrusel en móvil */
-  .cards-carousel {
-    gap: 15px;
-    padding: 20px 10px;
-    min-height: 340px;
-  }
-  
-  .carousel-button {
-    width: 45px;
-    height: 45px;
-    font-size: 1.3rem;
-    margin: 0 8px;
-    border-width: 3px;
   }
   
   .section-title {
     font-size: 1.8rem;
     padding: 15px 25px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .cards-carousel {
+    gap: 20px;
+    padding: 20px 15px;
+    min-height: 350px;
+  }
+  
+  .carousel-button {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
   }
 }
 
-/* Pantallas grandes (1200px+) */
-@media (min-width: 1200px) {
+/* MÓVIL (600px o menos) - ACORDE AL HEADER */
+@media (max-width: 600px) {
   .app-main {
-    padding-left: 35px;
-    padding-right: 35px;
+    padding-top: 53px; /* Header 48px + 5px */
+    padding-bottom: 95px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  .hero-section {
+    padding: 25px 15px;
+    margin: 12px auto;
+    border-radius: 14px;
   }
   
   .main-logo {
-    height: 130px;
-    max-width: 1000px;
+    height: 60px;
+    max-width: 380px;
   }
   
   .welcome-title {
-    font-size: 2.8rem;
-  }
-  
-  .welcome-text {
-    font-size: 1.4rem;
-    max-width: 1200px;
-    line-height: 1.6;
-  }
-  
-  .coming-soon-title {
-    font-size: 2.6rem;
-  }
-  
-  .coming-soon-text {
-    font-size: 1.4rem;
-    max-width: 1000px;
-    line-height: 1.6;
-  }
-  
-  /* STATUS-CARD AÚN MÁS GRANDE EN PANTALLAS GRANDES */
-  .status-card {
-    padding: 35px 90px;
-    min-width: 1050px;
-  }
-  
-  .status-item {
-    min-width: 700px;
-    gap: 60px;
-    font-size: 1.4rem;
-  }
-  
-  .status-label {
-    min-width: 200px;
-  }
-  
-  .status-value {
-    font-size: 1.5rem;
-    min-width: 250px;
-  }
-}
-
-/* Pantallas muy grandes (1600px+) */
-@media (min-width: 1600px) {
-  .app-main {
-    max-width: 1700px;
-  }
-  
-  .main-logo {
-    height: 140px;
-    max-width: 1100px;
-  }
-  
-  .welcome-title {
-    font-size: 3rem;
-  }
-  
-  .welcome-text {
-    font-size: 1.5rem;
-    max-width: 1300px;
-  }
-  
-  /* STATUS-CARD MÁXIMO EN PANTALLAS MUY GRANDES */
-  .status-card {
-    padding: 40px 100px;
-    min-width: 900px;
-  }
-  
-  .status-item {
-    min-width: 800px;
-    gap: 80px;
-    font-size: 1.5rem;
-  }
-  
-  .status-label {
-    min-width: 220px;
-    font-size: 1.4rem;
-  }
-  
-  .status-value {
     font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+  
+  .welcome-text,
+  .coming-soon-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  .status-card {
     min-width: 280px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin: 10px auto;
+  }
+  
+  .status-item {
+    min-width: 240px;
+    gap: 15px;
+    font-size: 0.95rem;
+    flex-direction: column;
+    text-align: center;
+    margin: 12px 0;
+  }
+  
+  .status-label,
+  .status-value {
+    min-width: auto;
+    width: 100%;
+    text-align: center;
+    font-size: 0.95rem;
   }
   
   .coming-soon-title {
-    font-size: 2.8rem;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
   }
   
-  .coming-soon-text {
+  .app-footer {
+    padding: 10px 8px;
+  }
+  
+  .footer-text {
+    font-size: 0.75rem;
+  }
+  
+  .footer-subtext {
+    font-size: 0.65rem;
+  }
+  
+  .cards-section {
+    padding: 25px 10px;
+    margin: 15px auto;
+    min-height: 320px;
+    width: 95%;
+    border-radius: 14px;
+  }
+  
+  .section-header {
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
     font-size: 1.5rem;
-    max-width: 1100px;
+    padding: 12px 20px;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 30px;
+  }
+  
+  .card-count {
+    font-size: 1rem;
+    padding: 4px 10px;
+  }
+  
+  /* === BOTONES A LOS LADOS EN MÓVIL === */
+  .carousel-container {
+    padding: 0 8px;
+    flex-direction: row; /* ← Esto es lo importante */
+  }
+  
+  .cards-carousel {
+    gap: 15px;
+    padding: 15px 10px;
+    min-height: 240px;
+    width: calc(100% - 100px); /* ← Restar espacio para botones */
+    order: 2;
+  }
+  
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin: 0 5px; /* ← Margen horizontal */
+    border-width: 3px;
+  }
+  
+  /* Cartas más pequeñas en móvil */
+  .cards-carousel .card-small {
+    width: 140px !important;
+    height: 196px !important;
+  }
+  
+  .cards-carousel .card-medium {
+    width: 160px !important;
+    height: 218px !important;
+  }
+  
+  .cards-carousel .card-large {
+    width: 180px !important;
+    height: 241px !important;
+  }
+}
+
+/* MÓVIL PEQUEÑO (480px o menos) - ACORDE AL HEADER */
+@media (max-width: 480px) {
+  .app-main {
+    padding-top: 51px; /* Header 46px + 5px */
+    padding-bottom: 90px;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  
+  .hero-section {
+    padding: 20px 12px;
+    margin: 10px auto;
+    border-radius: 12px;
+  }
+  
+  .main-logo {
+    height: 50px;
+    max-width: 320px;
+  }
+  
+  .welcome-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-text,
+  .coming-soon-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .status-card {
+    min-width: 250px;
+    padding: 12px 15px;
+    border-radius: 10px;
+  }
+  
+  .status-item {
+    min-width: 220px;
+    gap: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .coming-soon-title {
+    font-size: 1.3rem;
+  }
+  
+  .cards-section {
+    padding: 20px 8px;
+    min-height: 300px;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+    padding: 10px 15px;
+  }
+  
+  /* Ajustes para 480px */
+  .cards-carousel {
+    gap: 12px;
+    padding: 12px 8px;
+    min-height: 220px;
+    width: calc(100% - 90px); /* ← Menos espacio */
+  }
+  
+  .carousel-button {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+    margin: 0 3px; /* ← Margen horizontal */
+  }
+  
+  /* Cartas aún más pequeñas */
+  .cards-carousel .card-small {
+    width: 120px !important;
+    height: 168px !important;
+  }
+  
+  .cards-carousel .card-medium {
+    width: 140px !important;
+    height: 190px !important;
+  }
+  
+  .cards-carousel .card-large {
+    width: 150px !important;
+    height: 201px !important;
+  }
+}
+
+/* MÓVIL MUY PEQUEÑO (360px o menos) - ACORDE AL HEADER */
+@media (max-width: 360px) {
+  .app-main {
+    padding-top: 49px; /* Header 44px + 5px */
+    padding-bottom: 85px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  
+  .hero-section {
+    padding: 18px 10px;
+    margin: 8px auto;
+    border-radius: 10px;
+  }
+  
+  .main-logo {
+    height: 45px;
+    max-width: 280px;
+  }
+  
+  .welcome-title {
+    font-size: 1.3rem;
+  }
+  
+  .welcome-text,
+  .coming-soon-text {
+    font-size: 0.85rem;
+  }
+  
+  .status-card {
+    min-width: 220px;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+  
+  .status-item {
+    min-width: 200px;
+    gap: 10px;
+    font-size: 0.85rem;
+  }
+  
+  .cards-section {
+    padding: 18px 6px;
+    min-height: 280px;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+  }
+  
+  /* Ajustes para 360px */
+  .carousel-container {
+    padding: 0 3px;
+  }
+  
+  .cards-carousel {
+    gap: 10px;
+    padding: 10px 6px;
+    min-height: 200px;
+    width: calc(100% - 80px); /* ← Menos espacio */
+  }
+  
+  .carousel-button {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+    margin: 0 2px; /* ← Margen horizontal */
+  }
+  
+  /* Cartas más pequeñas */
+  .cards-carousel .card-small {
+    width: 110px !important;
+    height: 154px !important;
+  }
+  
+  .cards-carousel .card-medium {
+    width: 130px !important;
+    height: 176px !important;
+  }
+  
+  .cards-carousel .card-large {
+    width: 140px !important;
+    height: 187px !important;
+  }
+}
+
+/* EXTREMO: 320px o menos */
+@media (max-width: 320px) {
+  .app-main {
+    padding-top: 47px; /* Header 42px + 5px */
+    padding-bottom: 80px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  
+  .hero-section {
+    padding: 15px 8px;
+    border-radius: 8px;
+  }
+  
+  .main-logo {
+    height: 40px;
+    max-width: 240px;
+  }
+  
+  .welcome-title {
+    font-size: 1.2rem;
+  }
+  
+  .status-card {
+    min-width: 200px;
+    padding: 8px 10px;
+    border-radius: 6px;
+  }
+  
+  .status-item {
+    min-width: 180px;
+    gap: 8px;
+    font-size: 0.8rem;
+  }
+  
+  /* Ajustes para 320px */
+  .carousel-container {
+    padding: 0 2px;
+  }
+  
+  .cards-carousel {
+    gap: 8px;
+    padding: 8px 4px;
+    min-height: 180px;
+    width: calc(100% - 70px); /* ← Menos espacio */
+  }
+  
+  .carousel-button {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+    margin: 0 1px; /* ← Margen horizontal */
+  }
+  
+  /* Cartas más pequeñas */
+  .cards-carousel .card-small {
+    width: 100px !important;
+    height: 140px !important;
+  }
+  
+  .cards-carousel .card-medium {
+    width: 120px !important;
+    height: 162px !important;
+  }
+  
+  .cards-carousel .card-large {
+    width: 130px !important;
+    height: 174px !important;
   }
 }

@@ -376,8 +376,83 @@ body.simpsons-theme.light .carousel-button:hover {
   color: #2C3E50 !important;
 }
 
+/* ===== MENÚ HAMBURGUESA - MODO CLARO ===== */
+
+/* Botón del menú hamburguesa */
+body.light .menu-toggle-btn,
+body[data-theme="light"] .menu-toggle-btn,
+body.simpsons-theme.light .menu-toggle-btn {
+  background-color: #FFD90F !important; /* Igual que los otros botones */
+  color: #2C3E50 !important;
+  border: 1px solid #FFD90F !important;
+}
+
+body.light .menu-toggle-btn:hover,
+body[data-theme="light"] .menu-toggle-btn:hover,
+body.simpsons-theme.light .menu-toggle-btn:hover {
+  background-color: #fae881 !important; /* Color hover igual que otros */
+  border-color: #ffe032 !important;
+}
+
+/* Ícono del menú */
+body.light .menu-toggle-icon,
+body[data-theme="light"] .menu-toggle-icon,
+body.simpsons-theme.light .menu-toggle-icon {
+  color: #2C3E50 !important;
+}
+
+/* Menú desplegable */
+body.light .dropdown-menu,
+body[data-theme="light"] .dropdown-menu,
+body.simpsons-theme.light .dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #FFD90F !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Contenido del menú */
+body.light .dropdown-menu-content,
+body[data-theme="light"] .dropdown-menu-content,
+body.simpsons-theme.light .dropdown-menu-content {
+  background-color: transparent !important;
+}
+
+/* Sección superior del perfil */
+body.light .profile-top-section,
+body[data-theme="light"] .profile-top-section,
+body.simpsons-theme.light .profile-top-section {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 217, 15, 0.3) !important;
+}
+
+/* Separador del menú */
+body.light .menu-divider,
+body[data-theme="light"] .menu-divider,
+body.simpsons-theme.light .menu-divider {
+  background-color: rgba(255, 217, 15, 0.3) !important;
+}
+
+/* Sección de botones del menú */
+body.light .menu-buttons-section,
+body[data-theme="light"] .menu-buttons-section,
+body.simpsons-theme.light .menu-buttons-section {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Ítems del menú */
+body.light .menu-button-item,
+body[data-theme="light"] .menu-button-item,
+body.simpsons-theme.light .menu-button-item {
+  border-bottom: 1px solid rgba(255, 217, 15, 0.2) !important;
+}
+
+body.light .menu-button-item:last-child,
+body[data-theme="light"] .menu-button-item:last-child,
+body.simpsons-theme.light .menu-button-item:last-child {
+  border-bottom: none !important;
+}
+
 /* ===== ESTILOS PARA SEARCH RESULTS - MODO CLARO ===== */
-/* ===== COLORES PARA SEARCH RESULTS - MODO CLARO ===== */
 
 /* Header y filtros juntos en un cuadro */
 body.light .search-header-filters-container,

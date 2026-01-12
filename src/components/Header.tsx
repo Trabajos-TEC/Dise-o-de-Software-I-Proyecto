@@ -1,4 +1,4 @@
-// src/components/Header.tsx - SIMPLIFICADO
+// src/components/Header.tsx - CON MENÚ HAMBURGUESA
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -6,9 +6,11 @@ import { searchCards } from './cardUtils';
 import LanguageButton from './LanguageButton';
 import ThemeButton from './ThemeButton';
 import SignIn from './SignInButton';
-import Perfil from "./perfilButton"
+import Perfil from "./perfilButton";
 import AnalyticsButton from './AnalyticsButton';
 import '../styles/components/header.css';
+
+
 interface HeaderProps {
   showSearch?: boolean;
   disableSearch?: boolean;
@@ -23,6 +25,7 @@ const Header: React.FC<HeaderProps> = ({
   
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogoClick = () => {
     setSearchQuery('');
@@ -40,7 +43,6 @@ const Header: React.FC<HeaderProps> = ({
     try {
       const results = await searchCards(trimmedQuery);
       
-      // Navegar a SearchResults con los resultados
       navigate('/search', { 
         state: { 
           searchQuery: trimmedQuery,
@@ -58,6 +60,14 @@ const Header: React.FC<HeaderProps> = ({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   const isSearchButtonDisabled = isSearching || disableSearch || !searchQuery.trim();
@@ -107,15 +117,49 @@ const Header: React.FC<HeaderProps> = ({
       )}
       
       <div className="header-right">
-        <AnalyticsButton />
-        <span className="separator">|</span>
-        <LanguageButton />
-        <span className="separator">|</span>
+        {/* BOTONES VISIBLES: Theme y SignIn */}
         <ThemeButton />
-        <span className="separator">|</span>
         <SignIn />
-        <Perfil />
+        
+        {/* MENÚ HAMBURGUESA para Analytics, Language y Perfil */}
+        <button 
+          className="menu-toggle-btn"
+          onClick={toggleMenu}
+          aria-label="Menú"
+          aria-expanded={isMenuOpen}
+        >
+          <span className="menu-toggle-icon">
+            {isMenuOpen ? '✕' : '☰'}
+          </span>
+        </button>
       </div>
+
+      {/* MENÚ DESPLEGABLE */}
+      {isMenuOpen && (
+        <div className="dropdown-menu">
+          <div className="dropdown-menu-content">
+            
+            {/* PERFIL ARRIBA - SOLO EL BOTÓN DE PERFIL */}
+            <div className="profile-top-section">
+              <Perfil onClick={closeMenu} />
+            </div>
+            
+            {/* SEPARADOR VISUAL */}
+            <div className="menu-divider"></div>
+            
+            {/* BOTONES ABAJO CON SEPARACIÓN */}
+            <div className="menu-buttons-section">
+              <div className="menu-button-item">
+                <AnalyticsButton onClick={closeMenu} />
+              </div>
+              <div className="menu-button-item">
+                <LanguageButton onClick={closeMenu} />
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      )}
     </header>
   );
 };

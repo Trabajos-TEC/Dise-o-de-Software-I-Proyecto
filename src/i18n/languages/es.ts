@@ -1,7 +1,7 @@
 import type { TranslationKeys } from '../types';
 
 export const es: TranslationKeys = {
-  appTitle: 'Tienda de Cartas de Los Simpson',
+  appTitle: 'The SimpsonsCard',
   themeSwitcher: 'Cambiar Tema',
   languageSwitcher: 'Idioma',
   
@@ -17,11 +17,11 @@ export const es: TranslationKeys = {
   toggleTheme: 'Cambiar Tema',
   toggleLanguage: 'Cambiar Idioma',
   
-  welcomeMessage: '¡Bienvenido a la tienda oficial de cartas de Los Simpson! Explora nuestra colección exclusiva de cartas de personajes, ubicaciones y artículos especiales de Springfield. Perfecto para coleccionistas y fans.',
+  welcomeMessage: '¡Bienvenido a SimpsonCards! La wiki interactiva de cartas de Los Simpson. Explora nuestra completa base de datos con todos los personajes, ubicaciones y episodios de Springfield.',
   themeDescription: 'Cada tema tiene imágenes y colores únicos',
   languageDescription: 'Cambia entre Inglés y Español',
   
-  footerNote: 'Proyecto Universitario - Diseño de Software 2025 - Tienda de Cartas de Los Simpson',
+  footerNote: 'Proyecto Universitario - Diseño de Software 2025 - Wiki de Cartas de Los Simpson',
   projectFor: 'Proyecto para el TEC',
   
   currentLanguage: 'Idioma',

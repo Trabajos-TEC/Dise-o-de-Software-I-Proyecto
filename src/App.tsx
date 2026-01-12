@@ -37,12 +37,6 @@ function App() {
   const episodesRef = useRef<HTMLDivElement>(null);
   const locationsRef = useRef<HTMLDivElement>(null);
 
-  const [scrollPositions, setScrollPositions] = useState({
-    characters: 0,
-    episodes: 0,
-    locations: 0
-  });
-
   useEffect(() => {
     const user = auth.currentUser;
     if (!user) return;
@@ -80,66 +74,50 @@ function App() {
 
   const groupedInitialCards = groupCardsByType(initialCards);
 
-  // Funciones de desplazamiento circular
-  const scrollLeft = (ref: React.RefObject<HTMLDivElement | null>, section: keyof typeof scrollPositions) => {
+  // Función para obtener el tamaño de carta correcto según el dispositivo
+  const getCardDimensions = () => {
+    const isMobile = window.innerWidth <= 600;
+    const isTablet = window.innerWidth <= 768;
+    
+    if (isMobile) {
+      return { width: 160, gap: 15 }; // Tamaño móvil
+    } else if (isTablet) {
+      return { width: 220, gap: 20 }; // Tamaño tablet
+    } else {
+      return { width: 280, gap: 30 }; // Tamaño desktop
+    }
+  };
+
+  // Versión simple - usa scrollBy (1 carta por clic)
+  const scrollLeftSimple = (ref: React.RefObject<HTMLDivElement | null>) => {
     if (!ref.current) return;
     
     const container = ref.current;
-    const cardWidth = 280 + 30;
-    const visibleCards = Math.floor(container.clientWidth / cardWidth);
-    const maxScroll = container.scrollWidth - container.clientWidth;
+    const dimensions = getCardDimensions();
+    const cardWidth = dimensions.width + dimensions.gap;
     
-    let newPosition = scrollPositions[section] - (visibleCards * cardWidth);
-    
-    if (newPosition < 0) {
-      newPosition = maxScroll;
-    }
-    
-    container.scrollTo({
-      left: newPosition,
+    container.scrollBy({
+      left: -cardWidth,
       behavior: 'smooth'
     });
-    
-    setScrollPositions(prev => ({
-      ...prev,
-      [section]: newPosition
-    }));
   };
 
-  const scrollRight = (ref: React.RefObject<HTMLDivElement | null>, section: keyof typeof scrollPositions) => {
+  const scrollRightSimple = (ref: React.RefObject<HTMLDivElement | null>) => {
     if (!ref.current) return;
     
     const container = ref.current;
-    const cardWidth = 280 + 30;
-    const visibleCards = Math.floor(container.clientWidth / cardWidth);
-    const maxScroll = container.scrollWidth - container.clientWidth;
+    const dimensions = getCardDimensions();
+    const cardWidth = dimensions.width + dimensions.gap;
     
-    let newPosition = scrollPositions[section] + (visibleCards * cardWidth);
-    
-    if (newPosition > maxScroll) {
-      newPosition = 0;
-    }
-    
-    container.scrollTo({
-      left: newPosition,
+    container.scrollBy({
+      left: cardWidth,
       behavior: 'smooth'
     });
-    
-    setScrollPositions(prev => ({
-      ...prev,
-      [section]: newPosition
-    }));
   };
 
-  // Resetear scroll
+  // Resetear scroll cuando cambia el tamaño
   useEffect(() => {
-    const handleResize = () => {
-      setScrollPositions({
-        characters: 0,
-        episodes: 0,
-        locations: 0
-      });
-      
+    const handleResize = () => {      
       [charactersRef, episodesRef, locationsRef].forEach(ref => {
         if (ref.current) {
           ref.current.scrollTo({ left: 0, behavior: 'instant' });
@@ -193,8 +171,6 @@ function App() {
   ) => {
     const hasCards = cards.length > 0;
     const isLoading = loadingInitial;
-    const sectionKey = sectionType === 'character' ? 'characters' : 
-                       sectionType === 'episode' ? 'episodes' : 'locations';
     
     // Determinar qué traducción usar para loading
     const getLoadingText = () => {
@@ -227,7 +203,7 @@ function App() {
           <div className="carousel-container">
             <button 
               className="carousel-button left" 
-              onClick={() => scrollLeft(ref, sectionKey)}
+              onClick={() => scrollLeftSimple(ref)}
               aria-label={t('previousCards')}
             >
               ◀
@@ -249,7 +225,7 @@ function App() {
             </div>
             <button 
               className="carousel-button right" 
-              onClick={() => scrollRight(ref, sectionKey)}
+              onClick={() => scrollRightSimple(ref)}
               aria-label={t('nextCards')}
             >
               ▶

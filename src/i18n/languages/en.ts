@@ -1,7 +1,7 @@
 import type { TranslationKeys } from '../types';
 
 export const en: TranslationKeys = {
-  appTitle: 'The Simpsons Card Store',
+  appTitle: 'The SimpsonsCard',
   themeSwitcher: 'Switch Theme',
   languageSwitcher: 'Language',
   
@@ -17,11 +17,11 @@ export const en: TranslationKeys = {
   toggleTheme: 'Toggle Theme',
   toggleLanguage: 'Toggle Language',
   
-  welcomeMessage: 'Welcome to the official Simpsons card store! Explore our exclusive collection of character cards, locations and special items from Springfield. Perfect for collectors and fans.',
+  welcomeMessage: 'Welcome to SimpsonCards! The interactive wiki of The Simpsons cards. Explore our comprehensive database featuring all characters, locations, and episodes from Springfield.',
   themeDescription: 'Each theme has unique images and colors',
   languageDescription: 'Switch between English and Spanish',
   
-  footerNote: 'University Project - Software Design 2025 - The Simpsons Card Store',
+  footerNote: 'University Project - Software Design 2025 - The Simpsons Card Wiki',
   projectFor: 'Project for TEC',
   
   currentLanguage: 'Language',

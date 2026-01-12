@@ -370,8 +370,83 @@ body.simpsons-theme.dark .carousel-button:hover {
   color: #2C3E50 !important;
 }
 
+/* ===== MENÚ HAMBURGUESA - MODO OSCURO ===== */
+
+/* Botón del menú hamburguesa */
+body.dark .menu-toggle-btn,
+body[data-theme="dark"] .menu-toggle-btn,
+body.simpsons-theme.dark .menu-toggle-btn {
+  background-color: rgba(28, 16, 68, 0.8) !important;
+  color: #E0E0FF !important;
+  border: 1px solid #4A4FC5 !important;
+}
+
+body.dark .menu-toggle-btn:hover,
+body[data-theme="dark"] .menu-toggle-btn:hover,
+body.simpsons-theme.dark .menu-toggle-btn:hover {
+  background-color: rgba(45, 27, 105, 0.9) !important;
+  border-color: #2E3192 !important;
+}
+
+/* Ícono del menú */
+body.dark .menu-toggle-icon,
+body[data-theme="dark"] .menu-toggle-icon,
+body.simpsons-theme.dark .menu-toggle-icon {
+  color: #FFD90F !important;
+}
+
+/* Menú desplegable */
+body.dark .dropdown-menu,
+body[data-theme="dark"] .dropdown-menu,
+body.simpsons-theme.dark .dropdown-menu {
+  background-color: rgba(28, 16, 68, 0.95) !important;
+  border: 1px solid #4A4FC5 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Contenido del menú */
+body.dark .dropdown-menu-content,
+body[data-theme="dark"] .dropdown-menu-content,
+body.simpsons-theme.dark .dropdown-menu-content {
+  background-color: transparent !important;
+}
+
+/* Sección superior del perfil */
+body.dark .profile-top-section,
+body[data-theme="dark"] .profile-top-section,
+body.simpsons-theme.dark .profile-top-section {
+  background-color: rgba(45, 27, 105, 0.6) !important;
+  border-bottom: 1px solid rgba(74, 79, 197, 0.3) !important;
+}
+
+/* Separador del menú */
+body.dark .menu-divider,
+body[data-theme="dark"] .menu-divider,
+body.simpsons-theme.dark .menu-divider {
+  background-color: rgba(74, 79, 197, 0.3) !important;
+}
+
+/* Sección de botones del menú */
+body.dark .menu-buttons-section,
+body[data-theme="dark"] .menu-buttons-section,
+body.simpsons-theme.dark .menu-buttons-section {
+  background-color: rgba(45, 27, 105, 0.4) !important;
+}
+
+/* Ítems del menú */
+body.dark .menu-button-item,
+body[data-theme="dark"] .menu-button-item,
+body.simpsons-theme.dark .menu-button-item {
+  border-bottom: 1px solid rgba(74, 79, 197, 0.2) !important;
+}
+
+body.dark .menu-button-item:last-child,
+body[data-theme="dark"] .menu-button-item:last-child,
+body.simpsons-theme.dark .menu-button-item:last-child {
+  border-bottom: none !important;
+}
+
 /* ===== ESTILOS PARA SEARCH RESULTS - MODO OSCURO ===== */
-/* ===== COLORES PARA SEARCH RESULTS - MODO OSCURO ===== */
 
 /* Header y filtros juntos en un cuadro */
 body.dark .search-header-filters-container,

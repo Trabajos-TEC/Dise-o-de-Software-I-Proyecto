@@ -398,3 +398,286 @@
     margin-bottom: 20px;
   }
 }
+
+/* Desktop (>1024px) - TAMAÑOS BASE ORIGINALES */
+.card-small {
+  width: 200px !important;
+  height: 280px !important;
+  flex: 0 0 200px !important;
+}
+
+.card-medium {
+  width: 280px !important;
+  height: 380px !important;
+  flex: 0 0 280px !important;
+}
+
+.card-large {
+  width: 350px !important;
+  height: 470px !important;
+  flex: 0 0 350px !important;
+}
+
+/* PANTALLAS MEDIANAS (1024px o menos) */
+@media (max-width: 1024px) {
+  .card-small {
+    width: 180px !important;
+    height: 252px !important;
+    flex: 0 0 180px !important;
+  }
+  
+  .card-medium {
+    width: 250px !important;
+    height: 340px !important;
+    flex: 0 0 250px !important;
+  }
+  
+  .card-large {
+    width: 320px !important;
+    height: 430px !important;
+    flex: 0 0 320px !important;
+  }
+}
+
+/* TABLET (768px o menos) */
+@media (max-width: 768px) {
+  .card-small {
+    width: 160px !important;
+    height: 224px !important;
+    flex: 0 0 160px !important;
+  }
+  
+  .card-medium {
+    width: 220px !important;
+    height: 300px !important;
+    flex: 0 0 220px !important;
+  }
+  
+  .card-large {
+    width: 280px !important;
+    height: 376px !important;
+    flex: 0 0 280px !important;
+  }
+}
+
+/* MÓVIL (600px o menos) */
+@media (max-width: 600px) {
+  .card-small {
+    width: 140px !important;
+    height: 196px !important;
+    flex: 0 0 140px !important;
+  }
+  
+  .card-medium {
+    width: 190px !important;
+    height: 258px !important;
+    flex: 0 0 190px !important;
+  }
+  
+  .card-large {
+    width: 240px !important;
+    height: 322px !important;
+    flex: 0 0 240px !important;
+  }
+  
+  /* Ajustes de contenido para móvil */
+  .card-number {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .card-title-front {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+  
+  .card-title-back {
+    font-size: 1rem;
+  }
+  
+  .info-label, .info-value {
+    font-size: 0.8rem;
+  }
+}
+
+/* MÓVIL PEQUEÑO (480px o menos) */
+@media (max-width: 480px) {
+  .card-small {
+    width: 120px !important;
+    height: 168px !important;
+    flex: 0 0 120px !important;
+  }
+  
+  .card-medium {
+    width: 160px !important;
+    height: 218px !important;
+    flex: 0 0 160px !important;
+  }
+  
+  .card-large {
+    width: 200px !important;
+    height: 268px !important;
+    flex: 0 0 200px !important;
+  }
+  
+  .card-image-wrapper {
+    margin: 25px auto 15px auto;
+  }
+  
+  .card-header {
+    padding: 30px 15px 10px 15px;
+  }
+  
+  .card-info {
+    padding: 15px;
+  }
+  
+  .info-row {
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+  }
+}
+
+/* MÓVIL MUY PEQUEÑO (360px o menos) */
+@media (max-width: 360px) {
+  .card-small {
+    width: 110px !important;
+    height: 154px !important;
+    flex: 0 0 110px !important;
+  }
+  
+  .card-medium {
+    width: 140px !important;
+    height: 190px !important;
+    flex: 0 0 140px !important;
+  }
+  
+  .card-large {
+    width: 170px !important;
+    height: 228px !important;
+    flex: 0 0 170px !important;
+  }
+  
+  .card-title-front {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+  
+  .card-title-back {
+    font-size: 0.9rem;
+  }
+  
+  .card-footer {
+    padding: 10px;
+  }
+  
+  .flip-hint {
+    font-size: 0.7rem;
+  }
+}
+
+/* EXTREMO: 320px o menos */
+@media (max-width: 320px) {
+  .card-small {
+    width: 100px !important;
+    height: 140px !important;
+    flex: 0 0 100px !important;
+  }
+  
+  .card-medium {
+    width: 130px !important;
+    height: 176px !important;
+    flex: 0 0 130px !important;
+  }
+  
+  .card-large {
+    width: 150px !important;
+    height: 201px !important;
+    flex: 0 0 150px !important;
+  }
+  
+  .card-number {
+    top: 5px;
+    left: 5px;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    border-radius: 8px;
+  }
+  
+  .card-border {
+    border-width: 3px;
+  }
+  
+  .card-image-wrapper {
+    margin: 20px auto 10px auto;
+  }
+}
+
+/* ORIENTACIÓN HORIZONTAL EN MÓVIL */
+@media (max-height: 500px) and (orientation: landscape) {
+  .card-small {
+    width: 150px !important;
+    height: 210px !important;
+    flex: 0 0 150px !important;
+  }
+  
+  .card-medium {
+    width: 200px !important;
+    height: 272px !important;
+    flex: 0 0 200px !important;
+  }
+  
+  .card-large {
+    width: 250px !important;
+    height: 335px !important;
+    flex: 0 0 250px !important;
+  }
+}
+
+/* PANTALLAS GRANDES (1200px o más) */
+@media (min-width: 1200px) {
+  .card-small {
+    width: 220px !important;
+    height: 308px !important;
+    flex: 0 0 220px !important;
+  }
+  
+  .card-medium {
+    width: 300px !important;
+    height: 408px !important;
+    flex: 0 0 300px !important;
+  }
+  
+  .card-large {
+    width: 380px !important;
+    height: 510px !important;
+    flex: 0 0 380px !important;
+  }
+}
+
+/* Ajustes para los botones flotantes en cada tamaño */
+@media (max-width: 480px) {
+  .card-action-button {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 14px !important;
+  }
+  
+  .card-action-buttons {
+    gap: 6px;
+    margin-top: -65px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .card-action-button {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 12px !important;
+  }
+  
+  .card-action-buttons {
+    gap: 4px;
+    margin-top: -60px !important;
+  }
+}

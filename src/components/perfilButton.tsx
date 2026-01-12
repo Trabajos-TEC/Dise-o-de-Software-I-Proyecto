@@ -1,11 +1,14 @@
-// components/perfilButton.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
-function PerfilButton() {
+interface PerfilButtonProps {
+  onClick?: () => void;
+}
+
+function PerfilButton({ onClick }: PerfilButtonProps) {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
 
@@ -14,10 +17,15 @@ function PerfilButton() {
     return () => unsubscribe();
   }, []);
 
+  const handleClick = () => {
+    navigate("/perfil");
+    if (onClick) onClick();
+  };
+
   return (
     <button
-      className="perfil-button"
-      onClick={() => navigate("/perfil")}
+      className="perfil-btn"
+      onClick={handleClick}
       style={{
         background: "none",
         border: "none",
@@ -37,7 +45,7 @@ function PerfilButton() {
           }}
         />
       ) : (
-        "Perfil"
+        <span className="btn-text">Perfil</span>
       )}
     </button>
   );

@@ -1,15 +1,23 @@
-// src/components/ThemeButton.tsx
 import React from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa6';
 import { useTheme } from '../context/ThemeContext';
 
-const ThemeButton: React.FC = () => {
+interface ThemeButtonProps {
+  onClick?: () => void;
+}
+
+const ThemeButton: React.FC<ThemeButtonProps> = ({ onClick }) => {
   const { isDarkMode, toggleTheme } = useTheme();
+
+  const handleClick = () => {
+    toggleTheme();
+    if (onClick) onClick();
+  };
 
   return (
     <button 
       className="theme-btn"
-      onClick={toggleTheme}
+      onClick={handleClick}
       aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
     >

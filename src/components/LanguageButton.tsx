@@ -2,17 +2,22 @@ import React from 'react';
 import { FaGlobe } from 'react-icons/fa6';
 import { useLanguage } from '../context/LanguageContext';
 
-const LanguageButton: React.FC = () => {
+interface LanguageButtonProps {
+  onClick?: () => void;
+}
+
+const LanguageButton: React.FC<LanguageButtonProps> = ({ onClick }) => {
   const { language, setLanguage, t } = useLanguage();
 
-  const toggleLanguage = () => {
+  const handleToggleLanguage = () => {
     setLanguage(language === 'en' ? 'es' : 'en');
+    if (onClick) onClick();
   };
 
   return (
     <button 
       className="language-btn"
-      onClick={toggleLanguage}
+      onClick={handleToggleLanguage}
       aria-label={t('toggleLanguage')}
       title={t('toggleLanguage')}
     >
