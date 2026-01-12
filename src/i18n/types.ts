@@ -123,4 +123,25 @@ export interface TranslationKeys {
   // Mensajes genéricos (para el default case)
   status: string;
   occupation: string;
+
+  analyticsTitle: string;
+  analyticsSubtitle: string;
+  loadingAnalytics: string;
+  
+  /* Tabs */
+  top10Tab: string;
+  seasonsTab: string;
+  
+  /* Top 10 Section */
+  top10Title: string;
+  top10Description: string;
+  searches: string;
+  
+  /* Seasons Section */
+  seasonsTitle: string;
+  seasonsDescription: string;
+  seasonsCount: string;
+  totalEpisodes: string;
+  averagePerSeason: string;
+  moreEpisodes: string;
 }

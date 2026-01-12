@@ -129,4 +129,26 @@ export const en: TranslationKeys = {
   // Mensajes genéricos
   status: 'Status',
   occupation: 'Occupation',
+
+/* ANALYTICS PAGE */
+analyticsTitle: 'Statistics and Analytics',
+analyticsSubtitle: 'Discover the most interesting data from The Simpsons universe',
+loadingAnalytics: 'Loading statistics...',
+
+/* Tabs */
+top10Tab: 'Top 10 Characters',
+seasonsTab: 'Season Statistics',
+
+/* Top 10 Section */
+top10Title: 'Top 10 Most Searched Characters',
+top10Description: 'The most popular characters according to user searches',
+searches: 'searches',
+
+/* Seasons Section */
+seasonsTitle: 'Season Statistics',
+seasonsDescription: 'Detailed analysis of episodes per season',
+seasonsCount: 'Seasons',
+totalEpisodes: 'Total Episodes',
+averagePerSeason: 'Average per Season',
+moreEpisodes: 'more episodes',
 };

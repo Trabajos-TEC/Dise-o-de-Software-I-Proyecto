@@ -594,3 +594,463 @@ body[data-theme="dark"] .back-btn:hover,
 body.simpsons-theme.dark .back-btn:hover {
   background: var(--btn-secondary-hover) !important;
 }
+
+/* ===== COLORES PARA CARD DETAIL - MODO OSCURO ===== */
+
+/* Contenedor principal */
+body.dark .card-detail-container,
+body[data-theme="dark"] .card-detail-container,
+body.simpsons-theme.dark .card-detail-container {
+  color: var(--text-primary) !important;
+}
+
+/* Botón volver */
+body.dark .back-button,
+body[data-theme="dark"] .back-button,
+body.simpsons-theme.dark .back-button {
+  color: var(--text-accent) !important;
+}
+
+body.dark .back-button:hover,
+body[data-theme="dark"] .back-button:hover,
+body.simpsons-theme.dark .back-button:hover {
+  background-color: rgba(255, 217, 15, 0.1) !important;
+}
+
+/* Badge de tipo de carta */
+body.dark .card-type-badge,
+body[data-theme="dark"] .card-type-badge,
+body.simpsons-theme.dark .card-type-badge {
+  background: linear-gradient(135deg, #4A4FC5, #2E3192) !important;
+  color: #E0E0FF !important;
+  box-shadow: 0 3px 10px rgba(74, 79, 197, 0.3) !important;
+}
+
+/* Sección de información */
+body.dark .card-detail-section,
+body[data-theme="dark"] .card-detail-section,
+body.simpsons-theme.dark .card-detail-section {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+body.dark .card-detail-section h3,
+body[data-theme="dark"] .card-detail-section h3,
+body.simpsons-theme.dark .card-detail-section h3 {
+  border-bottom-color: #FFD90F !important;
+  color: var(--text-accent) !important;
+}
+
+/* Contenido de información */
+body.dark .info-content,
+body[data-theme="dark"] .info-content,
+body.simpsons-theme.dark .info-content {
+  color: var(--text-primary) !important;
+}
+
+body.dark .info-content strong,
+body[data-theme="dark"] .info-content strong,
+body.simpsons-theme.dark .info-content strong {
+  color: var(--text-accent) !important;
+}
+
+/* Tipos específicos de información */
+body.dark .character-info,
+body[data-theme="dark"] .character-info,
+body.simpsons-theme.dark .character-info,
+body.dark .episode-info,
+body[data-theme="dark"] .episode-info,
+body.simpsons-theme.dark .episode-info,
+body.dark .location-info,
+body[data-theme="dark"] .location-info,
+body.simpsons-theme.dark .location-info,
+body.dark .general-info,
+body[data-theme="dark"] .general-info,
+body.simpsons-theme.dark .general-info {
+  background: rgba(45, 27, 105, 0.5) !important;
+  border-left: 3px solid #FFD90F !important;
+}
+
+body.dark .character-info h4,
+body[data-theme="dark"] .character-info h4,
+body.simpsons-theme.dark .character-info h4,
+body.dark .episode-info h4,
+body[data-theme="dark"] .episode-info h4,
+body.simpsons-theme.dark .episode-info h4,
+body.dark .location-info h4,
+body[data-theme="dark"] .location-info h4,
+body.simpsons-theme.dark .location-info h4,
+body.dark .general-info h4,
+body[data-theme="dark"] .general-info h4,
+body.simpsons-theme.dark .general-info h4 {
+  color: var(--text-accent) !important;
+}
+
+/* Frases famosas */
+body.dark .famous-phrases,
+body[data-theme="dark"] .famous-phrases,
+body.simpsons-theme.dark .famous-phrases {
+  background: rgba(255, 217, 15, 0.1) !important;
+  border: 1px solid rgba(255, 217, 15, 0.3) !important;
+}
+
+body.dark .famous-phrases li,
+body[data-theme="dark"] .famous-phrases li,
+body.simpsons-theme.dark .famous-phrases li {
+  border-left-color: #FFD90F !important;
+  background: rgba(45, 27, 105, 0.3) !important;
+}
+
+/* Sinopsis */
+body.dark .synopsis,
+body[data-theme="dark"] .synopsis,
+body.simpsons-theme.dark .synopsis {
+  background: rgba(74, 79, 197, 0.2) !important;
+  border: 1px solid rgba(46, 49, 146, 0.3) !important;
+}
+
+/* Información técnica */
+body.dark .technical-info,
+body[data-theme="dark"] .technical-info,
+body.simpsons-theme.dark .technical-info {
+  border-top-color: rgba(224, 224, 255, 0.2) !important;
+  color: var(--text-secondary) !important;
+}
+
+body.dark .technical-info h5,
+body[data-theme="dark"] .technical-info h5,
+body.simpsons-theme.dark .technical-info h5 {
+  color: var(--text-primary) !important;
+}
+
+/* Botones de acción */
+body.dark .action-button.share-button,
+body[data-theme="dark"] .action-button.share-button,
+body.simpsons-theme.dark .action-button.share-button {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border: 2px solid var(--btn-secondary-border) !important;
+}
+
+body.dark .action-button.share-button:hover,
+body[data-theme="dark"] .action-button.share-button:hover,
+body.simpsons-theme.dark .action-button.share-button:hover {
+  background: var(--btn-secondary-hover) !important;
+}
+
+body.dark .action-button.collect-button,
+body[data-theme="dark"] .action-button.collect-button,
+body.simpsons-theme.dark .action-button.collect-button {
+  background: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-color) !important;
+  border: 2px solid var(--btn-primary-border) !important;
+}
+
+body.dark .action-button.collect-button:hover,
+body[data-theme="dark"] .action-button.collect-button:hover,
+body.simpsons-theme.dark .action-button.collect-button:hover {
+  background: var(--btn-primary-hover) !important;
+}
+
+body.dark .action-button.remove-button,
+body[data-theme="dark"] .action-button.remove-button,
+body.simpsons-theme.dark .action-button.remove-button {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52) !important;
+  color: white !important;
+  border: 2px solid #ee5a52 !important;
+}
+
+body.dark .action-button.remove-button:hover,
+body[data-theme="dark"] .action-button.remove-button:hover,
+body.simpsons-theme.dark .action-button.remove-button:hover {
+  background: linear-gradient(135deg, #ee5a52, #ff6b6b) !important;
+}
+
+/* Sin información */
+body.dark .no-episode-info,
+body[data-theme="dark"] .no-episode-info,
+body.simpsons-theme.dark .no-episode-info {
+  background: rgba(255, 107, 107, 0.1) !important;
+  border: 1px solid rgba(255, 107, 107, 0.3) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* ===== COLORES PARA ANALYTICS - MODO OSCURO ===== */
+
+/* Analytics Container */
+body.dark .analytics-container,
+body[data-theme="dark"] .analytics-container,
+body.simpsons-theme.dark .analytics-container {
+  color: var(--text-primary) !important;
+}
+
+/* Analytics Header */
+body.dark .analytics-header,
+body[data-theme="dark"] .analytics-header,
+body.simpsons-theme.dark .analytics-header {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+body.dark .analytics-header h1,
+body[data-theme="dark"] .analytics-header h1,
+body.simpsons-theme.dark .analytics-header h1 {
+  color: var(--text-accent) !important;
+}
+
+body.dark .analytics-header p,
+body[data-theme="dark"] .analytics-header p,
+body.simpsons-theme.dark .analytics-header p {
+  color: var(--text-secondary) !important;
+}
+
+/* Loading Spinner */
+body.dark .loading-spinner,
+body[data-theme="dark"] .loading-spinner,
+body.simpsons-theme.dark .loading-spinner {
+  border-color: rgba(74, 79, 197, 0.2) !important;
+  border-top-color: #4A4FC5 !important;
+}
+
+/* Analytics Tabs */
+body.dark .analytics-tabs,
+body[data-theme="dark"] .analytics-tabs,
+body.simpsons-theme.dark .analytics-tabs {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+body.dark .tab-btn,
+body[data-theme="dark"] .tab-btn,
+body.simpsons-theme.dark .tab-btn {
+  background: rgba(45, 27, 105, 0.7) !important;
+  color: var(--text-primary) !important;
+  border: 2px solid rgba(74, 79, 197, 0.3) !important;
+}
+
+body.dark .tab-btn:hover,
+body[data-theme="dark"] .tab-btn:hover,
+body.simpsons-theme.dark .tab-btn:hover {
+  border-color: #4A4FC5 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(74, 79, 197, 0.2) !important;
+}
+
+body.dark .tab-btn.active,
+body[data-theme="dark"] .tab-btn.active,
+body.simpsons-theme.dark .tab-btn.active {
+  background: linear-gradient(135deg, #4A4FC5, #2E3192) !important;
+  color: #E0E0FF !important;
+  border-color: #2E3192 !important;
+  box-shadow: 0 4px 12px rgba(74, 79, 197, 0.3) !important;
+}
+
+/* Analytics Content */
+body.dark .analytics-content,
+body[data-theme="dark"] .analytics-content,
+body.simpsons-theme.dark .analytics-content {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+body.dark .analytics-content h2,
+body[data-theme="dark"] .analytics-content h2,
+body.simpsons-theme.dark .analytics-content h2 {
+  color: var(--text-accent) !important;
+}
+
+body.dark .section-description,
+body[data-theme="dark"] .section-description,
+body.simpsons-theme.dark .section-description {
+  color: var(--text-secondary) !important;
+}
+
+/* Top 10 Items */
+body.dark .top10-item,
+body[data-theme="dark"] .top10-item,
+body.simpsons-theme.dark .top10-item {
+  background: rgba(45, 27, 105, 0.8) !important;
+  border: 1px solid rgba(74, 79, 197, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.dark .top10-item:hover,
+body[data-theme="dark"] .top10-item:hover,
+body.simpsons-theme.dark .top10-item:hover {
+  box-shadow: 0 8px 20px rgba(74, 79, 197, 0.3) !important;
+}
+
+body.dark .rank-badge,
+body[data-theme="dark"] .rank-badge,
+body.simpsons-theme.dark .rank-badge {
+  background: linear-gradient(135deg, #4A4FC5, #2E3192) !important;
+  box-shadow: 0 4px 12px rgba(74, 79, 197, 0.4) !important;
+}
+
+body.dark .search-count,
+body[data-theme="dark"] .search-count,
+body.simpsons-theme.dark .search-count {
+  background: rgba(74, 79, 197, 0.2) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Stat Cards */
+body.dark .stat-card,
+body[data-theme="dark"] .stat-card,
+body.simpsons-theme.dark .stat-card {
+  background: rgba(45, 27, 105, 0.8) !important;
+  border: 1px solid rgba(74, 79, 197, 0.3) !important;
+}
+
+body.dark .stat-card h3,
+body[data-theme="dark"] .stat-card h3,
+body.simpsons-theme.dark .stat-card h3 {
+  color: #FFD90F !important;
+}
+
+body.dark .stat-card p,
+body[data-theme="dark"] .stat-card p,
+body.simpsons-theme.dark .stat-card p {
+  color: var(--text-secondary) !important;
+}
+
+/* Season Items */
+body.dark .season-item,
+body[data-theme="dark"] .season-item,
+body.simpsons-theme.dark .season-item {
+  background: rgba(45, 27, 105, 0.8) !important;
+  border: 1px solid rgba(74, 79, 197, 0.3) !important;
+}
+
+body.dark .season-header,
+body[data-theme="dark"] .season-header,
+body.simpsons-theme.dark .season-header {
+  background: transparent !important;
+}
+
+body.dark .season-header:hover,
+body[data-theme="dark"] .season-header:hover,
+body.simpsons-theme.dark .season-header:hover {
+  background: rgba(74, 79, 197, 0.1) !important;
+}
+
+body.dark .season-header h3,
+body[data-theme="dark"] .season-header h3,
+body.simpsons-theme.dark .season-header h3 {
+  color: var(--text-primary) !important;
+}
+
+body.dark .episode-count,
+body[data-theme="dark"] .episode-count,
+body.simpsons-theme.dark .episode-count {
+  color: var(--text-secondary) !important;
+}
+
+body.dark .expand-icon,
+body[data-theme="dark"] .expand-icon,
+body.simpsons-theme.dark .expand-icon {
+  color: #FFD90F !important;
+}
+
+body.dark .season-episodes,
+body[data-theme="dark"] .season-episodes,
+body.simpsons-theme.dark .season-episodes {
+  background: rgba(74, 79, 197, 0.2) !important;
+  border-top-color: rgba(74, 79, 197, 0.3) !important;
+}
+
+/* Comparator */
+body.dark .character-select,
+body[data-theme="dark"] .character-select,
+body.simpsons-theme.dark .character-select {
+  background: rgba(45, 27, 105, 0.8) !important;
+  color: var(--text-primary) !important;
+  border: 2px solid rgba(74, 79, 197, 0.3) !important;
+}
+
+body.dark .character-select:hover,
+body[data-theme="dark"] .character-select:hover,
+body.simpsons-theme.dark .character-select:hover,
+body.dark .character-select:focus,
+body[data-theme="dark"] .character-select:focus,
+body.simpsons-theme.dark .character-select:focus {
+  border-color: #4A4FC5 !important;
+  box-shadow: 0 0 0 3px rgba(74, 79, 197, 0.1) !important;
+}
+
+body.dark .vs-divider,
+body[data-theme="dark"] .vs-divider,
+body.simpsons-theme.dark .vs-divider {
+  background: linear-gradient(135deg, rgba(74, 79, 197, 0.1), rgba(74, 79, 197, 0.2)) !important;
+  color: #FFD90F !important;
+}
+
+/* Comparison Cards */
+body.dark .comparison-card,
+body[data-theme="dark"] .comparison-card,
+body.simpsons-theme.dark .comparison-card,
+body.dark .comparison-stats,
+body[data-theme="dark"] .comparison-stats,
+body.simpsons-theme.dark .comparison-stats {
+  background: rgba(45, 27, 105, 0.8) !important;
+  border: 1px solid rgba(74, 79, 197, 0.3) !important;
+}
+
+body.dark .comparison-row,
+body[data-theme="dark"] .comparison-row,
+body.simpsons-theme.dark .comparison-row {
+  background: rgba(74, 79, 197, 0.2) !important;
+}
+
+body.dark .comparison-row .stat,
+body[data-theme="dark"] .comparison-row .stat,
+body.simpsons-theme.dark .comparison-row .stat {
+  background: rgba(45, 27, 105, 0.6) !important;
+  color: var(--text-primary) !important;
+}
+
+body.dark .comparison-row .stat.winner,
+body[data-theme="dark"] .comparison-row .stat.winner,
+body.simpsons-theme.dark .comparison-row .stat.winner {
+  background: #4A4FC5 !important;
+  color: #E0E0FF !important;
+  box-shadow: 0 4px 12px rgba(74, 79, 197, 0.3) !important;
+}
+
+body.dark .comparison-row .stat.tie,
+body[data-theme="dark"] .comparison-row .stat.tie,
+body.simpsons-theme.dark .comparison-row .stat.tie {
+  background: #757575 !important;
+}
+
+body.dark .comparison-row .stat-label,
+body[data-theme="dark"] .comparison-row .stat-label,
+body.simpsons-theme.dark .comparison-row .stat-label {
+  color: var(--text-secondary) !important;
+}
+
+body.dark .comparison-placeholder,
+body[data-theme="dark"] .comparison-placeholder,
+body.simpsons-theme.dark .comparison-placeholder {
+  color: var(--text-secondary) !important;
+}
+
+/* Back Button */
+body.dark .back-btn,
+body[data-theme="dark"] .back-btn,
+body.simpsons-theme.dark .back-btn {
+  background: rgba(74, 79, 197, 0.2) !important;
+  color: var(--text-primary) !important;
+  border: 2px solid rgba(255, 217, 15, 0.3) !important;
+}
+
+body.dark .back-btn:hover,
+body[data-theme="dark"] .back-btn:hover,
+body.simpsons-theme.dark .back-btn:hover {
+  background: linear-gradient(135deg, #FFD90F, #FFB347) !important;
+  color: #2C3E50 !important;
+  border-color: #FFD90F !important;
+}
