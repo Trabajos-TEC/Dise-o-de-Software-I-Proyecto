@@ -73,4 +73,60 @@ export const en: TranslationKeys = {
   next: 'Next',
   page: 'Page',
   backToHome: 'Back to Home',
+
+  /* CARD DETAIL PAGE */
+  goBack: 'Back',
+  cardNotFound: 'Card not found',
+
+  character: 'Character',
+  episode: 'Episode',
+  location: 'Location',
+
+  characterDetails: 'Character Details',
+  episodeDetails: 'Episode Details',
+  locationDetails: 'Location Details',
+  cardDetails: 'Card Details',
+  detailedInformation: 'Detailed Information',
+
+  // Mensajes para personajes
+  characterDescription: 'This character is called',
+  characterCurrently: 'Currently is',
+  characterGender: 'Gender is',
+  characterOccupation: 'Main occupation is',
+  characterAge: 'Age is',
+  characterBorn: 'Born on',
+  characterAgeYears: 'years old',
+
+  // Mensajes para episodios
+  episodeDescription: 'This episode is titled',
+  episodeSeason: 'Belongs to',
+  episodeNumber: 'Is',
+  episodeAired: 'Aired on',
+
+  // Mensajes para lugares
+  locationDescription: 'This location is called',
+  locatedIn: 'Located in',
+  mainUse: 'Main use is',
+  partOfTown: 'Part of the town of',
+  usedAs: 'Mainly used as',
+
+  // Información común
+  age: 'Age',
+  birthdate: 'Birthdate',
+  famousPhrases: 'Famous Phrases',
+  synopsis: 'Synopsis',
+  episodeNumberLabel: 'Episode',     // <-- PARA EPISODIOS
+  town: 'Town',
+  use: 'Use',
+
+  // Botones y mensajes
+  share: 'Share',
+  addToCollection: 'Add to collection',
+  removeFromCollection: 'Remove from collection',
+  addedToFavorites: 'Added to favorites',
+  removedFromFavorites: 'Removed from favorites',
+
+  // Mensajes genéricos
+  status: 'Status',
+  occupation: 'Occupation',
 };

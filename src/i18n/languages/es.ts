@@ -72,4 +72,60 @@ export const es: TranslationKeys = {
   next: 'Siguiente',
   page: 'Página',
   backToHome: 'Volver al inicio',
+
+  /* CARD DETAIL PAGE */
+  goBack: 'Volver',
+  cardNotFound: 'Carta no encontrada',
+
+  character: 'Personaje',
+  episode: 'Episodio',
+  location: 'Lugar',
+
+  characterDetails: 'Detalles del Personaje',
+  episodeDetails: 'Detalles del Episodio',
+  locationDetails: 'Detalles del Lugar',
+  cardDetails: 'Detalles de la Carta',
+  detailedInformation: 'Información Detallada',
+
+  // Mensajes para personajes
+  characterDescription: 'Este personaje se llama',
+  characterCurrently: 'Actualmente se encuentra',
+  characterGender: 'Es de género',
+  characterOccupation: 'Su ocupación principal es',
+  characterAge: 'Tiene',
+  characterBorn: 'Nació el',
+  characterAgeYears: 'años de edad',
+
+  // Mensajes para episodios
+  episodeDescription: 'Este episodio se titula',
+  episodeSeason: 'Pertenece a la',
+  episodeNumber: 'Es el',
+  episodeAired: 'Se estrenó el',
+
+  // Mensajes para lugares
+  locationDescription: 'Este lugar se llama',
+  locatedIn: 'Está ubicado en',
+  mainUse: 'Su uso principal es',
+  partOfTown: 'Forma parte de la ciudad de',
+  usedAs: 'Se utiliza principalmente como',
+
+  // Información común
+  age: 'Edad',
+  birthdate: 'Fecha de nacimiento',
+  famousPhrases: 'Frases famosas',
+  synopsis: 'Sinopsis',
+  episodeNumberLabel: 'Episodio',    // <-- PARA EPISODIOS
+  town: 'Ciudad',
+  use: 'Uso',
+
+  // Botones y mensajes
+  share: 'Compartir',
+  addToCollection: 'Agregar a colección',
+  removeFromCollection: 'Quitar de colección',
+  addedToFavorites: 'Se agregó a favoritos',
+  removedFromFavorites: 'Se eliminó de favoritos',
+
+  // Mensajes genéricos
+  status: 'Estado',
+  occupation: 'Ocupación',
 };

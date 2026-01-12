@@ -17,6 +17,18 @@ export interface CardData {
   extraInfo?: Record<string, any>;
   gender?: string;
   season?: number;
+  // AGREGAR ESTO:
+  additionalInfo?: {
+    birthdate?: string;
+    phrases?: string[];
+    synopsis?: string;
+    season?: number; 
+    episodeNumber?: number;
+    airdate?: string;
+    town?: string;
+    use?: string;
+    age?: string;
+  };
 }
 
 interface CardProps {

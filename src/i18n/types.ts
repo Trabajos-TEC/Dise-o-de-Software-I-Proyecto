@@ -67,4 +67,60 @@ export interface TranslationKeys {
   next: string;
   page: string;
   backToHome: string;
+
+  /* CARD DETAIL PAGE */
+  goBack: string;
+  cardNotFound: string;
+  
+  character: string;
+  episode: string;
+  location: string;
+  
+  characterDetails: string;
+  episodeDetails: string;
+  locationDetails: string;
+  cardDetails: string;
+  detailedInformation: string;
+  
+  // Mensajes para personajes
+  characterDescription: string;
+  characterCurrently: string;
+  characterGender: string;
+  characterOccupation: string;
+  characterAge: string;
+  characterBorn: string;
+  characterAgeYears: string; // <-- NUEVO
+  
+  // Mensajes para episodios
+  episodeDescription: string;
+  episodeSeason: string;
+  episodeNumber: string;
+  episodeAired: string;
+  
+  // Mensajes para lugares
+  locationDescription: string;
+  locatedIn: string;
+  mainUse: string;
+  partOfTown: string;
+  usedAs: string;
+  
+  // Información común
+  age: string;
+  birthdate: string;
+  famousPhrases: string;
+  synopsis: string;
+  episodeNumberLabel: string;
+  town: string;
+  use: string;
+  
+  // Botones y mensajes
+  share: string;
+  addToCollection: string;
+  removeFromCollection: string;
+  addedToFavorites: string;
+  removedFromFavorites: string;
+  
+  // Mensajes genéricos (para el default case)
+  status: string;
+  occupation: string;
 }
