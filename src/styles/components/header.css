@@ -154,6 +154,9 @@
   
   .search-icon {
     font-size: 1.2rem;
+    transform: translateY(-15%) !important;
+    line-height: 0.4;
+    top: -3px;
   }
 }
 
@@ -389,7 +392,7 @@
   
   .search-icon {
     font-size: 1.4rem;
-    transform: translateY(-70%) !important;
+    transform: translateY(-10%) !important;
     top: -1px;
   }
 }
@@ -414,7 +417,7 @@
 /* ===== TAMAÑOS ESPECÍFICOS ===== */
 
 /* 778px - 858px (Tablets en horizontal/ventanas medianas) */
-@media (min-width: 778px) and (max-width: 858px) {
+@media (min-width: 778px) and (max-width: 898px) {
   .app-header {
     padding: 0 18px;
     height: 62px;
@@ -445,7 +448,7 @@
   
   .search-icon {
     font-size: 1.15rem;
-    transform: translateY(-78%) !important;
+    transform: translateY(-45%) !important;
     line-height: 0.55;
     top: -1.5px;
   }
