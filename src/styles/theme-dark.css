@@ -1143,3 +1143,33 @@ body[data-theme="dark"] .favoritos-back-btn.secondary:hover,
 body.simpsons-theme.dark .favoritos-back-btn.secondary:hover {
   background: var(--btn-primary-bg) !important;
 }
+
+/* ===== COLORES PARA PERFIL - MODO OSCURO ===== */
+
+/* Contenedor principal */
+body.dark .container .profile-container,
+body[data-theme="dark"] .container .profile-container,
+body.simpsons-theme.dark .container .profile-container {
+  color: var(--text-primary) !important;
+}
+
+/* Título */
+body.dark .container .title,
+body[data-theme="dark"] .container .title,
+body.simpsons-theme.dark .container .title {
+  color: var(--text-accent) !important;
+}
+
+/* Información del perfil */
+body.dark .container p,
+body[data-theme="dark"] .container p,
+body.simpsons-theme.dark .container p {
+  color: var(--text-primary) !important;
+}
+
+body.dark .container p strong,
+body[data-theme="dark"] .container p strong,
+body.simpsons-theme.dark .container p strong {
+  color: var(--text-accent) !important;
+}
+

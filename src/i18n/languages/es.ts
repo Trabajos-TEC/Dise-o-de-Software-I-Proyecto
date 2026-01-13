@@ -156,4 +156,14 @@ export const es: TranslationKeys = {
   noFavorites: 'No tienes elementos en tus favoritos.',
   backToProfile: 'Volver al Perfil',
   exploreContent: 'Explorar Contenido',
+
+  /* PERFIL PAGE */
+  profile: 'Perfil',
+  profilePicture: 'Foto de perfil',
+  name: 'Nombre',
+  email: 'Correo electrónico',
+  provider: 'Proveedor',
+  logout: 'Cerrar sesión',
+  notAvailable: 'No disponible',
+  mustLogin: 'Debes iniciar sesión para acceder al perfil',
 };

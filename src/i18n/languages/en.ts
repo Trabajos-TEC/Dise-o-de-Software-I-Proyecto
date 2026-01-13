@@ -157,4 +157,14 @@ export const en: TranslationKeys = {
   noFavorites: "You don't have any favorites yet. Start exploring content and add your favorite items!",
   backToProfile: "Back to Profile",
   exploreContent: "Explore Content",
+
+  /* PERFIL PAGE */
+  profile: "Profile",
+  profilePicture: "Profile picture",
+  name: "Name",
+  email: "Email",
+  provider: "Provider",
+  logout: "Log out",
+  notAvailable: "Not available",
+  mustLogin: "You must log in to access the profile",
 };

@@ -1,5 +1,5 @@
 // src/components/Header.tsx - CON MENÚ HAMBURGUESA
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { searchCards } from './cardUtils';
@@ -9,6 +9,9 @@ import SignIn from './SignInButton';
 import Perfil from "./perfilButton";
 import AnalyticsButton from './AnalyticsButton';
 import '../styles/components/header.css';
+import { auth } from '../firebaseConfig'; // Asegúrate de importar auth
+import { onAuthStateChanged } from 'firebase/auth';
+import type { User } from 'firebase/auth';
 
 
 interface HeaderProps {
@@ -26,6 +29,18 @@ const Header: React.FC<HeaderProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null); // Estado para el usuario
+  const [authLoading, setAuthLoading] = useState(true); // Estado de carga
+
+  // Escuchar cambios en la autenticación
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setAuthLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleLogoClick = () => {
     setSearchQuery('');
@@ -72,6 +87,17 @@ const Header: React.FC<HeaderProps> = ({
 
   const isSearchButtonDisabled = isSearching || disableSearch || !searchQuery.trim();
 
+  // Mostrar spinner mientras se carga la autenticación
+  if (authLoading) {
+    return (
+      <header className="app-header">
+        <div className="header-loading">
+          <span>Cargando...</span>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <header className="app-header">
       <div className="header-left">
@@ -117,11 +143,13 @@ const Header: React.FC<HeaderProps> = ({
       )}
       
       <div className="header-right">
-        {/* BOTONES VISIBLES: Theme y SignIn */}
+        {/* BOTONES VISIBLES: Theme */}
         <ThemeButton />
-        <SignIn />
         
-        {/* MENÚ HAMBURGUESA para Analytics, Language y Perfil */}
+        {/* Mostrar SignIn SOLO si NO hay usuario autenticado */}
+        {!user && <SignIn />}
+        
+        {/* MENÚ HAMBURGUESA */}
         <button 
           className="menu-toggle-btn"
           onClick={toggleMenu}
@@ -139,13 +167,15 @@ const Header: React.FC<HeaderProps> = ({
         <div className="dropdown-menu">
           <div className="dropdown-menu-content">
             
-            {/* PERFIL ARRIBA - SOLO EL BOTÓN DE PERFIL */}
-            <div className="profile-top-section">
-              <Perfil onClick={closeMenu} />
-            </div>
+            {/* PERFIL ARRIBA - SOLO SI HAY USUARIO AUTENTICADO */}
+            {user && (
+              <div className="profile-top-section">
+                <Perfil onClick={closeMenu} />
+              </div>
+            )}
             
-            {/* SEPARADOR VISUAL */}
-            <div className="menu-divider"></div>
+            {/* SEPARADOR VISUAL - Solo mostrar si hay usuario */}
+            {user && <div className="menu-divider"></div>}
             
             {/* BOTONES ABAJO CON SEPARACIÓN */}
             <div className="menu-buttons-section">

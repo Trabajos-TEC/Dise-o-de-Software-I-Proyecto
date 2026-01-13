@@ -150,4 +150,14 @@ export interface TranslationKeys {
   noFavorites: string;
   backToProfile: string;
   exploreContent: string;
+
+  /* PERFIL PAGE */
+  profile: string;
+  profilePicture: string;
+  name: string;
+  email: string;
+  provider: string;
+  logout: string;
+  notAvailable: string;
+  mustLogin: string;
 }
