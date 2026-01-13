@@ -1,37 +1,18 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
-import * as Localization from 'expo-localization';
-import { getTranslation } from '../i18n';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-export type Language = 'en' | 'es';
-
-interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
-}
+type LanguageContextType = {
+  language: 'es' | 'en';
+  toggleLanguage: () => void;
+};
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const getDeviceLanguage = (): Language => {
-    const locales = Localization.getLocales();
-    const langCode = locales[0]?.languageCode;
-    return langCode === 'es' ? 'es' : 'en';
-  };
-
-  const [language, setLanguage] = useState<Language>(getDeviceLanguage);
-
-  const t = (key: string): string => {
-    try {
-      return getTranslation(language, key);
-    } catch {
-      return key;
-    }
-  };
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguage] = useState<'es' | 'en'>('es');
+  const toggleLanguage = () => setLanguage(prev => (prev === 'es' ? 'en' : 'es'));
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -39,8 +20,6 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within LanguageProvider');
-  }
+  if (!context) throw new Error('useLanguage must be used within a LanguageProvider');
   return context;
 };
