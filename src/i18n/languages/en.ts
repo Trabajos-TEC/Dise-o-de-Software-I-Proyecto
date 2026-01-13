@@ -1,7 +1,7 @@
 import type { TranslationKeys } from '../types';
 
 export const en: TranslationKeys = {
-  appTitle: 'The SimpsonsCard',
+  appTitle: 'The SimpsonsCards',
   themeSwitcher: 'Switch Theme',
   languageSwitcher: 'Language',
   
@@ -21,7 +21,7 @@ export const en: TranslationKeys = {
   themeDescription: 'Each theme has unique images and colors',
   languageDescription: 'Switch between English and Spanish',
   
-  footerNote: 'University Project - Software Design 2025 - The Simpsons Card Wiki',
+  footerNote: 'University Project - Software Design 2025 - The SimpsonsCards',
   projectFor: 'Project for TEC',
   
   currentLanguage: 'Language',
@@ -130,25 +130,31 @@ export const en: TranslationKeys = {
   status: 'Status',
   occupation: 'Occupation',
 
-/* ANALYTICS PAGE */
-analyticsTitle: 'Statistics and Analytics',
-analyticsSubtitle: 'Discover the most interesting data from The Simpsons universe',
-loadingAnalytics: 'Loading statistics...',
+  /* ANALYTICS PAGE */
+  analyticsTitle: 'Statistics and Analytics',
+  analyticsSubtitle: 'Discover the most interesting data from The Simpsons universe',
+  loadingAnalytics: 'Loading statistics...',
 
-/* Tabs */
-top10Tab: 'Top 10 Characters',
-seasonsTab: 'Season Statistics',
+  /* Tabs */
+  top10Tab: 'Top 10 Characters',
+  seasonsTab: 'Season Statistics',
 
-/* Top 10 Section */
-top10Title: 'Top 10 Most Searched Characters',
-top10Description: 'The most popular characters according to user searches',
-searches: 'searches',
+  /* Top 10 Section */
+  top10Title: 'Top 10 Most Searched Characters',
+  top10Description: 'The most popular characters according to user searches',
+  searches: 'searches',
 
-/* Seasons Section */
-seasonsTitle: 'Season Statistics',
-seasonsDescription: 'Detailed analysis of episodes per season',
-seasonsCount: 'Seasons',
-totalEpisodes: 'Total Episodes',
-averagePerSeason: 'Average per Season',
-moreEpisodes: 'more episodes',
+  /* Seasons Section */
+  seasonsTitle: 'Season Statistics',
+  seasonsDescription: 'Detailed analysis of episodes per season',
+  seasonsCount: 'Seasons',
+  totalEpisodes: 'Total Episodes',
+  averagePerSeason: 'Average per Season',
+  moreEpisodes: 'more episodes',
+
+  favorites: "Favorites",
+  favoriteItems: "favorite items",
+  noFavorites: "You don't have any favorites yet. Start exploring content and add your favorite items!",
+  backToProfile: "Back to Profile",
+  exploreContent: "Explore Content",
 };

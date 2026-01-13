@@ -72,6 +72,20 @@ function SearchResults() {
     }
   }, [location.state, navigate]);
 
+  // Hacer scroll al principio cuando se cargan los resultados
+  useEffect(() => {
+    if (searchResults) {
+      // Hacer scroll suave al principio de la página
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [searchResults]); // Se ejecuta cuando searchResults cambia
+
+  // También para cuando cambia la página (backup)
+  useEffect(() => {
+    // Scroll al cambiar de página
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
   // ============ FUNCIONES PARA LAS CARTAS ============
 
   const handleCardClick = (card: CardData) => {

@@ -144,4 +144,10 @@ export interface TranslationKeys {
   totalEpisodes: string;
   averagePerSeason: string;
   moreEpisodes: string;
+
+  favorites: string;
+  favoriteItems: string;
+  noFavorites: string;
+  backToProfile: string;
+  exploreContent: string;
 }

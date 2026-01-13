@@ -1054,3 +1054,92 @@ body.simpsons-theme.dark .back-btn:hover {
   color: #2C3E50 !important;
   border-color: #FFD90F !important;
 }
+
+/* ===== COLORES PARA FAVORITOS - MODO OSCURO ===== */
+
+/* Contenedor principal */
+body.dark .favoritos-container,
+body[data-theme="dark"] .favoritos-container,
+body.simpsons-theme.dark .favoritos-container {
+  color: var(--text-primary) !important;
+}
+
+/* Loading */
+body.dark .favoritos-loading h2,
+body[data-theme="dark"] .favoritos-loading h2,
+body.simpsons-theme.dark .favoritos-loading h2 {
+  color: var(--text-secondary) !important;
+}
+
+/* Header container */
+body.dark .favoritos-header-container,
+body[data-theme="dark"] .favoritos-header-container,
+body.simpsons-theme.dark .favoritos-header-container {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+/* Títulos */
+body.dark .favoritos-header h1,
+body[data-theme="dark"] .favoritos-header h1,
+body.simpsons-theme.dark .favoritos-header h1 {
+  color: var(--text-accent) !important;
+}
+
+body.dark .favoritos-count,
+body[data-theme="dark"] .favoritos-count,
+body.simpsons-theme.dark .favoritos-count {
+  color: var(--text-secondary) !important;
+}
+
+/* Sin favoritos */
+body.dark .no-favoritos-message,
+body[data-theme="dark"] .no-favoritos-message,
+body.simpsons-theme.dark .no-favoritos-message {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+body.dark .no-favoritos-message p,
+body[data-theme="dark"] .no-favoritos-message p,
+body.simpsons-theme.dark .no-favoritos-message p {
+  color: var(--text-secondary) !important;
+}
+
+/* Acciones */
+body.dark .favoritos-actions,
+body[data-theme="dark"] .favoritos-actions,
+body.simpsons-theme.dark .favoritos-actions {
+  background: var(--card-bg) !important;
+  border-color: var(--card-border) !important;
+}
+
+/* Botones */
+body.dark .favoritos-back-btn,
+body[data-theme="dark"] .favoritos-back-btn,
+body.simpsons-theme.dark .favoritos-back-btn {
+  background: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-color) !important;
+  border-color: var(--btn-secondary-border) !important;
+}
+
+body.dark .favoritos-back-btn:hover,
+body[data-theme="dark"] .favoritos-back-btn:hover,
+body.simpsons-theme.dark .favoritos-back-btn:hover {
+  background: var(--btn-secondary-hover) !important;
+}
+
+body.dark .favoritos-back-btn.secondary,
+body[data-theme="dark"] .favoritos-back-btn.secondary,
+body.simpsons-theme.dark .favoritos-back-btn.secondary {
+  background: transparent !important;
+  color: var(--btn-primary-color) !important;
+  border-color: var(--btn-primary-border) !important;
+}
+
+body.dark .favoritos-back-btn.secondary:hover,
+body[data-theme="dark"] .favoritos-back-btn.secondary:hover,
+body.simpsons-theme.dark .favoritos-back-btn.secondary:hover {
+  background: var(--btn-primary-bg) !important;
+}

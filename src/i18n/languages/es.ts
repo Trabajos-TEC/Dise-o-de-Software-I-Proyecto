@@ -1,7 +1,7 @@
 import type { TranslationKeys } from '../types';
 
 export const es: TranslationKeys = {
-  appTitle: 'The SimpsonsCard',
+  appTitle: 'The SimpsonsCards',
   themeSwitcher: 'Cambiar Tema',
   languageSwitcher: 'Idioma',
   
@@ -21,7 +21,7 @@ export const es: TranslationKeys = {
   themeDescription: 'Cada tema tiene imágenes y colores únicos',
   languageDescription: 'Cambia entre Inglés y Español',
   
-  footerNote: 'Proyecto Universitario - Diseño de Software 2025 - Wiki de Cartas de Los Simpson',
+  footerNote: 'Proyecto Universitario - Diseño de Software 2025 - The SimpsonsCards',
   projectFor: 'Proyecto para el TEC',
   
   currentLanguage: 'Idioma',
@@ -150,4 +150,10 @@ export const es: TranslationKeys = {
   totalEpisodes: 'Episodios Totales',
   averagePerSeason: 'Promedio por Temporada',
   moreEpisodes: 'episodios más',
+
+  favorites: 'Favoritos',
+  favoriteItems: 'elementos favoritos',
+  noFavorites: 'No tienes elementos en tus favoritos.',
+  backToProfile: 'Volver al Perfil',
+  exploreContent: 'Explorar Contenido',
 };
