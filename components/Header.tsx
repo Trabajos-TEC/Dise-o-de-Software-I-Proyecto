@@ -1,21 +1,79 @@
+// components/Header.tsx
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { 
+  StyleSheet, 
+  View, 
+  Image, 
+  TouchableOpacity, 
+  Text 
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useLanguage } from '../context/LanguageContext';
+import { getGlobalStyles } from '../styles/global';
+import { NavigationProp } from '../navigation/AppNavigator';
 
 interface HeaderProps {
   toggleTheme: () => void;
+  darkTheme: boolean;
+  onLogoPress?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
-  const { language, toggleLanguage } = useLanguage();
+const Header: React.FC<HeaderProps> = ({ 
+  toggleTheme, 
+  darkTheme,
+  onLogoPress 
+}) => {
+  const navigation = useNavigation<NavigationProp>();
+  const { language, toggleLanguage, t } = useLanguage();
+  const globalStyles = getGlobalStyles(darkTheme);
+  const { theme } = globalStyles;
+
+  const handleLogoPress = () => {
+    if (onLogoPress) {
+      onLogoPress();
+    }
+    navigation.navigate('Home');
+  };
 
   return (
-    <View style={styles.header}>
-      <Text style={styles.title}>Mi App Anime</Text>
+    <View style={[styles.header, { 
+      backgroundColor: theme.headerBg,
+      borderBottomColor: theme.divider 
+    }]}>
+      {/* Logo como botón */}
+      <TouchableOpacity 
+        style={styles.logoContainer}
+        onPress={handleLogoPress}
+        activeOpacity={0.7}
+      >
+        <Image
+          source={require('../assets/simpsons_logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
+
+      {/* Botones a la derecha */}
       <View style={styles.buttons}>
-        <Button title="Theme" onPress={toggleTheme} />
-        <View style={{ width: 10 }} /> {/* Separador */}
-        <Button title={language === 'es' ? 'Idioma: ES' : 'Idioma: EN'} onPress={toggleLanguage} />
+        <TouchableOpacity 
+          style={[styles.button, { backgroundColor: 'rgba(0,0,0,0.05)' }]}
+          onPress={toggleTheme}
+          accessibilityLabel={t('toggleTheme')}
+        >
+          <Text style={[styles.iconText, { color: theme.text }]}>
+            {darkTheme ? '☀️' : '🌙'}
+          </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity 
+          style={[styles.button, { backgroundColor: 'rgba(0,0,0,0.05)', marginLeft: 8 }]}
+          onPress={toggleLanguage}
+          accessibilityLabel={t('toggleLanguage')}
+        >
+          <Text style={[styles.iconText, { color: theme.text }]}>
+            {language === 'es' ? '🇪🇸' : '🇺🇸'}
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -24,17 +82,33 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme }) => {
 const styles = StyleSheet.create({
   header: {
     padding: 16,
-    backgroundColor: '#eee',
+    paddingTop: 40,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    borderBottomWidth: 1,
+    height: 100,
+  },
+  logoContainer: {
+    flex: 1,
+  },
+  logo: {
+    width: 140,
+    height: 70,
   },
   buttons: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
+  button: {
+    width: 44,
+    height: 44,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconText: {
+    fontSize: 24,
   },
 });
 
